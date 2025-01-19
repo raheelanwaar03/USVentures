@@ -42,7 +42,8 @@
                             <td>
                                 <a href="#" class="btn btn-sm btn-primary">Edit</a>
                                 <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                                <a href="#" class="btn btn-sm btn-info text-white">Active</a>
+                                <a href="{{ route('Admin.Change.Status', $item->id) }}"
+                                    class="btn btn-sm btn-info text-white">Active</a>
                             </td>
                         </tr>
                     @empty

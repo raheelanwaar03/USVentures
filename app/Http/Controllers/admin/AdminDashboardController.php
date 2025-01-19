@@ -57,4 +57,12 @@ class AdminDashboardController extends Controller
         // redirect to add task page
         return redirect()->route('Admin.Add.Task');
     }
+
+    public function changeStatus($id)
+    {
+        $task = DailyTask::find($id);
+        $task->status = 'active';
+        $task->save();
+        return redirect()->route('Admin.All.Task');
+    }
 }

@@ -11,4 +11,6 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     Route::get('/Add/Task', [AdminDashboardController::class, 'addTask'])->name('Add.Task');
     Route::post('/Store/Task', [AdminDashboardController::class, 'storeTask'])->name('Store.Task');
     Route::get('/All/Task', [AdminDashboardController::class, 'allTasks'])->name('All.Task');
+    // change the status
+    Route::get('/Change/Status/{id}', [AdminDashboardController::class, 'changeStatus'])->name('Change.Status');
 });
