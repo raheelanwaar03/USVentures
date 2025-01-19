@@ -4,13 +4,10 @@
     <main>
         <div class="container">
             <div class="row text-center">
-                <div class="col-6" style="border-right: 1px solid white">
-                    <p>Withdraw</p>
+                <div class="col-12 text-center text-dark">
+                    <h3>Withdraw</h3>
                 </div>
-                <div class="col-6">
-                    <p>Withdraw History</p>
-                </div>
-                <hr>
+                <hr style="color: black">
             </div>
         </div>
 
@@ -18,7 +15,7 @@
             <div class="row">
                 <div class="col-12 bg-white text-dark p-3" style="border-radius: 10px;">
                     <h5>Total Balance</h5>
-                    <h3>USDT:{{ auth()->user()->balance }}</h3>
+                    <h3>USDT:{{ number_format(round(auth()->user()->balance),2) }}</h3>
                     <small>You will recive your withdrawal within an hour</small>
                 </div>
             </div>

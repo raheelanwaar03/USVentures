@@ -50,7 +50,7 @@ class clean extends Command
         $user = new User();
         $user->name = 'User';
         $user->referral = 'default';
-        $user->balance = 0.00;
+        $user->balance = 100.00;
         $user->email = 'user@gmail.com';
         $user->password = Hash::make('asdfasdf');
         $user->status = 'active';

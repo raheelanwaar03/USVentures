@@ -171,11 +171,11 @@
     <section>
         <h3>My Financial</h3>
         <ul>
-            <li><a href="#"><i class="fa-solid fa-wallet"></i> Wallet</a><i class="fa-solid fa-chevron-right"></i>
-            </li>
-            <li><a href="#"><i class="fa-solid fa-dollar-sign"></i> Deposit</a><i
+            {{-- <li><a href="#"><i class="fa-solid fa-wallet"></i> Wallet</a><i class="fa-solid fa-chevron-right"></i>
+            </li> --}}
+            <li><a href="{{ route('User.Deposit') }}"><i class="fa-solid fa-dollar-sign"></i> Deposit</a><i
                     class="fa-solid fa-chevron-right"></i></li>
-            <li><a href="#"><i class="fa-solid fa-money-bill"></i> Withdraw</a><i
+            <li><a href="{{ route('User.Withdraw') }}"><i class="fa-solid fa-money-bill"></i> Withdraw</a><i
                     class="fa-solid fa-chevron-right"></i></li>
             <li><a href="#"><i class="fa-solid fa-list"></i> Transaction</a><i
                     class="fa-solid fa-chevron-right"></i></li>
@@ -184,7 +184,7 @@
     <section>
         <h3>My Detail</h3>
         <ul>
-            <li><a href="{{ route() }}"><i class="fa-solid fa-user"></i> Personal Info</a><i
+            <li><a href="{{ route('profile.edit') }}"><i class="fa-solid fa-user"></i> Personal Info</a><i
                     class="fa-solid fa-chevron-right"></i></li>
         </ul>
     </section>
