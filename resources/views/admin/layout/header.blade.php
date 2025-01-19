@@ -108,4 +108,8 @@
         <a href="{{ route('Admin.Users') }}"><i class="fas fa-user"></i> Users</a>
         <a href="{{ route('Admin.Add.Task') }}"><i class="fas fa-cogs"></i> Add Task</a>
         <a href="{{ route('Admin.All.Task') }}"><i class="fas fa-cogs"></i> All Tasks</a>
-        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" style="background: none; border: none; color: white; cursor: pointer;"><i
+                    class="fas fa-sign-out-alt"></i> Logout</button>
+        </form>
