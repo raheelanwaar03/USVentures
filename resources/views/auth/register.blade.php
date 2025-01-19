@@ -206,6 +206,11 @@
                                     <input type="password" name="password_confirmation" id="password"
                                         class="form-control" placeholder="Enter your password">
                                 </div>
+                                <div class="form-group">
+                                    <label for="referral">Invite Code</label>
+                                    <input type="text" name="referral" id="referral" class="form-control"
+                                        placeholder="Enter your referral code">
+                                </div>
                                 <div class="mt-2 d-flex justify-content-between align-items-center">
                                     <button type="submit" class="btn btn-info text-white">Register</button>
                                     <a href="{{ route('login') }}" class="btn btn-outline-info text-dark">Already have

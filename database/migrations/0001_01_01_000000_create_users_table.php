@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->float('balance', 7, 5)->default(0);
+            // add balance column the balance of the user could be a float up to 5 decimal places
+            $table->decimal('balance', 15, 5)->default(0);
             $table->string('role')->default('user');
             $table->string('status')->default('active');
             $table->string('referral')->default('default');
-            $table->string('badge')->default('vip0');
+            $table->string('referral_id');
+            $table->string('level')->default('vip0');
             $table->string('pin');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

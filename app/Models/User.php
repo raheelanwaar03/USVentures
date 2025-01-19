@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'balance',
         'referral',
+        'referral_id',
         'status',
         'role',
         'badge',

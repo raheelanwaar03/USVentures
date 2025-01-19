@@ -158,9 +158,10 @@
                 <div class="col-12">
                     <div class="d-flex justify-content-around align-items-center">
                         {{-- show line under all link --}}
-                        <a href="{{ route('User.Record') }}" style="cursor: pointer;color:white"><u>All</u></a>
-                        <a href="{{ route('User.Completed.Record') }}" class="text-decoration-none"
-                            style="cursor: pointer;color:white;">Completed</a>
+                        <a href="{{ route('User.Record') }}" class="text-decoration-none"
+                            style="cursor: pointer;color:white">All</a>
+                        <a href="{{ route('User.Completed.Record') }}"
+                            style="cursor: pointer;color:white"><u>Completed</u></a>
                         <a href="{{ route('User.Rejected.Record') }}" class="text-decoration-none"
                             style="cursor: pointer;color:white">Rejected</a>
                     </div>
@@ -180,11 +181,6 @@
                                 <img src="{{ asset('images/' . $item->image) }}" height="100px" width="100px"
                                     alt="image">
                                 <h3>{{ $item->name }}</h3>
-                            </div>
-                            {{-- add button in right side --}}
-                            <div class="d-flex justify-content-end align-items-center" style="margin-right: 10px;">
-                                <a href="{{ route('User.Add.Amount', $item->id) }}"
-                                    class="btn btn-info text-dark">View</a>
                             </div>
                             <hr>
                             <div class="d-flex align-items-center">

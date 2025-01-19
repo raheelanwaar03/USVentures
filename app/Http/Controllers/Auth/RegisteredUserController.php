@@ -31,15 +31,22 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'referral' => ['required', 'string', 'max:255'],
             'pin' => ['required', 'string', 'min:6', 'max:6'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // generate referral code
+
+        $referral_code = 'US' . rand(10000, 99999);
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'pin' => $request->pin,
+            'referral_id' => $referral_code,
+            'referral' => $request->referral,
             'password' => Hash::make($request->password),
         ]);
 

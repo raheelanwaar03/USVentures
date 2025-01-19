@@ -158,11 +158,12 @@
                 <div class="col-12">
                     <div class="d-flex justify-content-around align-items-center">
                         {{-- show line under all link --}}
-                        <a href="{{ route('User.Record') }}" style="cursor: pointer;color:white"><u>All</u></a>
+                        <a href="{{ route('User.Record') }}" class="text-decoration-none"
+                            style="cursor: pointer;color:white">All</a>
                         <a href="{{ route('User.Completed.Record') }}" class="text-decoration-none"
-                            style="cursor: pointer;color:white;">Completed</a>
-                        <a href="{{ route('User.Rejected.Record') }}" class="text-decoration-none"
-                            style="cursor: pointer;color:white">Rejected</a>
+                            style="cursor: pointer;color:white">Completed</a>
+                        <a href="{{ route('User.Rejected.Record') }}"
+                            style="cursor: pointer;color:white"><u>Rejected</u></a>
                     </div>
                 </div>
             </div>

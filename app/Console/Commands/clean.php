@@ -2,7 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
 
 class clean extends Command
 {
@@ -11,20 +14,50 @@ class clean extends Command
      *
      * @var string
      */
-    protected $signature = 'app:clean';
+    protected $signature = 'make:clean';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Clean the database and seed the default data';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        //
+        Artisan::call('migrate:fresh');
+        Artisan::call('cache:clear');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+        Artisan::call('route:clear');
+
+        $user = new User();
+        $user->name = 'Admin';
+        $user->referral = 'default';
+        $user->balance = 0.00;
+        $user->email = 'admin@gmail.com';
+        $user->password = Hash::make('asdfasdf');
+        $user->status = 'active';
+        $user->role = 'admin';
+        $user->referral_id = 'SH123456';
+        $user->level = 'level 0';
+        $user->pin = '123456';
+        $user->save();
+
+        $user = new User();
+        $user->name = 'User';
+        $user->referral = 'default';
+        $user->balance = 0.00;
+        $user->email = 'user@gmail.com';
+        $user->password = Hash::make('asdfasdf');
+        $user->status = 'active';
+        $user->role = 'user';
+        $user->referral_id = 'SH123456';
+        $user->level = 'level 0';
+        $user->pin = '123456';
+        $user->save();
     }
 }

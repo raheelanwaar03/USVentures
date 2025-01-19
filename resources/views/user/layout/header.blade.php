@@ -14,8 +14,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            /* add gradient color to the body with #00a99d */
-            background: linear-gradient(to right, #023d34, #00a99d);
+            background-color: #00a99d;
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -147,68 +146,21 @@
         .font-2 {
             font-size: 13px;
         }
+
+        .pointer {
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
     <!-- Header -->
     <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex justify-content-around align-items-center">
-                        {{-- show line under all link --}}
-                        <a href="{{ route('User.Record') }}" style="cursor: pointer;color:white"><u>All</u></a>
-                        <a href="{{ route('User.Completed.Record') }}" class="text-decoration-none"
-                            style="cursor: pointer;color:white;">Completed</a>
-                        <a href="{{ route('User.Rejected.Record') }}" class="text-decoration-none"
-                            style="cursor: pointer;color:white">Rejected</a>
-                    </div>
-                </div>
-            </div>
+        <div class=" icons">
+            <!-- Menu/Profile Icon -->
+            <i class="fa-solid fa-user menu-icon" id="profile-icon"></i>
         </div>
+        <span>Language</span>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <div class="container-fluid">
-            @forelse ($tasks as $item)
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('images/' . $item->image) }}" height="100px" width="100px"
-                                    alt="image">
-                                <h3>{{ $item->name }}</h3>
-                            </div>
-                            {{-- add button in right side --}}
-                            <div class="d-flex justify-content-end align-items-center" style="margin-right: 10px;">
-                                <a href="{{ route('User.Add.Amount', $item->id) }}"
-                                    class="btn btn-info text-dark">View</a>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <p style="margin-left: 25px;">Total Amount</p>
-                                <p style="margin-left: 25px;">Profit</p>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <h4 style="margin-left: 15px;">USDT{{ $item->price }}</h4>
-                                <h4 style="margin-left: 15px;">USDT{{ $item->profit }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @empty
-                {{-- if there is no task --}}
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <div class="card">
-                            <h3 class="text-center">No Task Found</h3>
-                        </div>
-                    </div>
-            @endforelse
-        </div>
-    </main>
-</body>
-
-</html>
+    <x-alert />
