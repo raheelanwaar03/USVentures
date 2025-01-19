@@ -29,6 +29,15 @@
                                             placeholder="Enter profit" required step="0.0001">
                                     </div>
                                     <div class="form-group mt-2">
+                                        <label for="level">User Level</label>
+                                        <select name="level" id="level">
+                                            <option value="vip1">VIP1</option>
+                                            <option value="vip2">VIP2</option>
+                                            <option value="vip3">VIP3</option>
+                                            <option value="vip4">VIP4</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mt-2">
                                         <label for="image">Task Image</label>
                                         <input type="file" name="image" id="image" class="form-control"
                                             placeholder="Enter image" required>

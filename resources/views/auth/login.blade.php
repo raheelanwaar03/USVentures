@@ -157,6 +157,7 @@
         </div>
         <span>Language</span>
     </header>
+    <x-alert />
 
     <!-- Main Content -->
     <main>

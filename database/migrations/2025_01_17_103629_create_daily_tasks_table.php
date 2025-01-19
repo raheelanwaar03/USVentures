@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('price');
             $table->string('profit');
+            $table->string('level');
             $table->string('image');
             $table->string('status')->default('active');
             $table->timestamps();
