@@ -11,6 +11,7 @@
                     <tr>
                         <th>Task Name</th>
                         <th>Plan Price</th>
+                        <th>Level</th>
                         <th>Profit</th>
                         <th>Image</th>
                         <th>Status</th>
@@ -23,6 +24,7 @@
                         <tr>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->price }}</td>
+                            <td>{{ $item->level }}</td>
                             <td>{{ $item->profit }}</td>
                             <td>
                                 <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}"

@@ -14,23 +14,28 @@
                                 <form action="{{ route('Admin.Store.Task') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group mt-2">
-                                        <label for="task">Task Name</label>
+                                        <label for="task" class="form-label">Task Name</label>
                                         <input type="text" name="name" id="task" class="form-control"
                                             placeholder="Enter Name" required>
                                     </div>
                                     <div class="form-group mt-2">
-                                        <label for="price">Plan Price</label>
+                                        <label for="price" class="form-label">Plan Price</label>
                                         <input type="text" name="price" id="price" class="form-control"
                                             placeholder="Enter Price" required>
                                     </div>
                                     <div class="form-group mt-2">
-                                        <label for="profit">Task Profit</label>
+                                        <label for="profit" class="form-label">Task Profit</label>
                                         <input type="number" name="profit" id="profit" class="form-control"
                                             placeholder="Enter profit" required step="0.0001">
                                     </div>
                                     <div class="form-group mt-2">
-                                        <label for="level">User Level</label>
-                                        <select name="level" id="level">
+                                        <label for="link" class="form-label">Task Link</label>
+                                        <input type="text" name="link" id="link" class="form-control"
+                                            placeholder="Enter profit" required>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="level" class="form-label">User Level</label>
+                                        <select name="level" class="form-control" id="level">
                                             <option value="vip1">VIP1</option>
                                             <option value="vip2">VIP2</option>
                                             <option value="vip3">VIP3</option>
@@ -38,7 +43,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group mt-2">
-                                        <label for="image">Task Image</label>
+                                        <label for="image" class="form-label">Task Image</label>
                                         <input type="file" name="image" id="image" class="form-control"
                                             placeholder="Enter image" required>
                                     </div>

@@ -37,6 +37,8 @@ class AdminDashboardController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
+            'link' => 'required',
+            'level' => 'required',
             'profit' => 'required',
             'image' => 'required|image|mimes:jpeg,webp,png,jpg,gif,svg|max:2048',
         ]);
@@ -47,6 +49,8 @@ class AdminDashboardController extends Controller
         $task = new DailyTask();
         $task->name = $request->name;
         $task->price = $request->price;
+        $task->link = $request->link;
+        $task->level = $request->level;
         $task->profit = $request->profit;
         $task->image = $imageName;
         $task->save();

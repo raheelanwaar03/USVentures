@@ -183,8 +183,8 @@
                             </div>
                             {{-- add button in right side --}}
                             <div class="d-flex justify-content-end align-items-center" style="margin-right: 10px;">
-                                <a href="{{ route('User.Add.Amount', $item->id) }}"
-                                    class="btn btn-info text-dark">View</a>
+                                <a href="{{ route('User.Add.Amount', $item->id) }}" class="btn btn-info text-dark"
+                                    onclick="window.open('{{ $item->link }}', '_blank')">View</a>
                             </div>
                             <hr>
                             <div class="d-flex align-items-center">
