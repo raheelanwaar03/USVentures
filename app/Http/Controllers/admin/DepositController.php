@@ -65,4 +65,13 @@ class DepositController extends Controller
         $wallet->save();
         return redirect()->back()->with('success', 'Wallet updated successfully');
     }
+
+    public function deleteMethod($id)
+    {
+        $wallet = AdminWallet::find($id);
+        // remove image
+        unlink(public_path('images/logo/' . $wallet->logo));
+        $wallet->delete();
+        return redirect()->back()->with('success', 'Wallet deleted successfully');
+    }
 }

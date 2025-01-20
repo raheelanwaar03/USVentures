@@ -20,4 +20,5 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     Route::get('/All/Deposit/Method', [DepositController::class, 'allMethod'])->name('All.Method');
     Route::get('/Edit/Deposit/Method/{id}', [DepositController::class, 'editMethod'])->name('Edit.Method');
     Route::post('/Update/Deposit/Method/{id}', [DepositController::class, 'updateMethod'])->name('Update.Method');
+    Route::get('/Delete/Deposit/Method/{id}', [DepositController::class, 'deleteMethod'])->name('Delete.Method');
 });

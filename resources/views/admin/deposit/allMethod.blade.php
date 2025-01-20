@@ -25,14 +25,14 @@
                             <td>{{ $item->address }}</td>
                             <td>{{ $item->username }}</td>
                             <td>
-                                <img src="{{ asset('images/logo' . $item->logo) }}" alt="{{ $item->logog }}"
+                                <img src="{{ asset('images/logo/' . $item->logo) }}" alt="{{ $item->logo }}"
                                     style="width: 100px; height: 100px;">
                             </td>
                             <td>{{ $item->status }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>
                                 <a href="{{ route('Admin.Edit.Method', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="{{ route('Admin.Delete.Method',$item->id) }}" class="btn btn-sm btn-danger">Delete</a>
                             </td>
                         </tr>
                     @empty

@@ -35,7 +35,7 @@
                                             placeholder="Enter image" required>
                                     </div>
                                     {{-- show logo --}}
-                                    <div class="form-group">
+                                    <div class="form-group mt-2">
                                         <img src="{{ asset('images/logo/' . $wallet->logo) }}" alt="{{ $wallet->logo }}"
                                             style="width: 100px; height: 100px;">
                                     </div>
