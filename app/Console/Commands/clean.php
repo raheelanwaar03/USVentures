@@ -43,7 +43,7 @@ class clean extends Command
         $user->status = 'active';
         $user->role = 'admin';
         $user->referral_id = 'SH123456';
-        $user->level = 'level 0';
+        $user->level = 'vip1';
         $user->pin = '123456';
         $user->save();
 
@@ -56,7 +56,7 @@ class clean extends Command
         $user->status = 'active';
         $user->role = 'user';
         $user->referral_id = 'SH123456';
-        $user->level = 'level 0';
+        $user->level = 'vip1';
         $user->pin = '123456';
         $user->save();
     }

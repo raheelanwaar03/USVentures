@@ -159,7 +159,7 @@
                 </div>
                 <div>
                     <h5>Total Referrals</h5>
-                    <p>25</p>
+                    <p>{{ total_team() }}</p>
                 </div>
             </div>
 
@@ -172,18 +172,25 @@
                 </div>
                 <div>
                     <h5>Membership</h5>
-                    <p>{{ auth()->user()->level }}</p>
+                    <p class="text-capitalize">{{ auth()->user()->level }}</p>
                 </div>
                 <div>
-                    <h5>Location</h5>
-                    <p>New York, USA</p>
+                    <h5>Status</h5>
+                    <p>
+                        {{-- if status is active make it green and if disable then make it red --}}
+                        @if (auth()->user()->status == 'active')
+                            <span class="badge bg-success">{{ auth()->user()->status }}</span>
+                        @else
+                            <span class="badge bg-danger">{{ auth()->user()->status }}</span>
+                        @endif
+                    </p>
                 </div>
             </div>
 
             <!-- Referral Section -->
             <div class="referral-section">
                 <h4>Your Referral Code</h4>
-                <div id="referralCode" class="referral-box">ABC123XYZ</div>
+                <div id="referralCode" class="referral-box">{{ auth()->user()->referral_id }}</div>
                 <button class="copy-button" onclick="copyReferralCode()">Copy Code</button>
                 <div id="successMessage" class="success-message">Referral code copied to clipboard!</div>
             </div>
@@ -196,18 +203,15 @@
     </div>
 
     <script>
-        // Function to copy the referral code
         function copyReferralCode() {
-            const referralCode = document.getElementById('referralCode').innerText;
-            navigator.clipboard.writeText(referralCode).then(() => {
-                const successMessage = document.getElementById('successMessage');
-                successMessage.style.display = 'block'; // Show success message
-                setTimeout(() => {
-                    successMessage.style.display = 'none'; // Hide success message after 2 seconds
-                }, 2000);
-            }).catch((err) => {
-                console.error('Failed to copy referral code: ', err);
-            });
+            var referralCode = document.getElementById('referralCode');
+            var textArea = document.createElement('textarea');
+            textArea.value = referralCode.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('Copy');
+            textArea.remove();
+            document.getElementById('successMessage').style.display = 'block';
         }
     </script>
 </body>
