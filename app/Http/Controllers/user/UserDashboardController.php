@@ -25,20 +25,35 @@ class UserDashboardController extends Controller
 
     public function record()
     {
-        $tasks = DailyTask::where('status', 'active')->get();
-        return view('user.record', compact('tasks'));
+        $user = User::find(abs(auth()->user()->id));
+        if ($user->status == 'active') {
+            $tasks = DailyTask::where('level', auth()->user()->level)->where('status', 'active')->get();
+            return view('user.record', compact('tasks'));
+        } else {
+            return redirect()->route('User.Dashboard')->with('error', 'Contact Customer Service');
+        }
     }
 
     public function completedRecord()
     {
-        $tasks = DailyTask::where('status', 'completed')->get();
-        return view('user.completedRecord', compact('tasks'));
+        $user = User::find(abs(auth()->user()->id));
+        if ($user->status == 'active') {
+            $tasks = DailyTask::where('level', auth()->user()->level)->where('status', 'active')->get();
+            return view('user.completedRecord', compact('tasks'));
+        } else {
+            return redirect()->route('User.Dashboard')->with('error', 'Contact Customer Service');
+        }
     }
 
     public function rejectedRecord()
     {
-        $tasks = DailyTask::where('status', 'rejected')->get();
-        return view('user.rejectedRecord', compact('tasks'));
+        $user = User::find(abs(auth()->user()->id));
+        if ($user->status == 'active') {
+            $tasks = DailyTask::where('level', auth()->user()->level)->where('status', 'active')->get();
+            return view('user.rejectedRecord', compact('tasks'));
+        } else {
+            return redirect()->route('User.Dashboard')->with('error', 'Contact Customer Service');
+        }
     }
 
     public function addTaskAmount(Request $request, $id)

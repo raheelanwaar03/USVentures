@@ -43,6 +43,8 @@
                                 <a href="{{ route('Admin.Edit.User', $user->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                 <a href="{{ route('Admin.Disable.User', $user->id) }}"
                                     class="btn btn-sm btn-danger">Disable</a>
+                                <a href="{{ route('Admin.Active.User', $user->id) }}"
+                                    class="btn btn-sm btn-success">Active</a>
                             </td>
                         </tr>
                     @empty

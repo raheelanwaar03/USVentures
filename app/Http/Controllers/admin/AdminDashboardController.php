@@ -41,6 +41,14 @@ class AdminDashboardController extends Controller
         return redirect()->route('Admin.Users')->with('success', 'User Disabled Successfully');
     }
 
+    public function active($id)
+    {
+        $user = User::find($id);
+        $user->status = 'active';
+        $user->save();
+        return redirect()->route('Admin.Users')->with('success', 'User Activated Successfully');
+    }
+
     public function users()
     {
         $users = User::all();
@@ -82,7 +90,7 @@ class AdminDashboardController extends Controller
         $task->image = $imageName;
         $task->save();
         // redirect to add task page
-        return redirect()->route('Admin.Add.Task');
+        return redirect()->route('Admin.Add.Task')->with('success', 'Task Added Successfully');
     }
 
     public function changeStatus($id)
