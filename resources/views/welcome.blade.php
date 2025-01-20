@@ -151,6 +151,7 @@
 </head>
 
 <body>
+    <x-alert />
     <!-- Header -->
     <header>
         <div class="icons">
