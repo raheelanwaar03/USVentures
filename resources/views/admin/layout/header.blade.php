@@ -101,15 +101,21 @@
 </head>
 
 <body>
+
+    <x-alert />
+
     <button class="toggle-sidebar"><i class="fas fa-bars"></i></button>
     <div class="sidebar">
         <h2>USVentures</h2>
         <a href="{{ route('Admin.Dashboard') }}"><i class="fas fa-home"></i> Home</a>
         <a href="{{ route('Admin.Users') }}"><i class="fas fa-user"></i> Users</a>
-        <a href="{{ route('Admin.Add.Task') }}"><i class="fas fa-cogs"></i> Add Task</a>
-        <a href="{{ route('Admin.All.Task') }}"><i class="fas fa-cogs"></i> All Tasks</a>
+        <a href="{{ route('Admin.Deposit.Method') }}"><i class="fa-solid fa-wallet"></i> Deposit Method</a>
+        <a href="{{ route('Admin.Add.Task') }}"><i class="fa-solid fa-list-check"></i> Add Task</a>
+        <a href="{{ route('Admin.All.Task') }}"><i class="fa-solid fa-bars-progress"></i> All Tasks</a>
         <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <button type="submit" style="background: none; border: none; color: white; cursor: pointer;"><i
-                    class="fas fa-sign-out-alt"></i> Logout</button>
+            <div class="text-center mt-3">
+                <button type="submit" style="background: none; border: none; color: white; cursor: pointer;"><i
+                        class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
         </form>

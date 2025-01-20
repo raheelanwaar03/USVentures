@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\DepositController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -13,4 +14,8 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     Route::get('/All/Task', [AdminDashboardController::class, 'allTasks'])->name('All.Task');
     // change the status
     Route::get('/Change/Status/{id}', [AdminDashboardController::class, 'changeStatus'])->name('Change.Status');
+    // deposit page
+    Route::get('/Deposit', [DepositController::class, 'addDeposit'])->name('Deposit.Method');
+    Route::post('/Store/Deposit/Method', [DepositController::class, 'storeWallet'])->name('Store.Method');
+    Route::get('/All/Deposit/Method', [DepositController::class, 'allMethod'])->name('All.Method');
 });
