@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\AdminWallet;
 use App\Models\admin\DailyTask;
 use App\Models\User;
 use App\Models\user\CompletedTask;
@@ -93,6 +94,7 @@ class UserDashboardController extends Controller
     // deposit money
     public function deposit()
     {
-        return view('user.deposit');
+        $wallet = AdminWallet::all();
+        return view('user.deposit', compact('wallet'));
     }
 }
