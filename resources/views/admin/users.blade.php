@@ -6,7 +6,7 @@
         <h1>Welcome to the Admin Dashboard</h1>
         <div class="table-container">
             <h2 class="text-center"><u>All Users</u></h2>
-            <table id="users" class="display responsive nowrap" style="width:100%">
+            <table id="example" class="display responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Name</th>

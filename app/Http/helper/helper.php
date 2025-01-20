@@ -5,7 +5,7 @@ use App\Models\User;
 
 function total_team()
 {
-    $users = User::where('referral', auth()->user()->referral_id)->get()->count();
+    $users = User::where('referral', auth()->user()->referral_id)->count();
     return $users;
 }
 
