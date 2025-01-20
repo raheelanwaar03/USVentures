@@ -122,8 +122,9 @@
                     </div>
                 </div>
                 <div class="col-12" style="background-color: #2e3b4e; border-radius: 16px;">
-                    <p class="mt-2 text-center pt-2"><a href="#" style="text-decoration: none;color: white;">Start
-                            (40/40)</a></p>
+                    <p class="mt-2 text-center pt-2"><a href="{{ route('User.Record') }}"
+                            style="text-decoration: none;color: white;">Start
+                            (40/{{ tasks() }})</a></p>
                 </div>
             </div>
 
@@ -133,7 +134,7 @@
                         <i class="bi bi-coin"></i>
                     </h3>
                     <p><span style="font-size: 12px;">Today Profit</span> <br>
-                        <span><b>USDT 0.00</b></span>
+                        <span><b>USDT {{ today_profit() }}</b></span>
                         <br><small style="font-size: 8px;">Auto update daily</small>
                     </p>
                 </div>
@@ -143,7 +144,7 @@
                     </h3>
                     <p><span style="font-size: 12px;">Today Balance</span> <br>
                         <span>
-                            <b>USDT 0.00</b>
+                            <b>USDT {{ auth()->user()->balance }}</b>
                         </span>
                         <br><small style="font-size: 8px;">Profit will be added here</small>
                     </p>
