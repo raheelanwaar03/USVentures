@@ -41,4 +41,28 @@ class DepositController extends Controller
         return view('admin.deposit.allMethod', compact('wallets'));
     }
 
+    public function editMethod($id)
+    {
+        $wallet = AdminWallet::find($id);
+        return view('admin.deposit.editMethod', compact('wallet'));
+    }
+
+    public function updateMethod(Request $request, $id)
+    {
+        // update the wallet and check if user uploaded a new image then remove old one and save new one
+        $wallet = AdminWallet::find($id);
+        $wallet->name = $request->name;
+        $wallet->username = $request->username;
+        $wallet->address = $request->address;
+        if ($request->logo) {
+            // remove old image
+            unlink(public_path('images/logo/' . $wallet->logo));
+            // save new image
+            $imageName = time() . '.' . $request->logo->extension();
+            $request->logo->move(public_path('images/logo'), $imageName);
+            $wallet->logo = $imageName;
+        }
+        $wallet->save();
+        return redirect()->back()->with('success', 'Wallet updated successfully');
+    }
 }
