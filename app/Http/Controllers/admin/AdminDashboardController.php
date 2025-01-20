@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\admin\DailyTask;
 use App\Models\User;
 use App\Models\user\DepositAmount;
+use App\Models\user\Withdraw;
 use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
@@ -99,5 +100,11 @@ class AdminDashboardController extends Controller
         $task->status = 'active';
         $task->save();
         return redirect()->route('Admin.All.Task');
+    }
+
+    public function withdrawRequest()
+    {
+        $withdraw = Withdraw::get();
+        return view('admin.withdraw', compact('withdraw'));
     }
 }

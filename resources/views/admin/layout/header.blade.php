@@ -109,6 +109,7 @@
         <h2>USVentures</h2>
         <a href="{{ route('Admin.Dashboard') }}"><i class="fas fa-home"></i> Home</a>
         <a href="{{ route('Admin.Users') }}"><i class="fas fa-user"></i> Users</a>
+        <a href="{{ route('Admin.Withdraw.Request') }}"><i class="fa-solid fa-coins"></i> Withdraw</a>
         <a href="{{ route('Admin.Deposit.Method') }}"><i class="fa-solid fa-wallet"></i> Deposit Method</a>
         <a href="{{ route('Admin.Add.Task') }}"><i class="fa-solid fa-list-check"></i> Add Task</a>
         <a href="{{ route('Admin.All.Task') }}"><i class="fa-solid fa-bars-progress"></i> All Tasks</a>

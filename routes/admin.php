@@ -26,4 +26,6 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     Route::post('Update/User/{id}', [AdminDashboardController::class, 'updateUser'])->name('Update.User');
     Route::get('Disable/User/{id}', [AdminDashboardController::class, 'disable'])->name('Disable.User');
     Route::get('Active/User/{id}', [AdminDashboardController::class, 'active'])->name('Active.User');
+    // withdraw
+    Route::get('Withdraw/Request', [AdminDashboardController::class, 'withdrawRequest'])->name('Withdraw.Request');
 });
