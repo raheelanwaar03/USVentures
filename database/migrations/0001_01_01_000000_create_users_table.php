@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('status')->default('active');
             $table->string('referral')->default('default');
             $table->string('referral_id');
-            $table->string('level')->default('vip0');
+            $table->string('level')->default('vip1');
             $table->string('pin');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
