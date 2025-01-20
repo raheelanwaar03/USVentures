@@ -8,6 +8,7 @@ use App\Models\admin\DailyTask;
 use App\Models\User;
 use App\Models\user\CompletedTask;
 use App\Models\user\DepositAmount;
+use App\Models\user\Transcations;
 use App\Models\user\Withdraw;
 use Illuminate\Http\Request;
 
@@ -71,6 +72,14 @@ class UserDashboardController extends Controller
             $completed->task_id = $id;
             $completed->completed_at = date('Y-m-d');
             $completed->save();
+            // add to transcations
+            $transcation = new Transcations();
+            $transcation->user_id = auth()->user()->id;
+            $transcation->amount = $amount;
+            $transcation->type = 'Bonus';
+            $transcation->status = 'Credit';
+            $transcation->save();
+
             // add to user account
             $user = User::where('id', auth()->user()->id)->first();
             $user->balance += $amount;
@@ -104,6 +113,14 @@ class UserDashboardController extends Controller
         $withdraw->pin = $request->pin;
         $withdraw->save();
 
+        // add to transcations
+        $transcation = new Transcations();
+        $transcation->user_id = auth()->user()->id;
+        $transcation->amount = $request->amount;
+        $transcation->type = 'Withdraw';
+        $transcation->status = 'pending';
+        $transcation->save();
+
         return redirect()->route('User.Dashboard')->with('success', 'Withdraw request sent successfully');
     }
 
@@ -128,6 +145,19 @@ class UserDashboardController extends Controller
             'phone' => auth()->user()->phone,
             'amount' => $request->amount,
         ]);
+
+        $transcation = new Transcations();
+        $transcation->user_id = auth()->user()->id;
+        $transcation->amount = $request->amount;
+        $transcation->type = 'Deposit';
+        $transcation->status = 'pending';
+        $transcation->save();
         return redirect()->back()->with('success', 'Deposit request sent successfully');
+    }
+
+    public function transactions()
+    {
+        $transcations = Transcations::where('user_id', auth()->user()->id)->get();
+        return view('user.transactions', compact('transcations'));
     }
 }
