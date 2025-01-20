@@ -3,7 +3,7 @@
 @section('content')
     </div>
     <div class="main-content">
-        <h1>Welcome to the Admin Dashboard</h1>
+        <h1 class="text-center">Admin Dashboard</h1>
         <div class="table-container">
             <h2 class="text-center"><u>Deposit Requests</u></h2>
             <table id="example" class="display responsive nowrap" style="width:100%">
