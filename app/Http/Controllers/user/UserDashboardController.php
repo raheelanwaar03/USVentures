@@ -7,6 +7,7 @@ use App\Models\admin\AdminWallet;
 use App\Models\admin\DailyTask;
 use App\Models\User;
 use App\Models\user\CompletedTask;
+use App\Models\user\DepositAmount;
 use App\Models\user\Withdraw;
 use Illuminate\Http\Request;
 
@@ -96,5 +97,22 @@ class UserDashboardController extends Controller
     {
         $wallet = AdminWallet::all();
         return view('user.deposit', compact('wallet'));
+    }
+
+    // deposit amount
+    public function depositAmount(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required',
+        ]);
+
+        // save to database
+        $deposit = DepositAmount::create([
+            'user_id' => auth()->user()->id,
+            'name' => auth()->user()->name,
+            'phone' => auth()->user()->phone,
+            'amount' => $request->amount,
+        ]);
+        return redirect()->back()->with('success', 'Deposit request sent successfully');
     }
 }

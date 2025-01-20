@@ -5,13 +5,15 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\admin\DailyTask;
 use App\Models\User;
+use App\Models\user\DepositAmount;
 use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $deposit = DepositAmount::get();
+        return view('admin.dashboard', compact('deposit'));
     }
 
     public function users()

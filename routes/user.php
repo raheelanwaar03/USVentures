@@ -18,4 +18,5 @@ Route::name('User.')->prefix('User')->middleware('auth', 'user')->group(function
     Route::post('/Store/Withdraw', [UserDashboardController::class, 'storeWithdraw'])->name('Store.Withdraw');
     // deposit
     Route::get('/Deposit', [UserDashboardController::class, 'deposit'])->name('Deposit');
+    Route::post('/Deposit/Amount', [UserDashboardController::class, 'depositAmount'])->name('Deposit.Amount');
 });

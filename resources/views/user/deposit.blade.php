@@ -94,15 +94,16 @@
         </div>
 
         <!-- Custom Deposit Amount -->
-        <div class="mt-4">
-            <label for="customAmount" class="form-label">Deposit Amount</label>
-            <input type="number" class="form-control" id="customAmount" placeholder="200.00">
-        </div>
-
-        <!-- Deposit Button -->
-        <div class="text-center m-4">
-            <button class="btn btn-dark">Deposit Now</button>
-        </div>
+        <form action="{{ route('User.Deposit.Amount') }}" method="POST">
+            @csrf
+            <div class="mt-4">
+                <label for="customAmount" class="form-label">Deposit Amount</label>
+                <input type="number" name="amount" class="form-control" id="customAmount" placeholder="200.00">
+            </div>
+            <div class="text-center m-4">
+                <button class="btn btn-dark">Deposit Now</button>
+            </div>
+        </form>
     </div>
 
     <script>
