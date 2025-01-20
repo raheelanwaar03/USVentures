@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('name')->unique();
+            $table->string('phone');
             // add balance column the balance of the user could be a float up to 5 decimal places
             $table->decimal('balance', 15, 5)->default(0);
             $table->string('role')->default('user');

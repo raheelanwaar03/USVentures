@@ -167,9 +167,7 @@
                 <div>
                     <h5>Wallet Balance</h5>
                     <p>
-                        {{-- show upto three decimals --}}
-
-                        ${{ number_format(round(auth()->user()->balance), 2) }}
+                        ${{ auth()->user()->balance }}
                     </p>
                 </div>
                 <div>

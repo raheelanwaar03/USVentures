@@ -182,33 +182,33 @@
                             <form action="{{ route('register') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="name">Name</label>
+                                    <label for="name" class="form-label">Username</label>
                                     <input type="text" name="name" id="name" class="form-control"
-                                        placeholder="Enter your name">
+                                        placeholder="Enter your username">
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="text" name="email" id="email" class="form-control"
-                                        placeholder="Enter your email">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="text" name="phone" id="phone" class="form-control"
+                                        placeholder="Enter your phone number">
                                 </div>
                                 <div class="form-group">
-                                    <label for="pin">Securit Pin</label>
+                                    <label for="pin" class="form-label">Securit Pin</label>
                                     {{-- input length should be 6 numbers only --}}
                                     <input type="number" name="pin" id="pin" class="form-control"
                                         placeholder="Enter your securit pin" min="100000" max="999999">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Password</label>
+                                    <label for="password" class="form-label">Password</label>
                                     <input type="password" name="password" id="password" class="form-control"
                                         placeholder="Enter your password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password"> Confirm Password</label>
+                                    <label for="password" class="form-label"> Confirm Password</label>
                                     <input type="password" name="password_confirmation" id="password"
                                         class="form-control" placeholder="Enter your password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="referral">Invite Code</label>
+                                    <label for="referral" class="form-label">Invite Code</label>
                                     <input type="text" name="referral" id="referral" class="form-control"
                                         placeholder="Enter your referral code">
                                 </div>
