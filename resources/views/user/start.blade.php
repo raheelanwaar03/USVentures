@@ -127,25 +127,25 @@
                 </div>
             </div>
 
-            <div class="row my-4 text-center">
-                <div class="col-5 mx-5 bg-white text-dark text-center p-4" style="border-radius: 10px;">
+            <div class="row justify-content-between align-items-center my-4 text-center">
+                <div class="col-5 bg-white text-dark text-center p-4" style="border-radius: 10px;">
                     <h3>
                         <i class="bi bi-coin"></i>
                     </h3>
-                    <p>Today Profit <br>
+                    <p><span style="font-size: 12px;">Today Profit</span> <br>
                         <span><b>USDT 0.00</b></span>
-                        <br><small>Auto update daily</small>
+                        <br><small style="font-size: 8px;">Auto update daily</small>
                     </p>
                 </div>
                 <div class="col-5 bg-white text-dark text-center p-4" style="border-radius: 10px;">
                     <h3>
                         <i class="bi bi-coin"></i>
                     </h3>
-                    <p>Today Balance <br>
+                    <p><span style="font-size: 12px;">Today Balance</span> <br>
                         <span>
                             <b>USDT 0.00</b>
                         </span>
-                        <br><small>Profit will be added here</small>
+                        <br><small style="font-size: 8px;">Profit will be added here</small>
                     </p>
                 </div>
             </div>
