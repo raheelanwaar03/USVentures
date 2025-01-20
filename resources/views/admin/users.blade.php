@@ -10,8 +10,9 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Email</th>
+                        <th>Phone</th>
                         <th>Balance</th>
+                        <th>Status</th>
                         <th>User Referral</th>
                         <th>Level</th>
                         <th>pin</th>
@@ -24,16 +25,24 @@
                     @forelse ($users as $user)
                         <tr>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->phone }}</td>
                             <td>{{ $user->balance }}</td>
+                            <td>
+                                @if ($user->status == 'active')
+                                    <span class="badge bg-success">{{ $user->status }}</span>
+                                @else
+                                    <span class="badge bg-danger">{{ $user->status }}</span>
+                                @endif
+                            </td>
                             <td>{{ $user->referral }}</td>
                             <td>{{ $user->level }}</td>
                             <td>{{ $user->pin }}</td>
                             <td>{{ $user->referral_id }}</td>
                             <td>{{ $user->created_at }}</td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                                <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="{{ route('Admin.Edit.User', $user->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="{{ route('Admin.Disable.User', $user->id) }}"
+                                    class="btn btn-sm btn-danger">Disable</a>
                             </td>
                         </tr>
                     @empty

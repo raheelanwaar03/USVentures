@@ -16,6 +16,31 @@ class AdminDashboardController extends Controller
         return view('admin.dashboard', compact('deposit'));
     }
 
+    public function editUser($id)
+    {
+        $user = User::find($id);
+        return view('admin.user.editUser', compact('user'));
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        // fetching user and updating new data
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->level = $request->level;
+        $user->save();
+        return redirect()->route('Admin.Users')->with('success', 'User Updated Successfully');
+    }
+
+    public function disable($id)
+    {
+        $user = User::find($id);
+        $user->status = 'disable';
+        $user->save();
+        return redirect()->route('Admin.Users')->with('success', 'User Disabled Successfully');
+    }
+
     public function users()
     {
         $users = User::all();
