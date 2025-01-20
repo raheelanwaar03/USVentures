@@ -25,13 +25,6 @@
         $('#users').DataTable({
             responsive: true
         });
-
-        const sidebar = document.querySelector('.sidebar');
-        const toggleBtn = document.querySelector('.toggle-sidebar');
-
-        toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
     });
 </script>
 
