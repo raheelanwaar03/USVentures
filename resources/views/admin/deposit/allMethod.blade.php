@@ -25,7 +25,7 @@
                             <td>{{ $item->address }}</td>
                             <td>{{ $item->username }}</td>
                             <td>
-                                <img src="{{ asset('images/' . $item->logo) }}" alt="{{ $item->logog }}"
+                                <img src="{{ asset('images/logo' . $item->logo) }}" alt="{{ $item->logog }}"
                                     style="width: 100px; height: 100px;">
                             </td>
                             <td>{{ $item->status }}</td>
