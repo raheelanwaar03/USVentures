@@ -19,7 +19,7 @@
                                             placeholder="Enter Name" required>
                                     </div>
                                     <div class="form-group mt-2">
-                                        <label for="price" class="form-label">Plan Price</label>
+                                        <label for="price" class="form-label">Total Price</label>
                                         <input type="text" name="price" id="price" class="form-control"
                                             placeholder="Enter Price" required>
                                     </div>
@@ -27,11 +27,6 @@
                                         <label for="profit" class="form-label">Task Profit</label>
                                         <input type="number" name="profit" id="profit" class="form-control"
                                             placeholder="Enter profit" required step="0.0001">
-                                    </div>
-                                    <div class="form-group mt-2">
-                                        <label for="link" class="form-label">Task Link</label>
-                                        <input type="text" name="link" id="link" class="form-control"
-                                            placeholder="Enter profit" required>
                                     </div>
                                     <div class="form-group mt-2">
                                         <label for="level" class="form-label">User Level</label>

@@ -2,6 +2,7 @@
 
 use App\Models\admin\DailyTask;
 use App\Models\User;
+use App\Models\user\UserDailyTasks;
 
 function total_team()
 {
@@ -15,8 +16,15 @@ function tasks()
     return $tasks;
 }
 
+// today tasks
+function today_tasks()
+{
+    $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->whereDate('created_at', date('Y-m-d'))->count();
+    return $tasks;
+}
+
 function today_profit()
 {
- $amount = 90;
- return $amount;
+    $amount = UserDailyTasks::where('user_id', auth()->user()->id)->whereDate('created_at', date('Y-m-d'))->sum('profit');
+    return $amount;
 }

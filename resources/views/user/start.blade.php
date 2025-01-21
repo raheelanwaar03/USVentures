@@ -122,9 +122,9 @@
                     </div>
                 </div>
                 <div class="col-12" style="background-color: #2e3b4e; border-radius: 16px;">
-                    <p class="mt-2 text-center pt-2"><a href="{{ route('User.Record') }}"
+                    <p class="mt-2 text-center pt-2"><a href="{{ route('User.Add.Amount') }}"
                             style="text-decoration: none;color: white;">Start
-                            (40/{{ tasks() }})</a></p>
+                            ({{ today_tasks() }}/{{ tasks() }})</a></p>
                 </div>
             </div>
 

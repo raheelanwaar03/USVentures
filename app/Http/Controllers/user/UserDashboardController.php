@@ -10,6 +10,7 @@ use App\Models\user\AddWallet;
 use App\Models\user\CompletedTask;
 use App\Models\user\DepositAmount;
 use App\Models\user\Transcations;
+use App\Models\user\UserDailyTasks;
 use App\Models\user\Withdraw;
 use Illuminate\Http\Request;
 
@@ -59,36 +60,27 @@ class UserDashboardController extends Controller
         }
     }
 
-    public function addTaskAmount(Request $request, $id)
+    public function addTaskAmount()
     {
-        $task = DailyTask::find($id);
-        $amount = $task->profit;
-        $task->status = 'completed';
-        $task->save();
+        $id = today_tasks() + 1;
+        // check if all tasks are finished
+        $allTasks = DailyTask::all()->count('id');
 
-        // check if user has completed this task today
-        $completed = CompletedTask::where('task_id', $id)->where('completed_at', date('Y-m-d'))->first();
-        if (!$completed) {
-            $completed = new CompletedTask();
-            $completed->user_id = auth()->user()->id;
-            $completed->task_id = $id;
-            $completed->completed_at = date('Y-m-d');
-            $completed->save();
-            // add to transcations
-            $transcation = new Transcations();
-            $transcation->user_id = auth()->user()->id;
-            $transcation->amount = $amount;
-            $transcation->type = 'Bonus';
-            $transcation->status = 'Credit';
-            $transcation->save();
-
-            // add to user account
-            $user = User::where('id', auth()->user()->id)->first();
-            $user->balance += $amount;
-            $user->save();
-        } else {
-            return back()->with('error', 'You have already completed this task today');
+        if ($id > $allTasks) {
+            return back()->with('error', 'All tasks are finished, Contact Customer Service');
         }
+
+        $task = DailyTask::find($id);
+        // add profit to user account
+        $user = User::find(auth()->user()->id);
+        $user->balance += $task->profit;
+        $user->save();
+
+        $userDailyTask = new UserDailyTasks();
+        $userDailyTask->user_id = auth()->user()->id;
+        $userDailyTask->task_id = $task->id;
+        $userDailyTask->profit = $task->profit;
+        $userDailyTask->save();
 
         return back()->with('success', 'Amount added successfully');
     }

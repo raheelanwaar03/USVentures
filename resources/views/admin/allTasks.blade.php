@@ -14,7 +14,6 @@
                         <th>Level</th>
                         <th>Profit</th>
                         <th>Image</th>
-                        <th>Status</th>
                         <th>Date</th>
                         <th>Action</th>
                     </tr>
@@ -30,20 +29,10 @@
                                 <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}"
                                     style="width: 100px; height: 100px;">
                             </td>
-                            <td>
-                                {{-- if status is completed then make its backgroud green --}}
-                                @if ($item->status == 'completed')
-                                    <span class="badge bg-success">{{ $item->status }}</span>
-                                @else
-                                    <span class="badge bg-primary">{{ $item->status }}</span>
-                                @endif
-                            </td>
                             <td>{{ $item->created_at }}</td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-primary">Edit</a>
                                 <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                                <a href="{{ route('Admin.Change.Status', $item->id) }}"
-                                    class="btn btn-sm btn-info text-white">Active</a>
                             </td>
                         </tr>
                     @empty

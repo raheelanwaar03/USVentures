@@ -12,7 +12,7 @@ Route::name('User.')->prefix('User')->middleware('auth', 'user')->group(function
     Route::get('Completed/Record', [UserDashboardController::class, 'completedRecord'])->name('Completed.Record');
     Route::get('Rejected/Record', [UserDashboardController::class, 'rejectedRecord'])->name('Rejected.Record');
     // add task amount to user account
-    Route::get('/Add/Amount/{id}', [UserDashboardController::class, 'addTaskAmount'])->name('Add.Amount');
+    Route::get('/Add/Amount/', [UserDashboardController::class, 'addTaskAmount'])->name('Add.Amount');
     // withdraw
     Route::get('/Withdraw', [UserDashboardController::class, 'withdraw'])->name('Withdraw');
     Route::post('/Store/Withdraw', [UserDashboardController::class, 'storeWithdraw'])->name('Store.Withdraw');
