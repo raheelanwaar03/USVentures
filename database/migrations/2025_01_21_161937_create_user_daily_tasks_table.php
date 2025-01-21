@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('task_id');
             $table->string('profit');
-            $table->string('status')->default('completed');
+            $table->string('task_text');
+            $table->string('task_img');
+            $table->string('total_amount');
+            $table->string('status')->default('Finish');
             $table->timestamps();
         });
     }

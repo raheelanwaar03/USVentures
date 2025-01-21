@@ -30,7 +30,7 @@ class UserDashboardController extends Controller
     {
         $user = User::find(auth()->user()->id);
         if ($user->status == 'active') {
-            $tasks = DailyTask::where('user_id', auth()->user()->id)->where('level', auth()->user()->level)->where('status', 'active')->get();
+            $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'finish')->get();
             return view('user.record', compact('tasks'));
         } else {
             return redirect()->route('User.Dashboard')->with('error', 'Contact Customer Service');
@@ -41,8 +41,7 @@ class UserDashboardController extends Controller
     {
         $user = User::find(auth()->user()->id);
         if ($user->status == 'active') {
-            $tasks = DailyTask::get();
-            return $tasks;
+            $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'finish')->get();
             return view('user.completedRecord', compact('tasks'));
         } else {
             return redirect()->route('User.Dashboard')->with('error', 'Contact Customer Service');
@@ -53,7 +52,7 @@ class UserDashboardController extends Controller
     {
         $user = User::find(auth()->user()->id);
         if ($user->status == 'active') {
-            $tasks = DailyTask::where('level', auth()->user()->level)->where('status', 'rejected')->get();
+            $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'rejected')->get();
             return view('user.rejectedRecord', compact('tasks'));
         } else {
             return redirect()->route('User.Dashboard')->with('error', 'Contact Customer Service');
@@ -80,6 +79,9 @@ class UserDashboardController extends Controller
         $userDailyTask->user_id = auth()->user()->id;
         $userDailyTask->task_id = $task->id;
         $userDailyTask->profit = $task->profit;
+        $userDailyTask->task_text = $task->name;
+        $userDailyTask->task_img = $task->image;
+        $userDailyTask->total_amount = $task->price;
         $userDailyTask->save();
 
         return back()->with('success', 'Amount added successfully');

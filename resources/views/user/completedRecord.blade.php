@@ -158,10 +158,9 @@
                 <div class="col-12">
                     <div class="d-flex justify-content-around align-items-center">
                         {{-- show line under all link --}}
-                        <a href="{{ route('User.Record') }}" class="text-decoration-none"
-                            style="cursor: pointer;color:white">All</a>
-                        <a href="{{ route('User.Completed.Record') }}"
-                            style="cursor: pointer;color:white"><u>Completed</u></a>
+                        <a href="{{ route('User.Record') }}" style="cursor: pointer;color:white"><u>All</u></a>
+                        <a href="{{ route('User.Completed.Record') }}" class="text-decoration-none"
+                            style="cursor: pointer;color:white;">Completed</a>
                         <a href="{{ route('User.Rejected.Record') }}" class="text-decoration-none"
                             style="cursor: pointer;color:white">Rejected</a>
                     </div>
@@ -175,12 +174,16 @@
         <div class="container-fluid">
             @forelse ($tasks as $item)
                 <div class="row mt-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p style="font-size: 10px">{{ $item->created_at }}</p>
+                        <p style="font-size: 10px;border: 1px solid white;border-radius: 10px;padding:3px;">{{ $item->status }}</p>
+                    </div>
                     <div class="col-12">
                         <div class="card">
                             <div class="d-flex align-items-center">
-                                <img src="{{ asset('images/' . $item->image) }}" height="100px" width="100px"
+                                <img src="{{ asset('images/' . $item->task_img) }}" height="100px" width="100px"
                                     alt="image">
-                                <h3>{{ $item->name }}</h3>
+                                <h3>{{ $item->task_text }}</h3>
                             </div>
                             <hr>
                             <div class="d-flex align-items-center">
@@ -188,7 +191,7 @@
                                 <p style="margin-left: 25px;">Profit</p>
                             </div>
                             <div class="d-flex align-items-center">
-                                <h4 style="margin-left: 15px;">USDT{{ $item->price }}</h4>
+                                <h4 style="margin-left: 15px;">USDT{{ $item->total_amount }}</h4>
                                 <h4 style="margin-left: 15px;">USDT{{ $item->profit }}</h4>
                             </div>
                         </div>
