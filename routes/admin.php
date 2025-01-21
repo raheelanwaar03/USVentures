@@ -28,4 +28,6 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     Route::get('Active/User/{id}', [AdminDashboardController::class, 'active'])->name('Active.User');
     // withdraw
     Route::get('Withdraw/Request', [AdminDashboardController::class, 'withdrawRequest'])->name('Withdraw.Request');
+    Route::get('Approve/Withdraw/{id}', [AdminDashboardController::class, 'approveWithdraw'])->name('Approve.Withdraw');
+    Route::get('Reject/Withdraw/{id}', [AdminDashboardController::class, 'rejectWithdraw'])->name('Reject.Withdraw');
 });

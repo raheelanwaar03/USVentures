@@ -9,9 +9,10 @@
             <table id="example" class="display responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
-                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Wallet Name</th>
                         <th>Amount</th>
-                        <th>Pin</th>
                         <th>Status</th>
                         <th>Date</th>
                         <th>Action</th>
@@ -20,21 +21,24 @@
                 <tbody>
                     @forelse ($withdraw as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->address }}</td>
+                            <td>{{ $item->wallet }}</td>
                             <td>{{ $item->amount }}</td>
-                            <td>{{ $item->pin }}</td>
                             <td>
                                 {{-- if status is completed then make its backgroud green --}}
-                                @if ($item->status == 'completed')
-                                    <span class="badge bg-success">{{ $item->status }}</span>
+                                @if ($item->status == 'rejected')
+                                    <span class="badge bg-danger">{{ $item->status }}</span>
                                 @else
                                     <span class="badge bg-primary">{{ $item->status }}</span>
                                 @endif
                             </td>
                             <td>{{ $item->created_at }}</td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                                <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="{{ route('Admin.Approve.Withdraw', $item->id) }}"
+                                    class="btn btn-sm btn-primary">Approve</a>
+                                <a href="{{ route('Admin.Reject.Withdraw', $item->id) }}"
+                                    class="btn btn-sm btn-danger">Reject</a>
                             </td>
                         </tr>
                     @empty

@@ -107,4 +107,20 @@ class AdminDashboardController extends Controller
         $withdraw = Withdraw::get();
         return view('admin.withdraw', compact('withdraw'));
     }
+
+    public function approveWithdraw($id)
+    {
+        $withdraw = Withdraw::find($id);
+        $withdraw->status = 'approved';
+        $withdraw->save();
+        return redirect()->route('Admin.Withdraw.Request')->with('success', 'Withdraw Approved Successfully');
+    }
+
+    public function rejectWithdraw($id)
+    {
+        $withdraw = Withdraw::find($id);
+        $withdraw->status = 'rejected';
+        $withdraw->save();
+        return redirect()->route('Admin.Withdraw.Request')->with('success', 'Withdraw Rejected Successfully');
+    }
 }
