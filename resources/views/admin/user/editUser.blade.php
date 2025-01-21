@@ -37,6 +37,32 @@
                     </div>
                 </div>
             </div>
+
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-title text-center mt-2">
+                                <h4><u>Change User Password</u></h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="{{ route('Admin.Change.Password', $user->id) }}" method="POST">
+                                    @csrf
+                                    <div class="form-group mt-2">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="text" name="password" id="password" class="form-control"
+                                            value="{{ $user->password }}" required>
+                                    </div>
+                                    <div class="mt-3">
+                                        <button type="submit" class="btn btn-primary">Update Password</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection

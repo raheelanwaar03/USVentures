@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\user\DepositAmount;
 use App\Models\user\Withdraw;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminDashboardController extends Controller
 {
@@ -123,4 +124,16 @@ class AdminDashboardController extends Controller
         $withdraw->save();
         return redirect()->route('Admin.Withdraw.Request')->with('success', 'Withdraw Rejected Successfully');
     }
+
+    public function changePassword(Request $request, $id)
+    {
+        $user = User::find($id);
+        // make password hash
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('Admin.Users')->with('success', 'Password Changed Successfully');
+
+    }
+
+
 }
