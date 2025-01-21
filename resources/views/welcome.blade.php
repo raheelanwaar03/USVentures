@@ -188,8 +188,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" name="password" id="password" class="form-control"
-                                        placeholder="Enter your password">
+                                    <div class="d-flex">
+                                        <input type="password" name="password" id="password" class="form-control"
+                                            placeholder="Enter your password">
+                                        {{-- add icon to see password --}}
+                                        <i class="bi bi-eye" style="margin-left: -28px;margin-top:8px" id="togglePassword"></i>
+                                    </div>
                                 </div>
                                 <div class="mt-2 d-flex justify-content-between align-items-center">
                                     <button type="submit" class="btn btn-info text-white">Login</button>
@@ -202,6 +206,21 @@
             </div>
         </div>
     </main>
+
+    <footer>
+        <script>
+            const passwordInput = document.getElementById('password');
+            const toggleButton = document.getElementById('togglePassword');
+
+            toggleButton.addEventListener('click', () => {
+                // Toggle the type attribute
+                const isPassword = passwordInput.type === 'password';
+                passwordInput.type = isPassword ? 'text' : 'password';
+
+            });
+        </script>
+    </footer>
+
 </body>
 
 </html>
