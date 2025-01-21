@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\admin\AdminWallet;
 use App\Models\admin\DailyTask;
 use App\Models\User;
+use App\Models\user\AddWallet;
 use App\Models\user\CompletedTask;
 use App\Models\user\DepositAmount;
 use App\Models\user\Transcations;
@@ -93,7 +94,9 @@ class UserDashboardController extends Controller
 
     public function Withdraw()
     {
-        return view('user.withdraw');
+        // check if user has added his wallet or not
+        $wallet = AddWallet::where('user_id', auth()->user()->id)->first();
+        return view('user.withdraw', compact('wallet'));
     }
 
     public function storeWithdraw(Request $request)
@@ -159,5 +162,23 @@ class UserDashboardController extends Controller
     {
         $transcations = Transcations::where('user_id', auth()->user()->id)->get();
         return view('user.transactions', compact('transcations'));
+    }
+
+    public function addWallet(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'walletname' => 'required',
+        ]);
+
+        // save to database
+        $wallet = new AddWallet();
+        $wallet->user_id = auth()->user()->id;
+        $wallet->name = $request->name;
+        $wallet->address = $request->address;
+        $wallet->walletname = $request->walletname;
+        $wallet->save();
+        return redirect()->back()->with('success', 'Wallet added successfully');
     }
 }

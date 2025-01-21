@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-12 bg-white text-dark p-3" style="border-radius: 10px;">
                     <h5>Total Balance</h5>
-                    <h3>USDT:{{ number_format(round(auth()->user()->balance),2) }}</h3>
+                    <h3>USDT:{{ number_format(round(auth()->user()->balance), 2) }}</h3>
                     <small>You will recive your withdrawal within an hour</small>
                 </div>
             </div>
@@ -24,11 +24,23 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-12">
-                    <h6 class="text-dark">Withdraw Method</h6>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h6 class="text-dark">Withdraw Method</h6>
+                        {{-- check if this user already added his wallet then show him error that wallet already added --}}
+                        @if ($wallet == null)
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#walletAddress">Add Method</button>
+                        @else
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#walletAddress"
+                                disabled>Add
+                                Method</button>
+                        @endif
+                    </div>
                     <h6>Withdraw will transfer to your bank</h6>
                 </div>
             </div>
         </div>
+
 
         <div class="container bg-white mt-5" style="border-radius: 10px;">
             <div class="row">

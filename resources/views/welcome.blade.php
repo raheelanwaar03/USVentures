@@ -162,10 +162,10 @@
     <!-- Main Content -->
     <main>
         <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h1>USVentures</h1>
-                </div>
+            <div class="col-12 text-center">
+                <h1>USVentures</h1>
+            </div>
+            <div class="row alin-items-center">
                 <div class="col-12">
                     <div class="card">
                         <div class="row p-3">
