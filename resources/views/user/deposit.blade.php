@@ -42,17 +42,18 @@
                 @foreach ($wallet as $item)
                     <div class="col-12 col-md-4 col-lg-4">
                         <div class="card p-3 text-center">
-                            <img src="{{ asset('images/' . $item->logo) }}" alt="Wallet Logo" class="wallet-logo mx-auto">
+                            <img src="{{ asset('images/logo/' . $item->logo) }}" alt="Wallet Logo" class="wallet-logo mx-auto">
                             <h5 class="mt-3">Wallet Name: {{ $item->name }}</h5>
                             <p>User Name: {{ $item->username }}</p>
-                            <p>Wallet Address:<input type="text" readonly id="address{{ $item->id }}"
+                            <p>Wallet Address:
+                                <input type="text" readonly id="address{{ $item->id }}"
                                     style="width: 100%; border: none;text-align:center;" value="{{ $item->address }}">
                             </p>
-                            <button onclick="{{ $item->id }}copy()" class="btn btn-primary px-2">copy</button>
+                            <button onclick="copy()" class="btn btn-primary px-2">copy</button>
                         </div>
                     </div>
                     <script>
-                        function {{ $item->id }}copy() {
+                        function copy() {
                             // Get the text field
                             var copyText = document.getElementById("address{{ $item->id }}");
                             copyText.select();

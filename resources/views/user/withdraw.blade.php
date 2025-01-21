@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-12 bg-white text-dark p-3" style="border-radius: 10px;">
                     <h5>Total Balance</h5>
-                    <h3>USDT:{{ number_format(round(auth()->user()->balance), 2) }}</h3>
+                    <h3>USDT:{{ auth()->user()->balance }}</h3>
                     <small>You will recive your withdrawal within an hour</small>
                 </div>
             </div>
