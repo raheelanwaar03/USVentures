@@ -109,9 +109,19 @@ class UserDashboardController extends Controller
         if ($user->pin != $request->pin) {
             return back()->with('error', 'Incorrect pin');
         }
+
+        // fetch user wallet
+        $wallet = AddWallet::where('user_id', auth()->user()->id)->first();
+        if (!$wallet) {
+            return back()->with('error', 'Add your wallet address');
+        }
+
         // save data to database
         $withdraw = new Withdraw();
         $withdraw->user_id = auth()->user()->id;
+        $withdraw->name = $wallet->name;
+        $withdraw->address = $wallet->address;
+        $withdraw->wallet = $wallet->walletname;
         $withdraw->amount = $request->amount;
         $withdraw->pin = $request->pin;
         $withdraw->save();

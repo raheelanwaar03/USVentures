@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('withdraws', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
+            $table->string('name');
+            $table->string('wallet');
+            $table->string('address');
             $table->string('amount');
             $table->string('pin');
             $table->string('status')->default('pending');
