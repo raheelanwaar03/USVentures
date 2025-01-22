@@ -15,7 +15,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             /* add gradient color to the body with #00a99d */
-            background: linear-gradient(to right, #023d34, #00a99d);
+            background: linear-gradient(to right, #4facfe, #00f2fe);
             color: #fff;
             display: flex;
             flex-direction: column;
