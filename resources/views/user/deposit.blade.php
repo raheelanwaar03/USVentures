@@ -46,21 +46,33 @@
                             <h5 class="mt-3">Wallet Name: {{ $item->name }}</h5>
                             <p>User Name: {{ $item->username }}</p>
                             <p>Wallet Address:
-                                <input type="text" readonly id="address{{ $item->id }}"
-                                    style="width: 100%; border: none;text-align:center;" value="{{ $item->address }}">
+                                <p id="address{{ $item->id }}">{{ $item->address }}</p>
                             </p>
-                            <button onclick="copy()" class="btn btn-primary px-2">copy</button>
+                            <button onclick="copyToClipboard('address{{ $item->id }}')"
+                                class="btn btn-primary px-2">copy</button>
                         </div>
                     </div>
                     <script>
-                        function copy() {
-                            // Get the text field
-                            var copyText = document.getElementById("address{{ $item->id }}");
-                            copyText.select();
-                            copyText.setSelectionRange(0, 99999);
-                            navigator.clipboard.writeText(copyText.value);
-                            // Alert the copied text
-                            alert("Copied the text: " + copyText.value);
+                        function copyToClipboard(elementId) {
+                            // Get the text content of the element
+                            const textToCopy = document.getElementById(elementId).textContent;
+
+                            // Create a temporary textarea element
+                            const tempTextarea = document.createElement('textarea');
+                            tempTextarea.value = textToCopy;
+
+                            // Append it to the body (required for it to work in some browsers)
+                            document.body.appendChild(tempTextarea);
+
+                            // Select the text and copy it to the clipboard
+                            tempTextarea.select();
+                            document.execCommand('copy');
+
+                            // Remove the temporary textarea
+                            document.body.removeChild(tempTextarea);
+
+                            // Optionally, provide feedback to the user
+                            alert(`Copied: ${textToCopy}`);
                         }
                     </script>
                 @endforeach
