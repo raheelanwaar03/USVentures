@@ -198,14 +198,23 @@
                                         placeholder="Enter your securit pin" min="100000" max="999999">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" name="password" id="password" class="form-control"
-                                        placeholder="Enter your password">
+                                    <label for="password">Password</label>
+                                    <div class="d-flex">
+                                        <input type="password" name="password" id="password" class="form-control"
+                                            placeholder="Enter your password">
+                                        {{-- add icon to see password --}}
+                                        <i class="bi bi-eye" style="margin-left: -28px;margin-top:8px"
+                                            onclick="togglePasswordVisibility('password')"></i>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password" class="form-label"> Confirm Password</label>
-                                    <input type="password" name="password_confirmation" id="password"
-                                        class="form-control" placeholder="Enter your password">
+                                    <div class="d-flex">
+                                        <input type="password" name="password_confirmation" id="confirm_password"
+                                            class="form-control" placeholder="Enter your password">
+                                        <i class="bi bi-eye" style="margin-left: -28px;margin-top:8px"
+                                            onclick="togglePasswordVisibility('confirm_password')"></i>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="referral" class="form-label">Invite Code</label>
@@ -224,6 +233,17 @@
             </div>
         </div>
     </main>
+
+    <footer>
+        <script>
+            function togglePasswordVisibility(fieldId) {
+                const field = document.getElementById(fieldId);
+                field.type = field.type === 'password' ? 'text' : 'password';
+            }
+        </script>
+    </footer>
+
+
 </body>
 
 </html>
