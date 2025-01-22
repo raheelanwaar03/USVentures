@@ -22,6 +22,7 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     Route::get('/Edit/Deposit/Method/{id}', [DepositController::class, 'editMethod'])->name('Edit.Method');
     Route::post('/Update/Deposit/Method/{id}', [DepositController::class, 'updateMethod'])->name('Update.Method');
     Route::get('/Delete/Deposit/Method/{id}', [DepositController::class, 'deleteMethod'])->name('Delete.Method');
+    Route::get('/Deposit/Requests', [DepositController::class, 'depositRequests'])->name('Deposit.Requests');
     // users
     Route::get('Edit/User/{id}', [AdminDashboardController::class, 'editUser'])->name('Edit.User');
     Route::post('Update/User/{id}', [AdminDashboardController::class, 'updateUser'])->name('Update.User');

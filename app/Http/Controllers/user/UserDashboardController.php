@@ -96,6 +96,11 @@ class UserDashboardController extends Controller
 
     public function storeWithdraw(Request $request)
     {
+        $wallet = AddWallet::where('user_id', auth()->user()->id)->first();
+        if (!$wallet) {
+            return back()->with('error', 'Add your wallet address');
+        }
+
         $user = User::find(auth()->user()->id);
         if ($user->balance < $request->amount) {
             return back()->with('error', 'Insufficient balance');
@@ -103,12 +108,6 @@ class UserDashboardController extends Controller
         // check if pin is correct
         if ($user->pin != $request->pin) {
             return back()->with('error', 'Incorrect pin');
-        }
-
-        // fetch user wallet
-        $wallet = AddWallet::where('user_id', auth()->user()->id)->first();
-        if (!$wallet) {
-            return back()->with('error', 'Add your wallet address');
         }
 
         // save data to database

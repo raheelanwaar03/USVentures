@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\admin\AdminWallet;
+use App\Models\user\DepositAmount;
 use Illuminate\Http\Request;
 
 class DepositController extends Controller
@@ -12,6 +13,13 @@ class DepositController extends Controller
     {
         return view('admin.deposit.addMethod');
     }
+
+    public function depositRequests()
+    {
+        $deposit = DepositAmount::get();
+        return view('admin.deposit.depositRequests', compact('deposit'));
+    }
+
 
     public function storeWallet(Request $request)
     {
