@@ -50,14 +50,14 @@ class clean extends Command
         $user = new User();
         $user->name = 'User';
         $user->referral = 'default';
-        $user->balance = 100.00;
+        $user->balance = 25;
         $user->phone = '03149720318';
         $user->password = Hash::make('asdfasdf');
         $user->status = 'active';
         $user->role = 'user';
         $user->referral_id = 'SH123456';
         $user->level = 'vip1';
-        $user->pin = '123456';
+        $user->pin = '111111';
         $user->save();
     }
 }
