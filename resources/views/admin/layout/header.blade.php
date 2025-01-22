@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 <li class="nav-item theme-text">
-                    <a href="{{ route('Admin.Dashboard') }}"> class="nav-link"> {{ env('APP_NAME') }} </a>
+                    <a href="{{ route('Admin.Dashboard') }}" class="nav-link"> {{ env('APP_NAME') }} </a>
                 </li>
             </ul>
 
