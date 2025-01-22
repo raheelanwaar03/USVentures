@@ -98,16 +98,31 @@
         <b><i class="bi bi-arrow-left" style="margin-right: 10px;font-size:25px;"></i></b> Go Back
     </a>
     <div class="transaction-list">
-        <div class="transaction-item">
-            <div class="transaction-icon" style="margin-right: 10px;margin-top: 5px;">
-                <i class="bi bi-cash-coin" style="font-size:35px"></i>
+        @forelse ($transcations as $item)
+            <div class="transaction-item">
+                <div class="transaction-icon" style="margin-right: 10px;margin-top: 5px;">
+                    <i class="bi bi-cash-coin" style="font-size:35px"></i>
+                </div>
+                <div class="transaction-details ml-3">
+                    <p class="transaction-title">[{{ $item->type }}]</p>
+                    <p class="transaction-time" style="margin-top: 4px;">{{ $item->created_at }}</p>
+                </div>
+                <div class="transaction-amount amount-positive">
+                    {{-- if status is credit then make amount green else red --}}
+                    @if ($item->status == 'credit')
+                        <span class="amount-positive">+ {{ $item->amount }}</span>
+                    @else
+                        <span class="amount-negative">- {{ $item->amount }}</span>
+                    @endif
+
+                </div>
             </div>
-            <div class="transaction-details ml-3">
-                <p class="transaction-title">[Unfreeze the order grabbing amount]</p>
-                <p class="transaction-time" style="margin-top: 4px;">2025-01-21 11:01:13</p>
-            </div>
-            <div class="transaction-amount amount-positive">+22.26</div>
-        </div>
+        @empty
+            <div class="transaction-item">
+                <div class="transaction-details ml-3">
+                    <p class="transaction-title">No transactions found!</p>
+                </div>
+        @endforelse
     </div>
 </body>
 

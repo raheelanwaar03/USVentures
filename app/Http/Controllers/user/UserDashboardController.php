@@ -12,6 +12,7 @@ use App\Models\user\DepositAmount;
 use App\Models\user\Transcations;
 use App\Models\user\UserDailyTasks;
 use App\Models\user\Withdraw;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UserDashboardController extends Controller
@@ -83,6 +84,23 @@ class UserDashboardController extends Controller
         $userDailyTask->task_img = $task->image;
         $userDailyTask->total_amount = $task->price;
         $userDailyTask->save();
+
+        // add in transaction table
+        $transcation = new Transcations();
+        $transcation->user_id = auth()->user()->id;
+        $transcation->amount = $task->profit;
+        $transcation->type = 'Order grabbing commission';
+        $transcation->status = 'credit';
+        $transcation->save();
+
+        // add in deducted task
+        $transcation = new Transcations();
+        $transcation->user_id = auth()->user()->id;
+        $transcation->amount = $task->price;
+        $transcation->type = 'Order grabbing frozen amount';
+        $transcation->status = 'debit';
+        $transcation->save();
+
 
         return back()->with('success', 'Amount added successfully');
     }
@@ -164,7 +182,8 @@ class UserDashboardController extends Controller
 
     public function transactions()
     {
-        $transcations = Transcations::where('user_id', auth()->user()->id)->get();
+        // get today transcations
+        $transcations = Transcations::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->get();
         return view('user.transactions', compact('transcations'));
     }
 
