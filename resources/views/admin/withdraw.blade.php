@@ -61,7 +61,11 @@
                                 @forelse ($withdraw as $item)
                                     <tr>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item->address }}</td>
+                                        <td>
+                                            <p id="address{{ $item->id }}">
+                                                {{ $item->address }}
+                                            </p>
+                                        </td>
                                         <td>{{ $item->wallet }}</td>
                                         <td>{{ $item->amount }}</td>
                                         <td>
@@ -78,8 +82,35 @@
                                                 class="btn btn-sm btn-primary">Approve</a>
                                             <a href="{{ route('Admin.Reject.Withdraw', $item->id) }}"
                                                 class="btn btn-sm btn-danger">Reject</a>
+                                            <button onclick="copyToClipboard('address{{ $item->id }}')"
+                                                class="btn btn-sm btn-primary">Copy</button>
                                         </td>
                                     </tr>
+
+                                    <script>
+                                        function copyToClipboard(elementId) {
+                                            // Get the text content of the element
+                                            const textToCopy = document.getElementById(elementId).textContent;
+
+                                            // Create a temporary textarea element
+                                            const tempTextarea = document.createElement('textarea');
+                                            tempTextarea.value = textToCopy;
+
+                                            // Append it to the body (required for it to work in some browsers)
+                                            document.body.appendChild(tempTextarea);
+
+                                            // Select the text and copy it to the clipboard
+                                            tempTextarea.select();
+                                            document.execCommand('copy');
+
+                                            // Remove the temporary textarea
+                                            document.body.removeChild(tempTextarea);
+
+                                            // Optionally, provide feedback to the user
+                                            alert(`Copied: ${textToCopy}`);
+                                        }
+                                    </script>
+
                                 @empty
                                     <tr>
                                         <td colspan="6" class="text-center">No Withdraw Request Found</td>
