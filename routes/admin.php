@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\DepositController;
+use App\Http\Controllers\admin\UserManagement;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,4 +33,7 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     Route::get('Withdraw/Request', [AdminDashboardController::class, 'withdrawRequest'])->name('Withdraw.Request');
     Route::get('Approve/Withdraw/{id}', [AdminDashboardController::class, 'approveWithdraw'])->name('Approve.Withdraw');
     Route::get('Reject/Withdraw/{id}', [AdminDashboardController::class, 'rejectWithdraw'])->name('Reject.Withdraw');
+    // user mangement
+    Route::get('All/Tasks/{id}', [UserManagement::class, 'manage'])->name('All.Tasks.This.User');
+    Route::post('Trigger/Task/{id}', [UserManagement::class, 'triggerTask'])->name('Triger.Task');
 });

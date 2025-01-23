@@ -8,7 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>{{ env('APP_NAME') }} | Admin Dashboard </title>
-    <link rel="icon" type="image/x-icon" href="https://designreset.com/cork/html/src/assets/img/favicon.ico" />
     <link href="{{ asset('admin/css/light/loader.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/css/dark/loader.css') }}" rel="stylesheet" />
     <script src="{{ asset('admin/loader.js') }}"></script>
@@ -20,12 +19,11 @@
     <link href="{{ asset('admin/css/dark/plugins.css') }}" rel="stylesheet" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
     {{-- datatable --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
-
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    <link href="{{ asset('admin/plugins/src/apex/apexcharts.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/assets/css/light/dashboard/dash_1.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/css/dark/dashboard/dash_1.css') }}" rel="stylesheet" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -33,6 +31,11 @@
 </head>
 
 <body class="layout-boxed">
+
+    {{-- sweet alert --}}
+
+    <x-alert />
+
     <!-- BEGIN LOADER -->
     <div id="load_screen">
         <div class="loader">
@@ -177,8 +180,8 @@
                     <div class="nav-logo">
                         <div class="nav-item theme-logo">
                             <a href="{{ route('Admin.Dashboard') }}">
-                                <img src="{{ asset('admin/assets/img/product-camera.jpg') }}"
-                                    class="navbar-logo" alt="logo">
+                                <img src="{{ asset('admin/assets/img/product-camera.jpg') }}" class="navbar-logo"
+                                    alt="logo">
                             </a>
                         </div>
                         <div class="nav-item theme-text">

@@ -52,7 +52,7 @@
                                     <div class="info-box">
                                         <div class="icon">
                                             <span>
-                                                <img src="{{ asset('admin/assets/img/users.png') }}" alt="money-bag">
+                                                <img src="{{ asset('admin/assets/img/team.png') }}" alt="money-bag">
                                             </span>
                                         </div>
 

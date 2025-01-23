@@ -59,13 +59,13 @@ class AdminDashboardController extends Controller
 
     public function addTask()
     {
-        return view('admin.addTask');
+        return view('admin.task.addTask');
     }
 
     public function allTasks()
     {
         $tasks = DailyTask::all();
-        return view('admin.allTasks', compact('tasks'));
+        return view('admin.task.allTasks', compact('tasks'));
     }
 
     public function storeTask(Request $request)

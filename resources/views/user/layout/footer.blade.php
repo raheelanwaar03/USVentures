@@ -159,6 +159,38 @@
         </div>
     </div>
 
+    <div class="modal fade" id="walletAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="exampleModalLongTitle">Add Wallet Details</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('User.Add.Wallet') }}" method="POST">
+                        @csrf
+                        <div class="form-group" class="form-label">
+                            <label for="address" class="form-label text-dark">Wallet Address</label>
+                            <input type="text" class="form-control" name="address" id="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="form-label text-dark">Username</label>
+                            <input type="text" class="form-control" name="name" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="walletname" class="form-label text-dark">Wallet Name</label>
+                            <input type="text" class="form-control" name="walletname" id="walletname">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add Wallet</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </footer>
 
 <!-- Sidebar -->
@@ -200,40 +232,6 @@
             @csrf
             <button type="submit" class="btn btn-danger">Logout</button>
         </form>
-    </div>
-</div>
-
-{{-- model --}}
-
-<div class="modal fade" id="walletAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-dark" id="exampleModalLongTitle">Add Wallet Details</h5>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('User.Add.Wallet') }}" method="POST">
-                    @csrf
-                    <div class="form-group" class="form-label">
-                        <label for="address" class="form-label text-dark">Wallet Address</label>
-                        <input type="text" class="form-control" name="address" id="address">
-                    </div>
-                    <div class="form-group">
-                        <label for="name" class="form-label text-dark">Username</label>
-                        <input type="text" class="form-control" name="name" id="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="walletname" class="form-label text-dark">Wallet Name</label>
-                        <input type="text" class="form-control" name="walletname" id="walletname">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add Wallet</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 </div>
 
