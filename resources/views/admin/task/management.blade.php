@@ -123,7 +123,7 @@
                                         <th>Task Title</th>
                                         <th>Order Amount</th>
                                         <th>Level</th>
-                                        <th>Profit</th>
+                                        <th>Commission</th>
                                         <th>Image</th>
                                         <th>Date</th>
                                         <th>Action</th>
@@ -136,7 +136,7 @@
                                             <td>{{ $item->title }}</td>
                                             <td>{{ $item->order_amount }}</td>
                                             <td>{{ $item->level }}</td>
-                                            <td>{{ $item->profit }}</td>
+                                            <td>{{ $item->commission }}</td>
                                             <td>
                                                 <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}"
                                                     style="width: 100px; height: 100px;">
