@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\admin\DailyTask;
 use App\Models\User;
+use App\Models\user\UserDailyTasks;
 use App\Models\user\UserTodayTasks;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -38,6 +39,11 @@ class UserManagement extends Controller
 
     public function triggerTask(Request $request, $id)
     {
-        return $request;
+        $task = UserTodayTasks::find($id);
+        $task->task_id = $id;
+        $task->order_amount = $request->order_amount;
+        $task->commission = $request->commission;
+        $task->save();
+        return redirect()->back()->with('success', 'Task is Trigger');
     }
 }

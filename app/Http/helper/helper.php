@@ -18,17 +18,24 @@ function tasks()
     return $tasks;
 }
 
+// today completed tasks
+function completed_tasks()
+{
+    $completed_tasks = UserDailyTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->count();
+    return $completed_tasks;
+}
+
 // today tasks
-function today_tasks()
+function today_trigger_tasks()
 {
     $tasks = UserTodayTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->count();
     return $tasks;
 }
 
-function completed_tasks()
+function today_tasks()
 {
-    $completed_tasks = UserDailyTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->count();
-    return $completed_tasks;
+    $tasks = DailyTask::where('level', auth()->user()->level)->count('id');
+    return $tasks;
 }
 
 function today_profit()

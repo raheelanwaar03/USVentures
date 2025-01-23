@@ -67,51 +67,66 @@ class UserDashboardController extends Controller
 
         // if check_tasks is empty then return back
         if ($check_tasks->isEmpty()) {
-            return 1;
+            $id = completed_tasks() + 1;
+            // check if all tasks are finished
+            $allTasks = DailyTask::all()->count('id');
+            if ($id > $allTasks) {
+                return back()->with('error', 'All tasks are finished, Contact Customer Service');
+            }
+
+            $task = DailyTask::find($id);
+            // add profit to user account
+            $user = User::find(auth()->user()->id);
+            $user->balance += $task->profit;
+            $user->save();
+
+            $userDailyTask = new UserDailyTasks();
+            $userDailyTask->user_id = auth()->user()->id;
+            $userDailyTask->task_id = $task->id;
+            $userDailyTask->profit = $task->profit;
+            $userDailyTask->task_text = $task->title;
+            $userDailyTask->task_img = $task->image;
+            $userDailyTask->total_amount = $task->order_amount;
+            $userDailyTask->save();
+
+            // add in transaction table
+            $transcation = new Transcations();
+            $transcation->user_id = auth()->user()->id;
+            $transcation->amount = $task->profit;
+            $transcation->type = 'Order grabbing commission';
+            $transcation->status = 'credit';
+            $transcation->save();
         } else {
-            return 2;
+            $id = completed_tasks() + 1;
+            // check if all tasks are finished
+            $allTasks = UserTodayTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->count('id');
+
+            if ($id > $allTasks) {
+                return back()->with('error', 'All tasks are finished, Contact Customer Service');
+            }
+
+            $task = UserTodayTasks::find($id);
+            // add profit to user account
+            $user = User::find(auth()->user()->id);
+            $user->balance += $task->commission;
+            $user->save();
+
+            $userDailyTask = new UserDailyTasks();
+            $userDailyTask->user_id = auth()->user()->id;
+            $userDailyTask->task_id = $task->id;
+            $userDailyTask->profit = $task->commission;
+            $userDailyTask->task_text = $task->title;
+            $userDailyTask->task_img = $task->image;
+            $userDailyTask->total_amount = $task->order_amount;
+            $userDailyTask->save();
+
+            $transcation = new Transcations();
+            $transcation->user_id = auth()->user()->id;
+            $transcation->amount = $task->profit;
+            $transcation->type = 'Order grabbing commission';
+            $transcation->status = 'credit';
+            $transcation->save();
         }
-
-
-        $id = today_tasks() + 1;
-        // check if all tasks are finished
-        $allTasks = DailyTask::all()->count('id');
-
-        if ($id > $allTasks) {
-            return back()->with('error', 'All tasks are finished, Contact Customer Service');
-        }
-
-        $task = DailyTask::find($id);
-        // add profit to user account
-        $user = User::find(auth()->user()->id);
-        $user->balance += $task->profit;
-        $user->save();
-
-        $userDailyTask = new UserDailyTasks();
-        $userDailyTask->user_id = auth()->user()->id;
-        $userDailyTask->task_id = $task->id;
-        $userDailyTask->profit = $task->profit;
-        $userDailyTask->task_text = $task->name;
-        $userDailyTask->task_img = $task->image;
-        $userDailyTask->total_amount = $task->price;
-        $userDailyTask->save();
-
-        // add in transaction table
-        $transcation = new Transcations();
-        $transcation->user_id = auth()->user()->id;
-        $transcation->amount = $task->profit;
-        $transcation->type = 'Order grabbing commission';
-        $transcation->status = 'credit';
-        $transcation->save();
-
-        // add in deducted task
-        $transcation = new Transcations();
-        $transcation->user_id = auth()->user()->id;
-        $transcation->amount = $task->price;
-        $transcation->type = 'Order grabbing frozen amount';
-        $transcation->status = 'debit';
-        $transcation->save();
-
 
         return back()->with('success', 'Amount added successfully');
     }

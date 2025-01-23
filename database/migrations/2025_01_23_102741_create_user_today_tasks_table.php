@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('user_today_tasks', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
+            $table->string('task_id')->nullable();
             $table->string('title');
             $table->string('order_amount');
             $table->string('commission');

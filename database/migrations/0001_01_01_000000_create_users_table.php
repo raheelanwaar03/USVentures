@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('phone');
             // add balance column the balance of the user could be a float up to 5 decimal places
-            $table->decimal('balance', 15, 3)->default(0);
+            $table->decimal('balance', 5, 2)->default(0);
             $table->string('role')->default('user');
             $table->string('status')->default('active');
             $table->string('referral')->default('default');
