@@ -11,6 +11,8 @@ Route::name('User.')->prefix('User')->middleware('auth', 'user')->group(function
     Route::get('/Record', [UserDashboardController::class, 'record'])->name('Record');
     Route::get('Completed/Record', [UserDashboardController::class, 'completedRecord'])->name('Completed.Record');
     Route::get('Rejected/Record', [UserDashboardController::class, 'rejectedRecord'])->name('Rejected.Record');
+    Route::get('Submit/Record', [UserDashboardController::class, 'submitRecord'])->name('Submit.Record');
+    Route::get('Submit/All/Record/{id}', [UserDashboardController::class, 'submitAllRecord'])->name('Submit.All.Record');
     // add task amount to user account
     Route::get('/Add/Amount/', [UserDashboardController::class, 'addTaskAmount'])->name('Add.Amount');
     // withdraw

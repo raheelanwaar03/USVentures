@@ -156,18 +156,21 @@
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex justify-content-around align-items-center">
+                        {{-- add Icon to go back --}}
                         <div>
                             <a href="{{ route('User.Dashboard') }}" class="text-white">
                                 <i class="fa-solid fa-house"></i>
                             </a>
                         </div>
-                        <a href="{{ route('User.Record') }}" style="cursor: pointer;color:white">All</a>
+                        <a href="{{ route('User.Record') }}" class="text-decoration-none"
+                            style="cursor: pointer;color:white">All</a>
                         <a href="{{ route('User.Completed.Record') }}" class="text-decoration-none"
                             style="cursor: pointer;color:white;">Completed</a>
                         <a href="{{ route('User.Rejected.Record') }}" class="text-decoration-none"
                             style="cursor: pointer;color:white">Rejected</a>
-                        <a href="{{ route('User.Submit.Record') }}" class="text-decoration-none"
-                            style="cursor: pointer;color:white">Submit</a>
+                        <a href="{{ route('User.Submit.Record') }}" style="cursor: pointer;color:white">Submit</a>
+                        <a href="{{ route('User.Submit.All.Record', auth()->user()->id) }}"
+                            class="btn btn-sm btn-primary">Submit All</a>
                     </div>
                 </div>
             </div>
@@ -183,9 +186,11 @@
                         <p style="font-size: 10px">{{ $item->created_at }}</p>
                         <p>
                             @if ($item->status == 'Finish')
-                                <span style="background-color:rgb(59, 188, 59);color:white;font-size: 10px;border: 1px solid white;border-radius: 10px;padding:4px;">{{ $item->status }}</span>
+                                <span
+                                    style="background-color:rgb(59, 188, 59);color:white;font-size: 10px;border: 1px solid white;border-radius: 10px;padding:4px;">{{ $item->status }}</span>
                             @else
-                            <span style="background-color:red;color:white;font-size: 10px;border: 1px solid white;border-radius: 10px;padding:4px;">{{ $item->status }}</span>
+                                <span
+                                    style="background-color:red;color:white;font-size: 10px;border: 1px solid white;border-radius: 10px;padding:4px;">{{ $item->status }}</span>
                             @endif
                         </p>
                     </div>

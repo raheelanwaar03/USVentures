@@ -32,7 +32,7 @@ class UserDashboardController extends Controller
     {
         $user = User::find(auth()->user()->id);
         if ($user->status == 'active') {
-            $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'finish')->get();
+            $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->get();
             return view('user.record', compact('tasks'));
         } else {
             return redirect()->route('User.Dashboard')->with('error', 'Contact Customer Service');
@@ -45,6 +45,17 @@ class UserDashboardController extends Controller
         if ($user->status == 'active') {
             $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'finish')->get();
             return view('user.completedRecord', compact('tasks'));
+        } else {
+            return redirect()->route('User.Dashboard')->with('error', 'Contact Customer Service');
+        }
+    }
+
+    public function submitRecord()
+    {
+        $user = User::find(auth()->user()->id);
+        if ($user->status == 'active') {
+            $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'proccessing')->get();
+            return view('user.submit', compact('tasks'));
         } else {
             return redirect()->route('User.Dashboard')->with('error', 'Contact Customer Service');
         }
@@ -106,26 +117,64 @@ class UserDashboardController extends Controller
             }
 
             $task = UserTodayTasks::find($id);
+
+            if ($task->task_id == null) {
+                $user = User::find(auth()->user()->id);
+                $user->balance += $task->commission;
+                $user->save();
+
+                $userDailyTask = new UserDailyTasks();
+                $userDailyTask->user_id = auth()->user()->id;
+                $userDailyTask->task_id = $task->id;
+                $userDailyTask->profit = $task->commission;
+                $userDailyTask->task_text = $task->title;
+                $userDailyTask->task_img = $task->image;
+                $userDailyTask->total_amount = $task->order_amount;
+                $userDailyTask->save();
+
+                $transcation = new Transcations();
+                $transcation->user_id = auth()->user()->id;
+                $transcation->amount = $task->profit;
+                $transcation->type = 'Order grabbing commission';
+                $transcation->status = 'credit';
+                $transcation->save();
+            } else {
+                // deduct order amount from user balance
+                $user = User::find(auth()->user()->id);
+                $user->balance -= $task->order_amount;
+                $user->save();
+                $transcation = new Transcations();
+                $transcation->user_id = auth()->user()->id;
+                $transcation->amount = $task->order_amount;
+                $transcation->type = 'Order amount deducted';
+                $transcation->status = 'debit';
+                $transcation->save();
+
+                $user = User::find(auth()->user()->id);
+                $user->balance += $task->commission;
+                $user->save();
+
+                // add user commission into user account
+                $transcation = new Transcations();
+                $transcation->user_id = auth()->user()->id;
+                $transcation->amount = $task->commission;
+                $transcation->type = 'Order Commission amount';
+                $transcation->status = 'credit';
+                $transcation->save();
+
+                $userDailyTask = new UserDailyTasks();
+                $userDailyTask->user_id = auth()->user()->id;
+                $userDailyTask->task_id = $task->id;
+                $userDailyTask->profit = $task->commission;
+                $userDailyTask->task_text = $task->title;
+                $userDailyTask->task_img = $task->image;
+                $userDailyTask->total_amount = $task->order_amount;
+                $userDailyTask->status = 'proccessing';
+                $userDailyTask->save();
+            }
+
             // add profit to user account
-            $user = User::find(auth()->user()->id);
-            $user->balance += $task->commission;
-            $user->save();
 
-            $userDailyTask = new UserDailyTasks();
-            $userDailyTask->user_id = auth()->user()->id;
-            $userDailyTask->task_id = $task->id;
-            $userDailyTask->profit = $task->commission;
-            $userDailyTask->task_text = $task->title;
-            $userDailyTask->task_img = $task->image;
-            $userDailyTask->total_amount = $task->order_amount;
-            $userDailyTask->save();
-
-            $transcation = new Transcations();
-            $transcation->user_id = auth()->user()->id;
-            $transcation->amount = $task->profit;
-            $transcation->type = 'Order grabbing commission';
-            $transcation->status = 'credit';
-            $transcation->save();
         }
 
         return back()->with('success', 'Amount added successfully');
@@ -229,5 +278,21 @@ class UserDashboardController extends Controller
         $wallet->walletname = $request->walletname;
         $wallet->save();
         return redirect()->back()->with('success', 'Wallet added successfully');
+    }
+
+    public function submitAllRecord($id)
+    {
+        // fetch all tasks where user_id = $id
+        $tasks = UserDailyTasks::where('user_id', $id)->where('status', 'proccessing')->get();
+        // loop through each task
+        foreach ($tasks as $task) {
+            // update status to completed
+            $task->status = 'Finish';
+            $task->save();
+            $user = User::find($id);
+            $user->balance += $task->total_amount;
+            $user->save();
+        }
+        return redirect()->back()->with('success', 'All tasks submitted successfully');
     }
 }

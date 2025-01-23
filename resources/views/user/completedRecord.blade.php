@@ -14,9 +14,8 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            /* add gradient color to the body with #00a99d */
-            background: linear-gradient(to right, #023d34, #00a99d);
-            color: #fff;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            s color: #fff;
             display: flex;
             flex-direction: column;
             height: 100vh;
@@ -157,12 +156,18 @@
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex justify-content-around align-items-center">
-                        {{-- show line under all link --}}
-                        <a href="{{ route('User.Record') }}" style="cursor: pointer;color:white"><u>All</u></a>
-                        <a href="{{ route('User.Completed.Record') }}" class="text-decoration-none"
+                        <div>
+                            <a href="{{ route('User.Dashboard') }}" class="text-white">
+                                <i class="fa-solid fa-house"></i>
+                            </a>
+                        </div>
+                        <a href="{{ route('User.Record') }}" class="text-decoration-none" style="cursor: pointer;color:white">All</a>
+                        <a href="{{ route('User.Completed.Record') }}"
                             style="cursor: pointer;color:white;">Completed</a>
                         <a href="{{ route('User.Rejected.Record') }}" class="text-decoration-none"
                             style="cursor: pointer;color:white">Rejected</a>
+                        <a href="{{ route('User.Submit.Record') }}" class="text-decoration-none"
+                            style="cursor: pointer;color:white">Submit</a>
                     </div>
                 </div>
             </div>
@@ -176,7 +181,10 @@
                 <div class="row mt-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <p style="font-size: 10px">{{ $item->created_at }}</p>
-                        <p style="font-size: 10px;border: 1px solid white;border-radius: 10px;padding:3px;">{{ $item->status }}</p>
+                        <p>
+                            <span
+                                style="background-color:rgb(59, 188, 59);color:white;font-size: 10px;border: 1px solid white;border-radius: 10px;padding:4px;">{{ $item->status }}</span>
+                        </p>
                     </div>
                     <div class="col-12">
                         <div class="card">

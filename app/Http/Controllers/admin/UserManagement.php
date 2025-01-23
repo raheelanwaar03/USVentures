@@ -20,7 +20,8 @@ class UserManagement extends Controller
         // check if daily tasks added to usertodaytasks today
         $task_check = UserTodayTasks::where('user_id', $user->id)->whereDate('created_at', Carbon::today())->first();
         if ($task_check == null) {
-            // store all tasks into UserTodayTasks
+            // store all tasks into UserTodayTasks and deleted old tasks
+            UserTodayTasks::where('user_id', $user->id)->delete();
             foreach ($tasks as $task) {
                 $today_task = new UserTodayTasks();
                 $today_task->user_id = $user->id;
