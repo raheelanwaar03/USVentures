@@ -40,6 +40,6 @@ function today_tasks()
 
 function today_profit()
 {
-    $amount = UserDailyTasks::where('user_id', auth()->user()->id)->whereDate('created_at', date('Y-m-d'))->sum('profit');
+    $amount = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'Finish')->whereDate('created_at', date('Y-m-d'))->sum('profit');
     return $amount;
 }

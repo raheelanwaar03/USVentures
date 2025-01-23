@@ -54,7 +54,7 @@ class UserDashboardController extends Controller
     {
         $user = User::find(auth()->user()->id);
         if ($user->status == 'active') {
-            $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'proccessing')->get();
+            $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'submit')->get();
             return view('user.submit', compact('tasks'));
         } else {
             return redirect()->route('User.Dashboard')->with('error', 'Contact Customer Service');
@@ -65,7 +65,7 @@ class UserDashboardController extends Controller
     {
         $user = User::find(auth()->user()->id);
         if ($user->status == 'active') {
-            $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'rejected')->get();
+            $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'proccessing')->get();
             return view('user.rejectedRecord', compact('tasks'));
         } else {
             return redirect()->route('User.Dashboard')->with('error', 'Contact Customer Service');
@@ -88,6 +88,9 @@ class UserDashboardController extends Controller
             $task = DailyTask::find($id);
             // add profit to user account
             $user = User::find(auth()->user()->id);
+            if ($user->balance <= 0) {
+                return back()->with('error', 'Recharge your account');
+            }
             $user->balance += $task->profit;
             $user->save();
 
@@ -119,14 +122,21 @@ class UserDashboardController extends Controller
             $task = UserTodayTasks::find($id);
 
             if ($task->task_id == null) {
+                $task = UserTodayTasks::find($id);
+                $given_commission = $task->order_amount * $task->commission / 100;
+
                 $user = User::find(auth()->user()->id);
-                $user->balance += $task->commission;
+                // check if user balance is negtive
+                if ($user->balance <= 0) {
+                    return back()->with('error', 'Recharge your account');
+                }
+                $user->balance += $given_commission;
                 $user->save();
 
                 $userDailyTask = new UserDailyTasks();
                 $userDailyTask->user_id = auth()->user()->id;
                 $userDailyTask->task_id = $task->id;
-                $userDailyTask->profit = $task->commission;
+                $userDailyTask->profit = $given_commission;
                 $userDailyTask->task_text = $task->title;
                 $userDailyTask->task_img = $task->image;
                 $userDailyTask->total_amount = $task->order_amount;
@@ -134,11 +144,14 @@ class UserDashboardController extends Controller
 
                 $transcation = new Transcations();
                 $transcation->user_id = auth()->user()->id;
-                $transcation->amount = $task->commission;
+                $transcation->amount = $given_commission;
                 $transcation->type = 'Order grabbing commission';
                 $transcation->status = 'credit';
                 $transcation->save();
             } else {
+                $task = UserTodayTasks::find($id);
+                $given_commission = $task->order_amount * $task->commission / 100;
+
                 // deduct order amount from user balance
                 $user = User::find(auth()->user()->id);
                 $user->balance -= $task->order_amount;
@@ -146,20 +159,16 @@ class UserDashboardController extends Controller
                 $transcation = new Transcations();
                 $transcation->user_id = auth()->user()->id;
                 $transcation->amount = $task->order_amount;
-                $transcation->type = 'Order amount deducted';
-                $transcation->status = 'debit';
+                $transcation->type = 'Order frozen amount';
+                $transcation->status = 'Frozen';
                 $transcation->save();
-
-                $user = User::find(auth()->user()->id);
-                $user->balance += $task->commission;
-                $user->save();
 
                 // add user commission into user account
                 $transcation = new Transcations();
                 $transcation->user_id = auth()->user()->id;
-                $transcation->amount = $task->commission;
-                $transcation->type = 'Order Commission amount';
-                $transcation->status = 'credit';
+                $transcation->amount = $given_commission;
+                $transcation->type = 'Order frozen commission';
+                $transcation->status = 'Frozen';
                 $transcation->save();
 
                 $userDailyTask = new UserDailyTasks();

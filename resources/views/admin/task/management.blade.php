@@ -123,7 +123,7 @@
                                         <th>Task Title</th>
                                         <th>Order Amount</th>
                                         <th>Level</th>
-                                        <th>Commission</th>
+                                        <th>Commission %</th>
                                         <th>Image</th>
                                         <th>Date</th>
                                         <th>Action</th>
@@ -136,7 +136,7 @@
                                             <td>{{ $item->title }}</td>
                                             <td>{{ $item->order_amount }}</td>
                                             <td>{{ $item->level }}</td>
-                                            <td>{{ $item->commission }}</td>
+                                            <td>{{ $item->commission }}%</td>
                                             <td>
                                                 <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}"
                                                     style="width: 100px; height: 100px;">
@@ -173,7 +173,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="commission"
-                                                                    class="form-label text-dark">Commission</label>
+                                                                    class="form-label text-dark">Commission %</label>
                                                                 <input type="number" step="0.002" name="commission" id="commission"
                                                                     class="form-control">
                                                             </div>
@@ -182,8 +182,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">Save
-                                                            changes</button>
+                                                        <button type="submit" class="btn btn-primary">Trigger</button>
                                                     </div>
                                                     </form>
                                                 </div>

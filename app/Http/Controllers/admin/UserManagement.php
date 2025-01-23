@@ -32,6 +32,8 @@ class UserManagement extends Controller
                 $today_task->image = $task->image;
                 $today_task->save();
             }
+            $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
+            return view('admin.task.management', compact('user', 'today_tasks'));
         } else {
             $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
             return view('admin.task.management', compact('user', 'today_tasks'));
