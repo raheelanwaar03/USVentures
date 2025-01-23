@@ -4,7 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\admin\AdminWallet;
+use App\Models\User;
 use App\Models\user\DepositAmount;
+use App\Models\user\UserDailyTasks;
 use Illuminate\Http\Request;
 
 class DepositController extends Controller
@@ -20,6 +22,30 @@ class DepositController extends Controller
         return view('admin.deposit.depositRequests', compact('deposit'));
     }
 
+    public function approveDeposit($id)
+    {
+        $deposit = DepositAmount::find($id);
+        $deposit->status = 'approved';
+        $deposit->save();
+
+        $tasks = UserDailyTasks::where('user_id', $deposit->user_id)->where('status', 'proccessing')->get();
+        if (!$tasks->isEmpty()) {
+            foreach ($tasks as $task) {
+                $task->status = 'submit';
+                $task->save();
+            }
+        }
+
+        return redirect()->back()->with('success', 'Deposit approved successfully');
+    }
+
+    public function rejectDeposit($id)
+    {
+        $deposit = DepositAmount::find($id);
+        $deposit->status = 'rejected';
+        $deposit->save();
+        return redirect()->back()->with('success', 'Deposit approved successfully');
+    }
 
     public function storeWallet(Request $request)
     {

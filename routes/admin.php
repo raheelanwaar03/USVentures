@@ -18,6 +18,8 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     Route::post('/Update/User/Password/{id}', [AdminDashboardController::class, 'changePassword'])->name('Change.Password');
     // deposit page
     Route::get('/Deposit', [DepositController::class, 'addDeposit'])->name('Deposit.Method');
+    Route::get('Approve/Deposit/{id}', [DepositController::class, 'approveDeposit'])->name('Approve.Deposit');
+    Route::get('Reject/Deposit/{id}', [DepositController::class, 'rejectDeposit'])->name('Reject.Deposit');
     Route::post('/Store/Deposit/Method', [DepositController::class, 'storeWallet'])->name('Store.Method');
     Route::get('/All/Deposit/Method', [DepositController::class, 'allMethod'])->name('All.Method');
     Route::get('/Edit/Deposit/Method/{id}', [DepositController::class, 'editMethod'])->name('Edit.Method');

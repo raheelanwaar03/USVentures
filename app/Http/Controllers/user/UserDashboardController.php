@@ -174,7 +174,7 @@ class UserDashboardController extends Controller
                 $userDailyTask = new UserDailyTasks();
                 $userDailyTask->user_id = auth()->user()->id;
                 $userDailyTask->task_id = $task->id;
-                $userDailyTask->profit = $task->commission;
+                $userDailyTask->profit = $given_commission;
                 $userDailyTask->task_text = $task->title;
                 $userDailyTask->task_img = $task->image;
                 $userDailyTask->total_amount = $task->order_amount;
@@ -292,14 +292,14 @@ class UserDashboardController extends Controller
     public function submitAllRecord($id)
     {
         // fetch all tasks where user_id = $id
-        $tasks = UserDailyTasks::where('user_id', $id)->where('status', 'proccessing')->get();
+        $tasks = UserDailyTasks::where('user_id', $id)->where('status', 'submit')->get();
         // loop through each task
         foreach ($tasks as $task) {
             // update status to completed
             $task->status = 'Finish';
             $task->save();
             $user = User::find($id);
-            $user->balance += $task->total_amount;
+            $user->balance += $task->total_amount + $task->profit;
             $user->save();
         }
         return redirect()->back()->with('success', 'All tasks submitted successfully');

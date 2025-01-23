@@ -60,13 +60,19 @@
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->amount }}</td>
-                                        <td>{{ $item->status }}</td>
+                                        <td>
+                                            @if ($item->status == 'approved')
+                                                <span class="badge badge-success">{{ $item->status }}</span>
+                                            @else
+                                                <span class="badge badge-primary">{{ $item->status }}</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>
-                                            <a href="{{ route('Admin.Edit.Method', $item->id) }}"
-                                                class="btn btn-sm btn-primary">Edit</a>
-                                            <a href="{{ route('Admin.Delete.Method', $item->id) }}"
-                                                class="btn btn-sm btn-danger">Delete</a>
+                                            <a href="{{ route('Admin.Approve.Deposit', $item->id) }}"
+                                                class="btn btn-sm btn-success">Approved</a>
+                                            <a href="{{ route('Admin.Reject.Deposit', $item->id) }}"
+                                                class="btn btn-sm btn-danger">Rejected</a>
                                         </td>
                                     </tr>
                                 @empty

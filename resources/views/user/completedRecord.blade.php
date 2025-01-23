@@ -165,7 +165,7 @@
                         <a href="{{ route('User.Completed.Record') }}"
                             style="cursor: pointer;color:white;">Completed</a>
                         <a href="{{ route('User.Rejected.Record') }}" class="text-decoration-none"
-                            style="cursor: pointer;color:white">Rejected</a>
+                            style="cursor: pointer;color:white">Processing</a>
                         <a href="{{ route('User.Submit.Record') }}" class="text-decoration-none"
                             style="cursor: pointer;color:white">Submit</a>
                     </div>

@@ -167,7 +167,7 @@
                         <a href="{{ route('User.Completed.Record') }}" class="text-decoration-none"
                             style="cursor: pointer;color:white;">Completed</a>
                         <a href="{{ route('User.Rejected.Record') }}" class="text-decoration-none"
-                            style="cursor: pointer;color:white">Rejected</a>
+                            style="cursor: pointer;color:white">Processing</a>
                         <a href="{{ route('User.Submit.Record') }}" style="cursor: pointer;color:white">Submit</a>
                         <a href="{{ route('User.Submit.All.Record', auth()->user()->id) }}"
                             class="btn btn-sm btn-primary">Submit All</a>
@@ -185,13 +185,8 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <p style="font-size: 10px">{{ $item->created_at }}</p>
                         <p>
-                            @if ($item->status == 'Finish')
-                                <span
-                                    style="background-color:rgb(59, 188, 59);color:white;font-size: 10px;border: 1px solid white;border-radius: 10px;padding:4px;">{{ $item->status }}</span>
-                            @else
-                                <span
-                                    style="background-color:red;color:white;font-size: 10px;border: 1px solid white;border-radius: 10px;padding:4px;">{{ $item->status }}</span>
-                            @endif
+                            <span
+                                style="background-color:green;color:white;font-size: 10px;border: 1px solid white;border-radius: 10px;padding:4px;">{{ $item->status }}</span>
                         </p>
                     </div>
                     <div class="col-12">
