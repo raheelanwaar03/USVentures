@@ -134,7 +134,7 @@ class UserDashboardController extends Controller
 
                 $transcation = new Transcations();
                 $transcation->user_id = auth()->user()->id;
-                $transcation->amount = $task->commissoin;
+                $transcation->amount = $task->commission;
                 $transcation->type = 'Order grabbing commission';
                 $transcation->status = 'credit';
                 $transcation->save();
