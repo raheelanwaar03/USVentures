@@ -124,7 +124,7 @@
                 <div class="col-12" style="background-color: #2e3b4e; border-radius: 16px;">
                     <p class="mt-2 text-center pt-2"><a href="{{ route('User.Add.Amount') }}"
                             style="text-decoration: none;color: white;">Start
-                            ({{ today_tasks() }}/{{ tasks() }})</a></p>
+                            ({{ completed_tasks() }}/{{ today_tasks() }})</a></p>
                 </div>
             </div>
 

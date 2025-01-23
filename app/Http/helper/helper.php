@@ -3,6 +3,8 @@
 use App\Models\admin\DailyTask;
 use App\Models\User;
 use App\Models\user\UserDailyTasks;
+use App\Models\user\UserTodayTasks;
+use Carbon\Carbon;
 
 function total_team()
 {
@@ -19,8 +21,14 @@ function tasks()
 // today tasks
 function today_tasks()
 {
-    $tasks = UserDailyTasks::where('user_id', auth()->user()->id)->whereDate('created_at', date('Y-m-d'))->count();
+    $tasks = UserTodayTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->count();
     return $tasks;
+}
+
+function completed_tasks()
+{
+    $completed_tasks = UserDailyTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->count();
+    return $completed_tasks;
 }
 
 function today_profit()

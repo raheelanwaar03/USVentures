@@ -11,6 +11,7 @@ use App\Models\user\CompletedTask;
 use App\Models\user\DepositAmount;
 use App\Models\user\Transcations;
 use App\Models\user\UserDailyTasks;
+use App\Models\user\UserTodayTasks;
 use App\Models\user\Withdraw;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -62,6 +63,16 @@ class UserDashboardController extends Controller
 
     public function addTaskAmount()
     {
+        $check_tasks = UserTodayTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->get();
+
+        // if check_tasks is empty then return back
+        if ($check_tasks->isEmpty()) {
+            return 1;
+        } else {
+            return 2;
+        }
+
+
         $id = today_tasks() + 1;
         // check if all tasks are finished
         $allTasks = DailyTask::all()->count('id');
