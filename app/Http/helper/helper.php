@@ -2,8 +2,10 @@
 
 use App\Models\admin\DailyTask;
 use App\Models\User;
+use App\Models\user\DepositAmount;
 use App\Models\user\UserDailyTasks;
 use App\Models\user\UserTodayTasks;
+use App\Models\user\Withdraw;
 use Carbon\Carbon;
 
 function total_team()
@@ -42,4 +44,23 @@ function today_profit()
 {
     $amount = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'Finish')->whereDate('created_at', date('Y-m-d'))->sum('profit');
     return $amount;
+}
+
+function all_approved_withdraw()
+{
+    // make sum of total approved withdraw
+    $withdraw = Withdraw::where('status', 'Approved')->sum('amount');
+    return $withdraw;
+}
+function all_approved_Deposit()
+{
+    // make sum of total approved deposit
+    $deposit = DepositAmount::where('status', 'Approved')->sum('amount');
+    return $deposit;
+}
+
+function all_users()
+{
+    $users = User::count();
+    return $users;
 }

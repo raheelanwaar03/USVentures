@@ -58,7 +58,7 @@
 
                                         <div class="balance-info">
                                             <h6>Total Users</h6>
-                                            <p>2</p>
+                                            <p>{{ all_users() }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
 
                                         <div class="balance-info">
                                             <h6>Deposit Balance</h6>
-                                            <p>$41,741.42</p>
+                                            <p>{{ all_approved_Deposit() }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
 
                                         <div class="balance-info">
                                             <h6>Withdraw Balance</h6>
-                                            <p>$41,741.42</p>
+                                            <p>{{ all_approved_withdraw() }}</p>
                                         </div>
                                     </div>
                                 </div>

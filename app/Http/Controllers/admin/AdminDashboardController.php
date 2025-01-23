@@ -112,6 +112,11 @@ class AdminDashboardController extends Controller
         $withdraw = Withdraw::find($id);
         $withdraw->status = 'approved';
         $withdraw->save();
+        // deduct amount from user account
+        $user = User::find($withdraw->user_id);
+        $user->balance -= $withdraw->amount;
+        $user->save();
+
         return redirect()->route('Admin.Withdraw.Request')->with('success', 'Withdraw Approved Successfully');
     }
 
