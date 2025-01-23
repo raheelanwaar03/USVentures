@@ -48,8 +48,8 @@
                         <table id="example" class="display responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Task Name</th>
-                                    <th>Plan Price</th>
+                                    <th>Task Title</th>
+                                    <th>Order Amount</th>
                                     <th>Level</th>
                                     <th>Profit</th>
                                     <th>Image</th>
@@ -60,8 +60,8 @@
                             <tbody>
                                 @forelse ($tasks as $item)
                                     <tr>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->price }}</td>
+                                        <td>{{ $item->title }}</td>
+                                        <td>{{ $item->order_amount }}</td>
                                         <td>{{ $item->level }}</td>
                                         <td>{{ $item->profit }}</td>
                                         <td>

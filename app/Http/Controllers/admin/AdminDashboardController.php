@@ -83,8 +83,8 @@ class AdminDashboardController extends Controller
         $request->image->move(public_path('images'), $imageName);
         // save data to database
         $task = new DailyTask();
-        $task->name = $request->name;
-        $task->price = $request->price;
+        $task->title = $request->name;
+        $task->order_amount = $request->price;
         $task->level = $request->level;
         $task->profit = $request->profit;
         $task->image = $imageName;
@@ -130,8 +130,5 @@ class AdminDashboardController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         return redirect()->route('Admin.Users')->with('success', 'Password Changed Successfully');
-
     }
-
-
 }

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('daily_tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('price');
+            $table->string('title');
+            $table->string('order_amount');
             $table->string('profit');
             $table->string('level');
             $table->string('image');
