@@ -129,7 +129,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($tasks as $item)
+                                    @forelse ($today_tasks as $item)
                                         <tr>
                                             <td>{{ $item->title }}</td>
                                             <td>{{ $item->order_amount }}</td>

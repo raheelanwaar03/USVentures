@@ -47,15 +47,16 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ route('Admin.Store.Task') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('Admin.Store.Task') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group mt-2">
-                                            <label for="task" class="form-label">Task Name</label>
+                                            <label for="task" class="form-label">Task Title</label>
                                             <input type="text" name="name" id="task" class="form-control"
                                                 placeholder="Enter Name" required>
                                         </div>
                                         <div class="form-group mt-2">
-                                            <label for="price" class="form-label">Total Price</label>
+                                            <label for="price" class="form-label">Order Amount</label>
                                             <input type="text" name="price" id="price" class="form-control"
                                                 placeholder="Enter Price" required>
                                         </div>

@@ -66,7 +66,7 @@
                                         <td>{{ $item->profit }}</td>
                                         <td>
                                             <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}"
-                                                style="width: 100px; height: 100px;">
+                                                style="width: 80px; height: 80px;border-radius:50px" class="img-fluid">
                                         </td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>
