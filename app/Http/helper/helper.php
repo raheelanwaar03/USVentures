@@ -42,8 +42,12 @@ function today_tasks()
 
 function today_profit()
 {
-    $amount = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'Finish')->whereDate('created_at', date('Y-m-d'))->sum('profit');
-    return $amount;
+    $amount = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'Finish')->whereDate('created_at', date('Y-m-d'))->get();
+    $total = 0.00;
+    foreach ($amount as $key => $value) {
+        $total += $value->amount;
+    }
+    return $total;
 }
 
 function all_approved_withdraw()

@@ -2,7 +2,7 @@
 
 @section('content')
     <main>
-        <marquee behavior=scroll direction="left" scrollamount="10" class="marquee-tag">
+        {{-- <marquee behavior=scroll direction="left" scrollamount="10" class="marquee-tag">
             <div class="container">
                 <div class="row">
                     <div class="col-2"><img src="{{ asset('assets/images/badges/badge1.png') }}" height="80px" width="80px"
@@ -109,7 +109,7 @@
                     </div>
                 </div>
             </div>
-        </marquee>
+        </marquee> --}}
 
         <!-- rating -->
 
