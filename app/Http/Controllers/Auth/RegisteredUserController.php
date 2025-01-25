@@ -34,8 +34,15 @@ class RegisteredUserController extends Controller
             'referral' => ['required', 'string', 'max:255'],
             'pin' => ['required', 'string', 'min:6', 'max:6'],
             'phone' => ['required', 'string', 'max:255'],
+            'terms' => ['required'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        // check if any user have this referral code or not
+        $refer_check = User::where('referral_id', $request->referral)->first();
+        if ($refer_check == null) {
+            return redirect()->back()->with('error', 'Use original refer code');
+        }
 
         // generate referral code
 
@@ -54,6 +61,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('User.Dashboard', absolute: false));
+        return redirect(route('User.Dashboard', absolute: false))->with('success', 'Welcome to USVenturs');
     }
 }
