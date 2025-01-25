@@ -68,7 +68,6 @@
                 </div>
             </div>
         </div>
-
         <div class="container-fluid mt-4">
             <div class="row">
                 <div class="col-md-12 bg-white">
@@ -77,22 +76,78 @@
                         <div><a href="">View More</a></div>
                     </div>
                     <div class="row text-center">
-                        <div class="col-3"><img src="{{ asset('assets/images/badges/badge2.png') }}" height="60px"
-                                width="60px" alt="First Image"></div>
-                        <div class="col-3"><img src="{{ asset('assets/images/badges/badge1.png') }}" height="60px"
-                                width="60px" alt="First Image"></div>
-                        <div class="col-3"><img src="{{ asset('assets/images/badges/badge3.png') }}" height="60px"
-                                width="60px" alt="First Image"></div>
-                        <div class="col-3"><img src="{{ asset('assets/images/badges/badge4.png') }}" height="60px"
-                                width="60px" alt="First Image"></div>
-                    </div>
-                    <div class="text-dark">
-                        <p>VIP1 <br> 100 USDT <br> Profit Per Transaction <br> 0.4% Task Contain <br> 40 Each Order</p>
+                        {{-- check if user level is vip1 then print 1 if level vip2 then print 2 if level is vip3 then print 3 --}}
+                        @if (auth()->user()->level == 'vip1')
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge2.png') }}" height="60px"
+                                    width="60px" style="border: 2px solid #4facfe;" alt="First Image">
+                            </div>
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge1.png') }}" height="60px"
+                                    width="60px" alt="First Image"></div>
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge3.png') }}" height="60px"
+                                    width="60px" alt="First Image"></div>
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge4.png') }}" height="60px"
+                                    width="60px" alt="First Image"></div>
+                            <div class="text-dark">
+                                <p style="text-align: start"> <span
+                                        class="text-capitalize">{{ auth()->user()->level }}</span> <br> 100 USDT <br>
+                                    Profit Per Transaction <br> 0.4% Task Contain <br> 40 Each Order
+                                </p>
+                            </div>
+                        @elseif (auth()->user()->level == 'vip2')
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge2.png') }}" height="60px"
+                                    width="60px" alt="First Image">
+                            </div>
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge1.png') }}" height="60px"
+                                    width="60px" style="border: 2px solid #4facfe" alt="First Image">
+                            </div>
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge3.png') }}" height="60px"
+                                    width="60px" alt="First Image"></div>
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge4.png') }}" height="60px"
+                                    width="60px" alt="First Image"></div>
+                            <div class="text-dark">
+                                <p style="text-align: start"> <span
+                                        class="text-capitalize">{{ auth()->user()->level }}</span> <br> 500 USDT <br>
+                                    Profit Per Transaction <br> 0.6% Task Contain <br> 45 Each Order
+                                </p>
+                            </div>
+                        @elseif (auth()->user()->level == 'vip3')
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge2.png') }}" height="60px"
+                                    width="60px" alt="First Image">
+                            </div>
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge1.png') }}" height="60px"
+                                    width="60px" alt="First Image">
+                            </div>
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge3.png') }}" height="60px"
+                                    width="60px" style="border: 2px solid #4facfe" alt="First Image"></div>
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge4.png') }}" height="60px"
+                                    width="60px" alt="First Image"></div>
+                            <div class="text-dark">
+                                <p style="text-align: start"> <span
+                                        class="text-capitalize">{{ auth()->user()->level }}</span> <br> 1500 USDT <br>
+                                    Profit Per Transaction <br> 0.8% Task Contain <br> 50 Each Order
+                                </p>
+                            </div>
+                        @elseif (auth()->user()->level == 'vip4')
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge2.png') }}" height="60px"
+                                    width="60px" alt="First Image">
+                            </div>
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge1.png') }}" height="60px"
+                                    width="60px" alt="First Image">
+                            </div>
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge3.png') }}" height="60px"
+                                    width="60px" alt="First Image"></div>
+                            <div class="col-3"><img src="{{ asset('assets/images/badges/badge4.png') }}" height="60px"
+                                    width="60px" style="border: 2px solid #4facfe" alt="First Image"></div>
+                            <div class="text-dark">
+                                <p style="text-align: start"> <span
+                                        class="text-capitalize">{{ auth()->user()->level }}</span> <br> 5000 USDT <br>
+                                    Profit Per Transaction <br> 1.0% Task Contain <br> 55 Each Order
+                                </p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-
-
     </main>
 @endsection
