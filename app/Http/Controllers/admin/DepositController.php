@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\admin\AdminWallet;
 use App\Models\User;
 use App\Models\user\DepositAmount;
+use App\Models\user\Transcations;
 use App\Models\user\UserDailyTasks;
 use Illuminate\Http\Request;
 
@@ -25,8 +26,27 @@ class DepositController extends Controller
     public function approveDeposit($id)
     {
         $deposit = DepositAmount::find($id);
+        if ($deposit->status == 'approved') {
+            return redirect()->back()->with('error', 'This deposit is already approved');
+        }
         $deposit->status = 'approved';
         $deposit->save();
+
+        // give user upliner 20% bouns
+        $commission = $deposit->amount * 20 / 100;
+        $user =  User::find($deposit->user_id);
+        $upliner = User::where('referral_id', $user->referral)->first();
+        // user commission
+        $upliner->balance += $commission;
+
+        // add in upliner transcations
+        $bouns = new Transcations();
+        $bouns->user_id = $upliner->id;
+        $bouns->amount = $commission;
+        $bouns->type = 'Referral Commission';
+        $bouns->type = 'credit';
+        $bouns->save();
+
 
         $tasks = UserDailyTasks::where('user_id', $deposit->user_id)->where('status', 'proccessing')->get();
         if (!$tasks->isEmpty()) {
