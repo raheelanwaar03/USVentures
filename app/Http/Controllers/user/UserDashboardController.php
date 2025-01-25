@@ -202,15 +202,39 @@ class UserDashboardController extends Controller
         if (!$wallet) {
             return back()->with('error', 'Add your wallet address');
         }
-
-        $user = User::find(auth()->user()->id);
-        if ($user->balance < $request->amount) {
-            return back()->with('error', 'Insufficient balance');
+        // check if user has already requested for withdrawal
+        $withdrawal = Withdraw::where('user_id', auth()->user()->id)->where('status', 'pending')->first();
+        if ($withdrawal) {
+            return back()->with('error', 'You have already requested for withdrawal');
         }
-        // check if pin is correct
+        $user = User::find(auth()->user()->id);
         if ($user->pin != $request->pin) {
             return back()->with('error', 'Incorrect pin');
         }
+        if ($user->balance < $request->amount) {
+            return back()->with('error', 'Insufficient balance');
+        }
+
+        // check user level and his withdraw limit accourdingly
+        if ($user->level == 'vip1') {
+            // user limit should be between 100 to 800
+            if ($request->amount < 100 || $request->amount > 800) {
+                return back()->with('error', 'Withdraw limit is between 100 to 800 for your level');
+            }
+        } elseif ($user->level == 'vip2') {
+            if ($request->amount < 500 || $request->amount > 3000) {
+                return back()->with('error', 'Withdraw limit is between 500 to 3000 for your level');
+            }
+        } elseif ($user->level == 'vip3') {
+            if ($request->amount < 1500 || $request->amount > 10000) {
+                return back()->with('error', 'Withdraw limit is between 1500 to 10000 for your level');
+            }
+        } elseif ($user->level == 'vip4') {
+            if ($request->amount < 5000) {
+                return back()->with('error', 'You cannot withdraw less than 5000');
+            }
+        }
+
 
         // save data to database
         $withdraw = new Withdraw();

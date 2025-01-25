@@ -44,7 +44,7 @@ class clean extends Command
         $user->role = 'admin';
         $user->referral_id = 'US123456';
         $user->level = 'vip1';
-        $user->pin = '123456';
+        $user->pin = '123457';
         $user->save();
 
         $user = new User();
