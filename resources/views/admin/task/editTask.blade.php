@@ -80,7 +80,7 @@
                                                 style="width: 100px; height: 100px;">
                                         </div>
                                         <div class="mt-3">
-                                            <button type="submit" class="btn btn-primary">Add Task</button>
+                                            <button type="submit" class="btn btn-primary">Update Task</button>
                                         </div>
                                     </form>
                                 </div>
