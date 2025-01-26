@@ -91,6 +91,7 @@ class UserDashboardController extends Controller
                 return back()->with('error', 'Recharge your account');
             }
             $task = DailyTask::find($id);
+            return $task;
             $user->balance += $task->profit;
             $user->save();
 
