@@ -93,7 +93,7 @@ class AdminDashboardController extends Controller
             $task->image = $imageName;
         }
         $task->save();
-        return redirect()->route('Admin.Tasks')->with('success', 'Task Updated Successfully');
+        return redirect()->back()->with('success', 'Task Updated Successfully');
     }
 
     public function deleteTask($id)
