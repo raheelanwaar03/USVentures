@@ -83,9 +83,11 @@ class AdminDashboardController extends Controller
         $task->profit = $request->profit;
         $task->level = $request->level;
         if ($request->image) {
-            // remove old image
-            unlink(public_path('images/' . $task->image));
-            // save new image
+            // delete old image
+            $oldImage = $task->image;
+            if (file_exists(public_path('images/' . $oldImage))) {
+                unlink(public_path('images/' . $oldImage));
+                }
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
             $task->image = $imageName;
