@@ -62,6 +62,11 @@
                                                     value="{{ $user->phone }}" readonly>
                                             </div>
                                             <div class="form-group mt-2">
+                                                <label for="balance" class="form-label">Balance</label>
+                                                <input type="text" name="balance" id="balance" class="form-control"
+                                                    value="{{ $user->balance }}" required>
+                                            </div>
+                                            <div class="form-group mt-2">
                                                 <label for="level" class="form-label">Level</label>
                                                 <input type="text" name="level" id="level" class="form-control"
                                                     value="{{ $user->level }}" required>

@@ -30,6 +30,7 @@ class AdminDashboardController extends Controller
         $user = User::find($id);
         $user->name = $request->name;
         $user->phone = $request->phone;
+        $user->balance = $request->balance;
         $user->level = $request->level;
         $user->save();
         return redirect()->route('Admin.Users')->with('success', 'User Updated Successfully');
@@ -66,6 +67,14 @@ class AdminDashboardController extends Controller
     {
         $tasks = DailyTask::all();
         return view('admin.task.allTasks', compact('tasks'));
+    }
+
+    public function deleteTask($id)
+    {
+        // delete task
+        $task = DailyTask::find($id);
+        $task->delete();
+        return redirect()->route('Admin.All.Task')->with('success', 'Task Deleted Successfully');
     }
 
     public function storeTask(Request $request)
