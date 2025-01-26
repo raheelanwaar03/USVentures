@@ -163,7 +163,7 @@
     <main>
         <div class="container">
             <div class="col-12 text-center">
-                <h1>USVentures</h1>
+                <h1>{{ env('APP_NAME') }}</h1>
             </div>
             <div class="row alin-items-center">
                 <div class="col-12">
