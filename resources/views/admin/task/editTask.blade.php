@@ -47,7 +47,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ route('Admin.Store.Task') }}" method="POST"
+                                    <form action="{{ route('Admin.Update.Task', $task->id) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group mt-2">
