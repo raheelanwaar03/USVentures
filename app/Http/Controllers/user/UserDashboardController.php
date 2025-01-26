@@ -79,6 +79,7 @@ class UserDashboardController extends Controller
         // if check_tasks is empty then return back
         if ($check_tasks->isEmpty()) {
             $id = completed_tasks() + 1;
+            $next_id = $id;
             // check if this id is in dailytask or not if not then go to next one
             $check_id = UserDailyTasks::where('id', $id)->first();
             // if this id is null then find the next id
