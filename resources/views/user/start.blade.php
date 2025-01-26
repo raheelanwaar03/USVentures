@@ -121,12 +121,13 @@
                         <p style="font-size: 20px;"><b>Name</b></p>
                     </div>
                 </div>
-                <div class="col-12" style="background-color: #2e3b4e; border-radius: 16px;">
-                    <p class="mt-2 text-center pt-2"><a href="{{ route('User.Add.Amount') }}"
-                            style="text-decoration: none;color: white;">Start
-                            ({{ completed_tasks() }}/{{ today_trigger_tasks() == null ? today_tasks() : today_trigger_tasks() }})</a>
-                    </p>
-                </div>
+                <a href="{{ route('User.Add.Amount') }}" style="text-decoration: none;color: white;">
+                    <div class="col-12" style="background-color: #2e3b4e; border-radius: 30px;padding-bottom:4px;padding-top:2px;">
+                        <p class="mt-2 text-center pt-2">Start
+                            ({{ completed_tasks() }}/{{ today_trigger_tasks() == null ? today_tasks() : today_trigger_tasks() }})
+                        </p>
+                    </div>
+                </a>
             </div>
 
             <div class="row justify-content-between align-items-center my-4 text-center">

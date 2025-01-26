@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\admin\DailyTask;
 use App\Models\User;
+use App\Models\user\DepositAmount;
 use App\Models\user\UserDailyTasks;
 use App\Models\user\UserTodayTasks;
 use Carbon\Carbon;
@@ -48,5 +49,29 @@ class UserManagement extends Controller
         $task->commission = $request->commission;
         $task->save();
         return redirect()->back()->with('success', 'Task is Trigger');
+    }
+
+    public function activateAll($id)
+    {
+        $user = User::find($id);
+        // check if this user deposit or not
+        $deposit_check = DepositAmount::where('user_id', $id)->where('status', 'approved')->first();
+        if ($deposit_check == null) {
+            return redirect()->back()->with('error', 'This user has not deposit yet');
+        }
+        // find all tasks of this user
+        $tasks = UserTodayTasks::where('user_id', $user->id)->get();
+        // make status approved
+        foreach ($tasks as $task) {
+            $task->status = 'active';
+            $task->save();
+        }
+        // delete all old tasks of this user
+        $this_user = UserDailyTasks::where('user_id', $id)->where('status', 'Finish')->get();
+        foreach ($this_user as $task) {
+            $task->delete();
+        }
+
+        return redirect()->back()->with('success', 'All tasks are activated');
     }
 }

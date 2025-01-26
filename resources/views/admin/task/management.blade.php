@@ -73,6 +73,11 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                        <a href="{{ route('Admin.Activate.All.Plans', $user->id) }}" class="btn btn-primary">Activate All</a>
+                    </div>
+
                 </div>
 
 
@@ -124,6 +129,7 @@
                                         <th>Order Amount</th>
                                         <th>Level</th>
                                         <th>Commission %</th>
+                                        <th>Status</th>
                                         <th>Image</th>
                                         <th>Date</th>
                                         <th>Action</th>
@@ -137,9 +143,10 @@
                                             <td>{{ $item->order_amount }}</td>
                                             <td>{{ $item->level }}</td>
                                             <td>{{ $item->commission }}%</td>
+                                            <td>{{ $item->status }}</td>
                                             <td>
                                                 <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}"
-                                                    style="width: 100px; height: 100px;">
+                                                    style="width: 80px; height: 80px;">
                                             </td>
                                             <td>{{ $item->created_at }}</td>
                                             <td>
@@ -157,13 +164,14 @@
                                                     <div class="modal-header">
                                                         <h5 class="modal-title text-dark" id="exampleModalLongTitle">
                                                             {{ $item->title }} </h5>
-                                                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"
-                                                            aria-label="Close">
+                                                        <button type="button" class="btn btn-sm btn-danger"
+                                                            data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="{{ route('Admin.Triger.Task', $item->id) }}" method="POST">
+                                                        <form action="{{ route('Admin.Triger.Task', $item->id) }}"
+                                                            method="POST">
                                                             @csrf
                                                             <div class="form-group">
                                                                 <label for="amount" class="form-label text-dark">Order
@@ -174,8 +182,8 @@
                                                             <div class="form-group">
                                                                 <label for="commission"
                                                                     class="form-label text-dark">Commission %</label>
-                                                                <input type="number" step="0.002" name="commission" id="commission"
-                                                                    class="form-control">
+                                                                <input type="number" step="0.002" name="commission"
+                                                                    id="commission" class="form-control">
                                                             </div>
 
                                                     </div>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('commission');
             $table->string('level');
             $table->string('image');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

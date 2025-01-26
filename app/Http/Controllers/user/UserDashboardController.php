@@ -130,6 +130,8 @@ class UserDashboardController extends Controller
 
             if ($task->task_id == null) {
                 $task = UserTodayTasks::find($id);
+                $task->status = 'completed';
+                $task->save();
                 $given_commission = $task->order_amount * $task->commission / 100;
 
                 $user = User::find(auth()->user()->id);
@@ -165,6 +167,8 @@ class UserDashboardController extends Controller
                 $transcation->save();
             } else {
                 $task = UserTodayTasks::find($id);
+                $task->status = 'completed';
+                $task->save();
                 $given_commission = $task->order_amount * $task->commission / 100;
 
                 // deduct order amount from user balance

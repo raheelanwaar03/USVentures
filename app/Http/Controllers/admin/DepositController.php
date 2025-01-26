@@ -32,22 +32,6 @@ class DepositController extends Controller
         $deposit->status = 'approved';
         $deposit->save();
 
-        // give user upliner 20% bouns
-        $commission = $deposit->amount * 20 / 100;
-        $user =  User::find($deposit->user_id);
-        $upliner = User::where('referral_id', $user->referral)->first();
-        // user commission
-        $upliner->balance += $commission;
-
-        // add in upliner transcations
-        $bouns = new Transcations();
-        $bouns->user_id = $upliner->id;
-        $bouns->amount = $commission;
-        $bouns->type = 'Referral Commission';
-        $bouns->type = 'credit';
-        $bouns->save();
-
-
         $tasks = UserDailyTasks::where('user_id', $deposit->user_id)->where('status', 'proccessing')->get();
         if (!$tasks->isEmpty()) {
             foreach ($tasks as $task) {
@@ -55,6 +39,11 @@ class DepositController extends Controller
                 $task->save();
             }
         }
+
+        // add deposit amount to user balance
+        $user = User::find($deposit->user_id);
+        $user->balance += $deposit->amount;
+        $user->save();
 
         return redirect()->back()->with('success', 'Deposit approved successfully');
     }
