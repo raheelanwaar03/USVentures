@@ -85,12 +85,12 @@ class UserDashboardController extends Controller
                 return back()->with('error', 'All tasks are finished, Contact Customer Service');
             }
 
-            $task = DailyTask::find($id);
             // add profit to user account
             $user = User::find(auth()->user()->id);
             if ($user->balance <= 0) {
                 return back()->with('error', 'Recharge your account');
             }
+            $task = DailyTask::find($id);
             $user->balance += $task->profit;
             $user->save();
 
