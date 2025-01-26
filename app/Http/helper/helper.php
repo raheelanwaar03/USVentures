@@ -45,7 +45,7 @@ function today_profit()
     $amount = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'Finish')->whereDate('created_at', date('Y-m-d'))->get();
     $total = 0.00;
     foreach ($amount as $key => $value) {
-        $total += $value->amount;
+        $total += $value->profit;
     }
     return $total;
 }
