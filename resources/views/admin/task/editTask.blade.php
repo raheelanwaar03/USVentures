@@ -46,6 +46,9 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Edit Task</h3>
+                                </div>
                                 <div class="card-body">
                                     <form action="{{ route('Admin.Update.Task', $task->id) }}" method="POST"
                                         enctype="multipart/form-data">
@@ -56,8 +59,8 @@
                                                 value="{{ $task->title }}" required>
                                         </div>
                                         <div class="form-group mt-2">
-                                            <label for="price" class="form-label">Order Amount</label>
-                                            <input type="text" name="price" id="price" class="form-control"
+                                            <label for="order_amount" class="form-label">Order Amount</label>
+                                            <input type="text" name="order_amount" id="order_amount" class="form-control"
                                                 value="{{ $task->order_amount }}" required>
                                         </div>
                                         <div class="form-group mt-2">
