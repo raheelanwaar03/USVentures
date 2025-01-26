@@ -75,7 +75,8 @@
                     </div>
 
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
-                        <a href="{{ route('Admin.Activate.All.Plans', $user->id) }}" class="btn btn-primary">Activate All</a>
+                        <a href="{{ route('Admin.Activate.All.Plans', $user->id) }}" class="btn btn-primary">Activate
+                            All</a>
                     </div>
 
                 </div>
@@ -176,13 +177,14 @@
                                                             <div class="form-group">
                                                                 <label for="amount" class="form-label text-dark">Order
                                                                     Amount</label>
-                                                                <input type="number" name="order_amount" id="amount"
+                                                                <input type="number" value="{{ $item->order_amount }}"
+                                                                    name="order_amount" id="amount"
                                                                     class="form-control">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="commission"
                                                                     class="form-label text-dark">Commission %</label>
-                                                                <input type="number" step="0.002" name="commission"
+                                                                <input type="number" value="{{ $item->commission }}" step="0.002" name="commission"
                                                                     id="commission" class="form-control">
                                                             </div>
 
