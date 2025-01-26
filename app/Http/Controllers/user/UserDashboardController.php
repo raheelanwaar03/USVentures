@@ -110,6 +110,13 @@ class UserDashboardController extends Controller
             $transcation->type = 'Order grabbing commission';
             $transcation->status = 'credit';
             $transcation->save();
+
+            $transcation = new Transcations();
+            $transcation->user_id = auth()->user()->id;
+            $transcation->amount = $task->order_amount;
+            $transcation->type = 'Order frozen amount';
+            $transcation->status = 'debit';
+            $transcation->save();
         } else {
             $id = completed_tasks() + 1;
             // check if all tasks are finished
@@ -148,6 +155,14 @@ class UserDashboardController extends Controller
                 $transcation->type = 'Order grabbing commission';
                 $transcation->status = 'credit';
                 $transcation->save();
+
+                // frozen amount
+                $transcation = new Transcations();
+                $transcation->user_id = auth()->user()->id;
+                $transcation->amount = $task->order_amount;
+                $transcation->type = 'Order frozen amount';
+                $transcation->status = 'debit';
+                $transcation->save();
             } else {
                 $task = UserTodayTasks::find($id);
                 $given_commission = $task->order_amount * $task->commission / 100;
@@ -160,7 +175,7 @@ class UserDashboardController extends Controller
                 $transcation->user_id = auth()->user()->id;
                 $transcation->amount = $task->order_amount;
                 $transcation->type = 'Order frozen amount';
-                $transcation->status = 'Frozen';
+                $transcation->status = 'debit';
                 $transcation->save();
 
                 // add user commission into user account
@@ -168,7 +183,7 @@ class UserDashboardController extends Controller
                 $transcation->user_id = auth()->user()->id;
                 $transcation->amount = $given_commission;
                 $transcation->type = 'Order frozen commission';
-                $transcation->status = 'Frozen';
+                $transcation->status = 'debit';
                 $transcation->save();
 
                 $userDailyTask = new UserDailyTasks();
