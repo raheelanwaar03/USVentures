@@ -52,7 +52,7 @@
                                         @csrf
                                         <div class="form-group mt-2">
                                             <label for="task" class="form-label">Task Title</label>
-                                            <input type="text" name="name" id="task" class="form-control"
+                                            <input type="text" name="title" id="task" class="form-control"
                                                 value="{{ $task->title }}" required>
                                         </div>
                                         <div class="form-group mt-2">
