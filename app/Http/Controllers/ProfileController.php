@@ -57,4 +57,13 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function welcome()
+    {
+        // check if user already login then return to user dashboard
+        if (auth()->user()) {
+            return redirect()->route('User.Dashboard');
+        }
+        return view('welcome');
+    }
 }
