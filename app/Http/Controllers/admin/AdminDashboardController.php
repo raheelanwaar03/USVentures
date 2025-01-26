@@ -69,6 +69,31 @@ class AdminDashboardController extends Controller
         return view('admin.task.allTasks', compact('tasks'));
     }
 
+    public function editTask($id)
+    {
+        $task = DailyTask::find($id);
+        return view('admin.task.editTask', compact('task'));
+    }
+
+    public function updateTask(Request $request, $id)
+    {
+        $task = DailyTask::find($id);
+        $task->title = $request->title;
+        $task->order_amount = $request->order_amount;
+        $task->profit = $request->profit;
+        $task->level = $request->level;
+        if ($request->image) {
+            // remove old image
+            unlink(public_path('images/' . $task->image));
+            // save new image
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $task->image = $imageName;
+        }
+        $task->save();
+        return redirect()->route('Admin.Tasks')->with('success', 'Task Updated Successfully');
+    }
+
     public function deleteTask($id)
     {
         // delete task

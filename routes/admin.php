@@ -13,6 +13,8 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     Route::get('/Add/Task', [AdminDashboardController::class, 'addTask'])->name('Add.Task');
     Route::post('/Store/Task', [AdminDashboardController::class, 'storeTask'])->name('Store.Task');
     Route::get('/All/Task', [AdminDashboardController::class, 'allTasks'])->name('All.Task');
+    Route::get('/Edit/Task', [AdminDashboardController::class, 'editTask'])->name('Edit.Task');
+    Route::post('/Update/Task', [AdminDashboardController::class, 'updateTask'])->name('Update.Task');
     Route::get('/Delete/Task/{id}', [AdminDashboardController::class, 'deleteTask'])->name('Delete.Task');
     // change the status
     Route::get('/Change/Status/{id}', [AdminDashboardController::class, 'changeStatus'])->name('Change.Status');
