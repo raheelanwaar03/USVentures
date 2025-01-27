@@ -91,13 +91,13 @@ class UserDashboardController extends Controller
             if ($user->balance <= 0) {
                 return back()->with('error', 'Recharge your account');
             }
-            $user->balance += $task->profit;
+            $user->balance += $task->commission;
             $user->save();
 
             $userDailyTask = new UserDailyTasks();
             $userDailyTask->user_id = auth()->user()->id;
             $userDailyTask->task_id = $task->id;
-            $userDailyTask->profit = $task->profit;
+            $userDailyTask->profit = $task->commission;
             $userDailyTask->task_text = $task->title;
             $userDailyTask->task_img = $task->image;
             $userDailyTask->total_amount = $task->order_amount;
@@ -106,7 +106,7 @@ class UserDashboardController extends Controller
             // add in transaction table
             $transcation = new Transcations();
             $transcation->user_id = auth()->user()->id;
-            $transcation->amount = $task->profit;
+            $transcation->amount = $task->commission;
             $transcation->type = 'Order grabbing commission';
             $transcation->status = 'credit';
             $transcation->save();
