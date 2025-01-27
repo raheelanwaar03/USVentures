@@ -18,14 +18,10 @@ class UserManagement extends Controller
         $user = User::find($id);
         // user deposit
         $deposit = DepositAmount::where('user_id', $user->id)->get();
-        if ($deposit->isEmpty()) {
-            return redirect()->back()->with('error', 'This user has not deposit yet');
-        } else {
             $user_total_deposit = 0;
             foreach ($deposit as $d) {
                 $user_total_deposit += $d->amount;
             }
-        }
 
         // check user level and then give user commisson
         if ($user->level == 'vip1') {
