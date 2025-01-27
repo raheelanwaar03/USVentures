@@ -75,6 +75,28 @@
                     </div>
 
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                        <div class="widget widget-card-five">
+                            <div class="widget-content">
+                                <div class="account-box">
+
+                                    <div class="info-box">
+                                        <div class="icon">
+                                            <span>
+                                                <img src="{{ asset('admin/assets/img/task.png') }}" alt="money-bag">
+                                            </span>
+                                        </div>
+
+                                        <div class="balance-info">
+                                            <h6>Tasks</h6>
+                                            <p>{{ $active_tasks }} / {{ $completed_tasks }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
                         <a href="{{ route('Admin.Activate.All.Plans', $user->id) }}" class="btn btn-primary">Activate
                             All</a>
                     </div>
@@ -184,8 +206,9 @@
                                                             <div class="form-group">
                                                                 <label for="commission"
                                                                     class="form-label text-dark">Commission %</label>
-                                                                <input type="number" value="{{ $item->commission }}" step="0.002" name="commission"
-                                                                    id="commission" class="form-control">
+                                                                <input type="number" value="{{ $item->commission }}"
+                                                                    step="0.002" name="commission" id="commission"
+                                                                    class="form-control">
                                                             </div>
 
                                                     </div>

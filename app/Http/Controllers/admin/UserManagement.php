@@ -48,8 +48,10 @@ class UserManagement extends Controller
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
                 return view('admin.task.management', compact('user', 'today_tasks'));
             } else {
+                $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
+                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
             }
         } elseif ($user->level = 'vip2') {
             // task profit
