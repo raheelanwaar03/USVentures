@@ -180,11 +180,6 @@ class UserManagement extends Controller
     public function activateAll($id)
     {
         $user = User::find($id);
-        // check if this user deposit or not
-        $deposit_check = DepositAmount::where('user_id', $id)->where('status', 'approved')->first();
-        if ($deposit_check == null) {
-            return redirect()->back()->with('error', 'This user has not deposit yet');
-        }
         // find all tasks of this user
         $tasks = UserTodayTasks::where('user_id', $user->id)->get();
         // make status approved
