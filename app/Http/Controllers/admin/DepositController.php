@@ -17,18 +17,21 @@ class DepositController extends Controller
         return view('admin.deposit.addMethod');
     }
 
+    public function approveDepositRequests()
+    {
+        $deposit = DepositAmount::where('status', 'approved')->get();
+        return view('admin.deposit.approved', compact('deposit'));
+    }
+
     public function depositRequests()
     {
-        $deposit = DepositAmount::get();
+        $deposit = DepositAmount::where('status', 'pending')->get();
         return view('admin.deposit.depositRequests', compact('deposit'));
     }
 
     public function approveDeposit($id)
     {
         $deposit = DepositAmount::find($id);
-        if ($deposit->status == 'approved') {
-            return redirect()->back()->with('error', 'This deposit is already approved');
-        }
         $deposit->status = 'approved';
         $deposit->save();
 
@@ -39,11 +42,6 @@ class DepositController extends Controller
                 $task->save();
             }
         }
-
-        // add deposit amount to user balance
-        $user = User::find($deposit->user_id);
-        $user->balance += $deposit->amount;
-        $user->save();
 
         return redirect()->back()->with('success', 'Deposit approved successfully');
     }

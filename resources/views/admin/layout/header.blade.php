@@ -253,6 +253,9 @@
                             <li>
                                 <a href="{{ route('Admin.Deposit.Requests') }}"> Deposit Requests </a>
                             </li>
+                            <li>
+                                <a href="{{ route('Admin.Approved.Deposit.Requests') }}"> Approved Requests </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="menu">

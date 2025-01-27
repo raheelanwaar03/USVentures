@@ -44,7 +44,7 @@
 
                 <div class="row layout-top-spacing">
                     <div class="table-container">
-                        <h2 class="text-center"><u>Pending Deposit Requests</u></h2>
+                        <h2 class="text-center"><u>Approved Deposit</u></h2>
                         <table id="example" class="display responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
@@ -69,8 +69,6 @@
                                         </td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>
-                                            <a href="{{ route('Admin.Approve.Deposit', $item->id) }}"
-                                                class="btn btn-sm btn-success">Approved</a>
                                             <a href="{{ route('Admin.Reject.Deposit', $item->id) }}"
                                                 class="btn btn-sm btn-danger">Rejected</a>
                                         </td>

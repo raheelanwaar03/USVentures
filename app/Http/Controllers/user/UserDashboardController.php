@@ -128,8 +128,16 @@ class UserDashboardController extends Controller
                 // give user upliner reward
                 $user = User::find(auth()->user()->id);
                 $upliner = User::where('referral_id', $user->referral)->first();
-                $upliner->balance += $upliner_commission;
-                $upliner->save();
+                if ($upliner) {
+                    $upliner->balance += $upliner_commission;
+                    $upliner->save();
+                    $transcation = new Transcations();
+                    $transcation->user_id = $upliner->id;
+                    $transcation->amount = $upliner_commission;
+                    $transcation->type = 'Referral commission';
+                    $transcation->status = 'credit';
+                    $transcation->save();
+                    }
                 return back()->with('error', 'All tasks are finished, Contact Customer Service');
             }
 
