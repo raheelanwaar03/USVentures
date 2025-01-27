@@ -123,6 +123,13 @@ class UserDashboardController extends Controller
             $allTasks = UserTodayTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->count('id');
 
             if ($id > $allTasks) {
+                // get user today task profit's 20%
+                $upliner_commission = today_profit() * 20 / 100;
+                // give user upliner reward
+                $user = User::find(auth()->user()->id);
+                $upliner = User::where('referral_id', $user->referral)->first();
+                $upliner->balance += $upliner_commission;
+                $upliner->save();
                 return back()->with('error', 'All tasks are finished, Contact Customer Service');
             }
 
