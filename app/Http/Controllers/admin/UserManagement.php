@@ -28,13 +28,18 @@ class UserManagement extends Controller
         }
 
         // check user level and then give user commisson
-        if ($user->level = 'vip1') {
+        if ($user->level == 'vip1') {
             // task profit
             $task_profit = $user_total_deposit * 0.004;
             $tasks = DailyTask::where('level', $user->level)->get();
             // check if daily tasks added to usertodaytasks today
-            $task_check = UserTodayTasks::where('user_id', $user->id)->whereDate('created_at', Carbon::today())->first();
-            if ($task_check == null) {
+            $task_check = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
+            if ($task_check->isEmpty()) {
+                // delete old tasks
+                $old_task = UserTodayTasks::where('user_id', $user->id)->get();
+                foreach ($old_task as $old_task) {
+                    $old_task->delete();
+                }
                 foreach ($tasks as $task) {
                     $today_task = new UserTodayTasks();
                     $today_task->user_id = $user->id;
@@ -45,21 +50,34 @@ class UserManagement extends Controller
                     $today_task->image = $task->image;
                     $today_task->save();
                 }
+
+                $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
+                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
+                if ($active_tasks == 0) {
+                    $active_tasks = 0;
+                }
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
             } else {
                 $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
                 $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
                 return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
             }
-        } elseif ($user->level = 'vip2') {
+        }
+        // if user level is vip2
+        elseif ($user->level == 'vip2') {
             // task profit
             $task_profit = $user_total_deposit * 0.006;
             $tasks = DailyTask::where('level', $user->level)->get();
             // check if daily tasks added to usertodaytasks today
-            $task_check = UserTodayTasks::where('user_id', $user->id)->whereDate('created_at', Carbon::today())->first();
-            if ($task_check == null) {
+            $task_check = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
+            if ($task_check->isEmpty()) {
+                // delete old tasks
+                $old_task = UserTodayTasks::where('user_id', $user->id)->get();
+                foreach ($old_task as $old_task) {
+                    $old_task->delete();
+                }
                 foreach ($tasks as $task) {
                     $today_task = new UserTodayTasks();
                     $today_task->user_id = $user->id;
@@ -70,19 +88,34 @@ class UserManagement extends Controller
                     $today_task->image = $task->image;
                     $today_task->save();
                 }
+
+                $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
+                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
+                if ($active_tasks == 0) {
+                    $active_tasks = 0;
+                }
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
             } else {
+                $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
+                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
             }
-        } elseif ($user->level = 'vip3') {
+        }
+        // if user level is vip3
+        elseif ($user->level == 'vip3') {
             // task profit
             $task_profit = $user_total_deposit * 0.008;
             $tasks = DailyTask::where('level', $user->level)->get();
             // check if daily tasks added to usertodaytasks today
-            $task_check = UserTodayTasks::where('user_id', $user->id)->whereDate('created_at', Carbon::today())->first();
-            if ($task_check == null) {
+            $task_check = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
+            if ($task_check->isEmpty()) {
+                // delete old tasks
+                $old_task = UserTodayTasks::where('user_id', $user->id)->get();
+                foreach ($old_task as $old_task) {
+                    $old_task->delete();
+                }
                 foreach ($tasks as $task) {
                     $today_task = new UserTodayTasks();
                     $today_task->user_id = $user->id;
@@ -93,19 +126,34 @@ class UserManagement extends Controller
                     $today_task->image = $task->image;
                     $today_task->save();
                 }
+
+                $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
+                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
+                if ($active_tasks == 0) {
+                    $active_tasks = 0;
+                }
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
             } else {
+                $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
+                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
             }
-        } elseif ($user->level = 'vip4') {
+        }
+        // if user level is vip4
+        elseif ($user->level == 'vip4') {
             // task profit
             $task_profit = $user_total_deposit * 0.01;
             $tasks = DailyTask::where('level', $user->level)->get();
             // check if daily tasks added to usertodaytasks today
-            $task_check = UserTodayTasks::where('user_id', $user->id)->whereDate('created_at', Carbon::today())->first();
-            if ($task_check == null) {
+            $task_check = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
+            if ($task_check->isEmpty()) {
+                // delete old tasks
+                $old_task = UserTodayTasks::where('user_id', $user->id)->get();
+                foreach ($old_task as $old_task) {
+                    $old_task->delete();
+                }
                 foreach ($tasks as $task) {
                     $today_task = new UserTodayTasks();
                     $today_task->user_id = $user->id;
@@ -116,23 +164,21 @@ class UserManagement extends Controller
                     $today_task->image = $task->image;
                     $today_task->save();
                 }
+
+                $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
+                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
+                if ($active_tasks == 0) {
+                    $active_tasks = 0;
+                }
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
             } else {
+                $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
+                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
             }
         }
-    }
-
-    public function triggerTask(Request $request, $id)
-    {
-        $task = UserTodayTasks::find($id);
-        $task->task_id = $id;
-        $task->order_amount = $request->order_amount;
-        $task->commission = $request->commission;
-        $task->save();
-        return redirect()->back()->with('success', 'Task is Trigger');
     }
 
     public function activateAll($id)
@@ -157,5 +203,15 @@ class UserManagement extends Controller
         }
 
         return redirect()->back()->with('success', 'All tasks are activated');
+    }
+
+    public function triggerTask(Request $request, $id)
+    {
+        $task = UserTodayTasks::find($id);
+        $task->task_id = $id;
+        $task->order_amount = $request->order_amount;
+        $task->commission = $request->commission;
+        $task->save();
+        return redirect()->back()->with('success', 'Task is Trigger');
     }
 }

@@ -78,9 +78,10 @@ class UserDashboardController extends Controller
 
         // if check_tasks is empty then return back
         if ($check_tasks->isEmpty()) {
-            $id = completed_tasks() + 1;
+            $id = user_task_id() + 1;
             // check if all tasks are finished
-            $allTasks = DailyTask::all()->count('id');
+            $allTasks = DailyTask::where('level', auth()->user()->level)->count('id');
+            return $allTasks;
             if ($id > $allTasks) {
                 return back()->with('error', 'All tasks are finished, Contact Customer Service');
             }
@@ -91,13 +92,13 @@ class UserDashboardController extends Controller
             if ($user->balance <= 0) {
                 return back()->with('error', 'Recharge your account');
             }
-            $user->balance += $task->commission;
+            $user->balance += $task->profit;
             $user->save();
 
             $userDailyTask = new UserDailyTasks();
             $userDailyTask->user_id = auth()->user()->id;
             $userDailyTask->task_id = $task->id;
-            $userDailyTask->profit = $task->commission;
+            $userDailyTask->profit = $task->profit;
             $userDailyTask->task_text = $task->title;
             $userDailyTask->task_img = $task->image;
             $userDailyTask->total_amount = $task->order_amount;
@@ -106,7 +107,7 @@ class UserDashboardController extends Controller
             // add in transaction table
             $transcation = new Transcations();
             $transcation->user_id = auth()->user()->id;
-            $transcation->amount = $task->commission;
+            $transcation->amount = $task->profit;
             $transcation->type = 'Order grabbing commission';
             $transcation->status = 'credit';
             $transcation->save();
@@ -117,12 +118,11 @@ class UserDashboardController extends Controller
             $transcation->type = 'Order frozen amount';
             $transcation->status = 'debit';
             $transcation->save();
-        } else {
-            $id = completed_tasks() + 1;
-            // check if all tasks are finished
-            $allTasks = UserTodayTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->count('id');
-
-            if ($id > $allTasks) {
+        }
+        // when admin set user tasks
+         else {
+            // when tasks are finished
+            if ( completed_tasks() == user_today_total_task()) {
                 // get user today task profit's 20%
                 $upliner_commission = today_profit() * 20 / 100;
                 // give user upliner reward
@@ -137,9 +137,10 @@ class UserDashboardController extends Controller
                     $transcation->type = 'Referral commission';
                     $transcation->status = 'credit';
                     $transcation->save();
-                    }
+                }
                 return back()->with('error', 'All tasks are finished, Contact Customer Service');
             }
+            $id = user_task_id() + 1;
 
             $task = UserTodayTasks::find($id);
 

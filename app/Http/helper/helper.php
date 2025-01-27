@@ -20,7 +20,30 @@ function tasks()
     return $tasks;
 }
 
+// check task accourding to level also
+
+function check_task_id()
+{
+    $tasks = DailyTask::where('level', auth()->user()->level)->count();
+    return $tasks;
+}
+
 // today completed tasks
+
+function user_task_id()
+{
+    $test = UserTodayTasks::where('user_id',auth()->user()->id)->where('level',auth()->user()->level)->get();
+    // get first id
+    $first_id = $test[0]->id;
+    return $first_id;
+}
+
+function user_today_total_task()
+{
+    $test = UserTodayTasks::where('user_id',auth()->user()->id)->whereDate('created_at',Carbon::today())->count();
+    return $test;
+}
+
 function completed_tasks()
 {
     $completed_tasks = UserDailyTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->count();
@@ -68,5 +91,3 @@ function all_users()
     $users = User::count();
     return $users;
 }
-
-

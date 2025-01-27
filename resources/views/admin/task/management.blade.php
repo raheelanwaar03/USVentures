@@ -38,6 +38,28 @@
                                     <div class="info-box">
                                         <div class="icon">
                                             <span>
+                                                <img src="{{ asset('admin/assets/img/team.png') }}" alt="money-bag">
+                                            </span>
+                                        </div>
+
+                                        <div class="balance-info">
+                                            <h6>Level</h6>
+                                            <p>{{ $user->level }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                        <div class="widget widget-card-five">
+                            <div class="widget-content">
+                                <div class="account-box">
+
+                                    <div class="info-box">
+                                        <div class="icon">
+                                            <span>
                                                 <img src="{{ asset('admin/assets/img/money-bag.png') }}" alt="money-bag">
                                             </span>
                                         </div>
@@ -180,8 +202,8 @@
                                             </td>
                                         </tr>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="task{{ $item->id }}" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal fade" id="task{{ $item->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
