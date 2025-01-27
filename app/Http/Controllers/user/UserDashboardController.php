@@ -132,7 +132,7 @@ class UserDashboardController extends Controller
                 $task = UserTodayTasks::find($id);
                 $task->status = 'completed';
                 $task->save();
-                $given_commission = $task->order_amount * $task->commission / 100;
+                $given_commission = $task->commission;
 
                 $user = User::find(auth()->user()->id);
                 // check if user balance is negtive
