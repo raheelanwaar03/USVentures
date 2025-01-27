@@ -78,10 +78,9 @@ class UserDashboardController extends Controller
 
         // if check_tasks is empty then return back
         if ($check_tasks->isEmpty()) {
-            $id = user_task_id() + 1;
+            $id = completed_tasks() + 1;
             // check if all tasks are finished
             $allTasks = DailyTask::where('level', auth()->user()->level)->count('id');
-            return $allTasks;
             if ($id > $allTasks) {
                 return back()->with('error', 'All tasks are finished, Contact Customer Service');
             }

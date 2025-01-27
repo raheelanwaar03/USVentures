@@ -34,7 +34,7 @@ function user_task_id()
 {
     $test = UserTodayTasks::where('user_id',auth()->user()->id)->where('level',auth()->user()->level)->get();
     // get first id
-    $first_id = $test[0]->id;
+    $first_id = $test->first()->id;
     return $first_id;
 }
 
