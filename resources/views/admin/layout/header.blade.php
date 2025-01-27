@@ -53,8 +53,7 @@
             <ul class="navbar-item theme-brand flex-row  text-center">
                 <li class="nav-item theme-logo">
                     <a href="{{ route('Admin.Dashboard') }}">
-                        <img src="{{ asset('admin/assets/img/product-camera.jpg') }}" class="navbar-logo"
-                            alt="logo">
+                        <img src="{{ asset('admin/assets/img/team.png') }}" alt="team">
                     </a>
                 </li>
                 <li class="nav-item theme-text">
