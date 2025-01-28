@@ -18,19 +18,20 @@ class UserManagement extends Controller
         $user = User::find($id);
         // user deposit
         $deposit = DepositAmount::where('user_id', $user->id)->get();
-            $user_total_deposit = 0;
-            foreach ($deposit as $d) {
-                $user_total_deposit += $d->amount;
-            }
+        $user_total_deposit = 0;
+        foreach ($deposit as $d) {
+            $user_total_deposit += $d->amount;
+        }
 
         // check user level and then give user commisson
         if ($user->level == 'vip1') {
             // task profit
             $task_profit = $user_total_deposit * 0.004;
             $tasks = DailyTask::where('level', $user->level)->get();
+
             // check if daily tasks added to usertodaytasks today
             $task_check = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
-            if ($task_check->isEmpty()) {
+            if ($task_check->count() !== $tasks->count()) {
                 // delete old tasks
                 $old_task = UserTodayTasks::where('user_id', $user->id)->get();
                 foreach ($old_task as $old_task) {
@@ -64,11 +65,12 @@ class UserManagement extends Controller
         // if user level is vip2
         elseif ($user->level == 'vip2') {
             // task profit
-            $task_profit = $user_total_deposit * 0.006;
+            $task_profit = $user_total_deposit * 0.004;
             $tasks = DailyTask::where('level', $user->level)->get();
+
             // check if daily tasks added to usertodaytasks today
             $task_check = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
-            if ($task_check->isEmpty()) {
+            if ($task_check->count() !== $tasks->count()) {
                 // delete old tasks
                 $old_task = UserTodayTasks::where('user_id', $user->id)->get();
                 foreach ($old_task as $old_task) {
@@ -102,11 +104,12 @@ class UserManagement extends Controller
         // if user level is vip3
         elseif ($user->level == 'vip3') {
             // task profit
-            $task_profit = $user_total_deposit * 0.008;
+            $task_profit = $user_total_deposit * 0.004;
             $tasks = DailyTask::where('level', $user->level)->get();
+
             // check if daily tasks added to usertodaytasks today
             $task_check = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
-            if ($task_check->isEmpty()) {
+            if ($task_check->count() !== $tasks->count()) {
                 // delete old tasks
                 $old_task = UserTodayTasks::where('user_id', $user->id)->get();
                 foreach ($old_task as $old_task) {
@@ -140,11 +143,12 @@ class UserManagement extends Controller
         // if user level is vip4
         elseif ($user->level == 'vip4') {
             // task profit
-            $task_profit = $user_total_deposit * 0.01;
+            $task_profit = $user_total_deposit * 0.004;
             $tasks = DailyTask::where('level', $user->level)->get();
+
             // check if daily tasks added to usertodaytasks today
             $task_check = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
-            if ($task_check->isEmpty()) {
+            if ($task_check->count() !== $tasks->count()) {
                 // delete old tasks
                 $old_task = UserTodayTasks::where('user_id', $user->id)->get();
                 foreach ($old_task as $old_task) {

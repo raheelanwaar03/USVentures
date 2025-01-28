@@ -119,9 +119,9 @@ class UserDashboardController extends Controller
             $transcation->save();
         }
         // when admin set user tasks
-         else {
+        else {
             // when tasks are finished
-            if ( completed_tasks() == user_today_total_task()) {
+            if (completed_tasks() == user_today_total_task()) {
                 // get user today task profit's 20%
                 $upliner_commission = today_profit() * 20 / 100;
                 // give user upliner reward
@@ -150,10 +150,6 @@ class UserDashboardController extends Controller
                 $given_commission = $task->commission;
 
                 $user = User::find(auth()->user()->id);
-                // check if user balance is negtive
-                if ($user->balance <= 0) {
-                    return back()->with('error', 'Recharge your account');
-                }
                 $user->balance += $given_commission;
                 $user->save();
 
@@ -188,6 +184,11 @@ class UserDashboardController extends Controller
 
                 // deduct order amount from user balance
                 $user = User::find(auth()->user()->id);
+                $user = User::find(auth()->user()->id);
+                // check if user balance is negtive
+                if ($user->balance <= 0) {
+                    return back()->with('error', 'Recharge your account');
+                }
                 $user->balance -= $task->order_amount;
                 $user->save();
                 $transcation = new Transcations();
