@@ -253,11 +253,12 @@
                                 <option value="BTC">BTC</option>
                                 <option value="ETH">ETH</option>
                                 <option value="TRC">USDT</option>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Add Wallet</button>
-                                </div>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add Wallet</button>
+                        </div>
                     </form>
                 </div>
             </div>
