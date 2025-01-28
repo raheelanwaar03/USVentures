@@ -36,6 +36,22 @@ class AdminDashboardController extends Controller
         return redirect()->route('Admin.Users')->with('success', 'User Updated Successfully');
     }
 
+    public function addDepositAmount(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->balance = $request->amount;
+        $user->save();
+        // deposit request
+        $deposit = new DepositAmount();
+        $deposit->user_id = $user->id;
+        $deposit->name = $user->name;
+        $deposit->amount = $request->amount;
+        $deposit->phone = $user->phone;
+        $deposit->status = 'approved';
+        $deposit->save();
+        return redirect()->back()->with('success', 'Deposit added to user account successfully');
+    }
+
     public function disable($id)
     {
         $user = User::find($id);
@@ -87,7 +103,7 @@ class AdminDashboardController extends Controller
             $oldImage = $task->image;
             if (file_exists(public_path('images/' . $oldImage))) {
                 unlink(public_path('images/' . $oldImage));
-                }
+            }
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
             $task->image = $imageName;

@@ -44,10 +44,38 @@
 
                 <div class="row layout-top-spacing">
 
-                    <div class="container">
+                    <div class="container mt-3">
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
+                                    <div class="card-title text-center mt-2">
+                                        <h4 class="text-dark"><u>Add Deposit</u></h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="{{ route('Admin.Add.Deposit.Amount', $user->id) }}" method="POST">
+                                            @csrf
+                                            <div class="form-group mt-2">
+                                                <label for="amount" class="form-label">Deposit Amount</label>
+                                                <input type="text" name="amount" id="amount" class="form-control"
+                                                    required>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button type="submit" class="btn btn-primary">Deposit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container mt-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-title text-center mt-2">
+                                        <h4 class="text-dark"><u>User Details</u></h4>
+                                    </div>
                                     <div class="card-body">
                                         <form action="{{ route('Admin.Update.User', $user->id) }}" method="POST">
                                             @csrf
@@ -93,8 +121,8 @@
                                             @csrf
                                             <div class="form-group mt-2">
                                                 <label for="password" class="form-label">Password</label>
-                                                <input type="text" name="password" id="password" class="form-control"
-                                                    value="{{ $user->password }}" required>
+                                                <input type="text" name="password" id="password"
+                                                    class="form-control" value="{{ $user->password }}" required>
                                             </div>
                                             <div class="mt-3">
                                                 <button type="submit" class="btn btn-primary">Update Password</button>

@@ -18,6 +18,7 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     Route::get('/Delete/Task/{id}', [AdminDashboardController::class, 'deleteTask'])->name('Delete.Task');
     // change the status
     Route::get('/Change/Status/{id}', [AdminDashboardController::class, 'changeStatus'])->name('Change.Status');
+    Route::post('/Add/Deposit/{id}', [AdminDashboardController::class, 'addDepositAmount'])->name('Add.Deposit.Amount');
     Route::post('/Update/User/Password/{id}', [AdminDashboardController::class, 'changePassword'])->name('Change.Password');
     // deposit page
     Route::get('/Deposit', [DepositController::class, 'addDeposit'])->name('Deposit.Method');
