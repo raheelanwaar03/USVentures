@@ -25,9 +25,11 @@
                     </a>
                 </div>
                 <div class="col-3">
-                    <div class="pointer"><i class="bi bi-chat-text icon-style"></i> <br>
-                        <p class="mt-3 font-2">CS</p>
-                    </div>
+                    <a href="https://t.me/USVentures1" class="text-white text-decoration-none">
+                        <div class="pointer"><i class="bi bi-chat-text icon-style"></i> <br>
+                            <p class="mt-3 font-2">CS</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-3">
                     <a href="{{ route('User.Withdraw') }}" class="text-white text-decoration-none">
