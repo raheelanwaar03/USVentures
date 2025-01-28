@@ -340,7 +340,7 @@ class UserDashboardController extends Controller
         $request->validate([
             'name' => 'required',
             'address' => 'required',
-            'walletname' => 'required',
+            'wallet_type' => 'required',
         ]);
 
         // save to database
@@ -348,7 +348,7 @@ class UserDashboardController extends Controller
         $wallet->user_id = auth()->user()->id;
         $wallet->name = $request->name;
         $wallet->address = $request->address;
-        $wallet->walletname = $request->walletname;
+        $wallet->walletname = $request->wallet_type;
         $wallet->save();
         return redirect()->back()->with('success', 'Wallet added successfully');
     }

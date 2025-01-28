@@ -246,14 +246,18 @@
                             <label for="name" class="form-label text-dark">Username</label>
                             <input type="text" class="form-control" name="name" id="name">
                         </div>
+                        {{-- add wallet type where user can select either its btc,etherem or trc etc --}}
                         <div class="form-group">
-                            <label for="walletname" class="form-label text-dark">Wallet Name</label>
-                            <input type="text" class="form-control" name="walletname" id="walletname">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Add Wallet</button>
-                        </div>
+                            <label for="wallet_type" class="form-label text-dark">Wallet Type</label>
+                            <select class="form-control" name="wallet_type" id="wallet_type">
+                                <option value="BTC">BTC</option>
+                                <option value="ETH">ETH</option>
+                                <option value="TRC">USDT</option>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add Wallet</button>
+                                </div>
                     </form>
                 </div>
             </div>
