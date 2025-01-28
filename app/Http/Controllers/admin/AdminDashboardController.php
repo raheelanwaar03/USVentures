@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\admin\DailyTask;
 use App\Models\User;
 use App\Models\user\DepositAmount;
+use App\Models\user\UserDailyTasks;
 use App\Models\user\Withdraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +42,15 @@ class AdminDashboardController extends Controller
         $user = User::find($id);
         $user->balance += $request->amount;
         $user->save();
+        // making task status change
+        $tasks = UserDailyTasks::where('user_id', $user->id)->where('status', 'proccessing')->get();
+        if (!$tasks->isEmpty()) {
+            foreach ($tasks as $task) {
+                $task->status = 'submit';
+                $task->save();
+            }
+        }
+
         // deposit request
         $deposit = new DepositAmount();
         $deposit->user_id = $user->id;
