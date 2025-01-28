@@ -32,15 +32,14 @@ function check_task_id()
 
 function user_task_id()
 {
-    $test = UserTodayTasks::where('user_id',auth()->user()->id)->where('level',auth()->user()->level)->get();
-    // get first id
-    $first_id = $test->first()->id;
+    $test = UserTodayTasks::where('user_id', auth()->user()->id)->where('status', 'completed')->where('level', auth()->user()->level)->get();
+    $first_id = $test->count();
     return $first_id;
 }
 
 function user_today_total_task()
 {
-    $test = UserTodayTasks::where('user_id',auth()->user()->id)->whereDate('created_at',Carbon::today())->count();
+    $test = UserTodayTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->count();
     return $test;
 }
 
@@ -65,7 +64,7 @@ function today_tasks()
 
 function today_profit()
 {
-    $amount = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'Finish')->whereDate('created_at', date('Y-m-d'))->get();
+    $amount = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'Finish')->whereDate('created_at', Carbon::today())->get();
     $total = 0.00;
     foreach ($amount as $key => $value) {
         $total += $value->profit;

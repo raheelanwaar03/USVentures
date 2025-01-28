@@ -120,7 +120,7 @@ class UserDashboardController extends Controller
         }
         // when admin set user tasks
         else {
-            // when tasks are finished
+            // when tasks are finished give upliner commission
             if (completed_tasks() == user_today_total_task()) {
                 // get user today task profit's 20%
                 $upliner_commission = today_profit() * 20 / 100;
@@ -139,17 +139,27 @@ class UserDashboardController extends Controller
                 }
                 return back()->with('error', 'All tasks are finished, Contact Customer Service');
             }
-            $id = user_task_id() + 1;
+            $test = UserTodayTasks::where('user_id', auth()->user()->id)->where('level', auth()->user()->level)->get();
+            $first_id = $test->first()->id;
+            $id = $first_id + user_task_id();
 
-            $task = UserTodayTasks::find($id);
+            $task = UserTodayTasks::where('id', $id)->where('user_id', auth()->user()->id)->first();
+
+            if ($task == null) {
+                return redirect()->back()->with('error', 'Contact CS team to active your tasks');
+            }
 
             if ($task->task_id == null) {
-                $task = UserTodayTasks::find($id);
+                $task = UserTodayTasks::where('user_id', auth()->user()->id)->where('id', $id)->first();
                 $task->status = 'completed';
                 $task->save();
                 $given_commission = $task->commission;
 
                 $user = User::find(auth()->user()->id);
+                // check if user balance is negtive
+                if ($user->balance <= 0) {
+                    return back()->with('error', 'Recharge your account');
+                }
                 $user->balance += $given_commission;
                 $user->save();
 
@@ -183,12 +193,7 @@ class UserDashboardController extends Controller
                 $given_commission = $task->order_amount * $task->commission / 100;
 
                 // deduct order amount from user balance
-                $user = User::find(auth()->user()->id);
-                $user = User::find(auth()->user()->id);
-                // check if user balance is negtive
-                if ($user->balance <= 0) {
-                    return back()->with('error', 'Recharge your account');
-                }
+                $user = User::where('id', auth()->user()->id)->first();
                 $user->balance -= $task->order_amount;
                 $user->save();
                 $transcation = new Transcations();
