@@ -39,7 +39,7 @@ class AdminDashboardController extends Controller
     public function addDepositAmount(Request $request, $id)
     {
         $user = User::find($id);
-        $user->balance = $request->amount;
+        $user->balance += $request->amount;
         $user->save();
         // deposit request
         $deposit = new DepositAmount();
