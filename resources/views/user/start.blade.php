@@ -136,7 +136,7 @@
                         <i class="bi bi-coin"></i>
                     </h3>
                     <p><span style="font-size: 12px;">Today Profit</span> <br>
-                        <span><b>USDT {{ today_profit() }}</b></span>
+                        <span><b>USDT {{ number_format(today_profit(), 2, '.', ',') }}</b></span>
                         <br><small style="font-size: 8px;">Auto update daily</small>
                     </p>
                 </div>
