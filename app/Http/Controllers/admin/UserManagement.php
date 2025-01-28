@@ -65,7 +65,7 @@ class UserManagement extends Controller
         // if user level is vip2
         elseif ($user->level == 'vip2') {
             // task profit
-            $task_profit = $user_total_deposit * 0.004;
+            $task_profit = $user_total_deposit * 0.006;
             $tasks = DailyTask::where('level', $user->level)->get();
 
             // check if daily tasks added to usertodaytasks today
@@ -104,7 +104,7 @@ class UserManagement extends Controller
         // if user level is vip3
         elseif ($user->level == 'vip3') {
             // task profit
-            $task_profit = $user_total_deposit * 0.004;
+            $task_profit = $user_total_deposit * 0.008;
             $tasks = DailyTask::where('level', $user->level)->get();
 
             // check if daily tasks added to usertodaytasks today
@@ -143,7 +143,7 @@ class UserManagement extends Controller
         // if user level is vip4
         elseif ($user->level == 'vip4') {
             // task profit
-            $task_profit = $user_total_deposit * 0.004;
+            $task_profit = $user_total_deposit * 0.01;
             $tasks = DailyTask::where('level', $user->level)->get();
 
             // check if daily tasks added to usertodaytasks today
