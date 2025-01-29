@@ -195,7 +195,7 @@
                                     <label for="pin" class="form-label">Securit Pin</label>
                                     {{-- input length should be 6 numbers only --}}
                                     <input type="number" name="pin" id="pin" class="form-control"
-                                        placeholder="Enter your securit pin" min="100000" max="999999">
+                                        placeholder="Enter your securit pin" min="000000" max="999999">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
