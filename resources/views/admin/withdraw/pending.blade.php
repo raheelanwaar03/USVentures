@@ -44,7 +44,7 @@
 
                 <div class="row layout-top-spacing">
                     <div class="table-container">
-                        <h2 class="text-center"><u>Withdraw</u></h2>
+                        <h2 class="text-center"><u>Pending Withdraw</u></h2>
                         <table id="example" class="display responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>

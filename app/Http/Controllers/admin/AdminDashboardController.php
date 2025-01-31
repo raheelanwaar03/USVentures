@@ -165,8 +165,8 @@ class AdminDashboardController extends Controller
 
     public function withdrawRequest()
     {
-        $withdraw = Withdraw::get();
-        return view('admin.withdraw', compact('withdraw'));
+        $withdraw = Withdraw::where('status', 'pending')->get();
+        return view('admin.withdraw.pending', compact('withdraw'));
     }
 
     public function approveWithdraw($id)
@@ -182,11 +182,27 @@ class AdminDashboardController extends Controller
         return redirect()->route('Admin.Withdraw.Request')->with('success', 'Withdraw Approved Successfully');
     }
 
+    public function rejectedrequest()
+    {
+        $withdraw = Withdraw::where('status', 'rejected')->get();
+        return view('admin.withdraw.rejectedWithdraw', compact('withdraw'));
+    }
+
+    public function approvedRequest()
+    {
+        $withdraw = Withdraw::where('status', 'approved')->get();
+        return view('admin.withdraw.approved', compact('withdraw'));
+    }
+
     public function rejectWithdraw($id)
     {
         $withdraw = Withdraw::find($id);
         $withdraw->status = 'rejected';
         $withdraw->save();
+        // add balance to user accout if admin reject the withdraw
+        $user = User::where('id', $withdraw->user_id)->first();
+        $user->balance += $withdraw->amount;
+        $user->save();
         return redirect()->route('Admin.Withdraw.Request')->with('success', 'Withdraw Rejected Successfully');
     }
 

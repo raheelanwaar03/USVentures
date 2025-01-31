@@ -284,7 +284,13 @@
                         <ul class="collapse submenu list-unstyled" id="components"
                             data-bs-parent="#accordionExample">
                             <li>
-                                <a href="{{ route('Admin.Withdraw.Request') }}"> All Withdraw Requests </a>
+                                <a href="{{ route('Admin.Withdraw.Request') }}"> Pending Withdraws</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('Admin.Approved.Withdraws') }}"> Approved Withdraws</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('Admin.Rejected.Withdraws') }}"> Rejected Withdraws</a>
                             </li>
                         </ul>
                     </li>
