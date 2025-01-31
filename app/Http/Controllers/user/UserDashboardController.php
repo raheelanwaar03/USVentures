@@ -150,16 +150,15 @@ class UserDashboardController extends Controller
             }
 
             if ($task->task_id == null) {
-                $task = UserTodayTasks::where('user_id', auth()->user()->id)->where('id', $id)->first();
-                $task->status = 'completed';
-                $task->save();
                 $given_commission = $task->commission;
-
-                $user = User::find(auth()->user()->id);
                 // check if user balance is negtive
+                $user = User::find(auth()->user()->id);
                 if ($user->balance <= 0) {
                     return back()->with('error', 'Recharge your account');
                 }
+                $task = UserTodayTasks::where('user_id', auth()->user()->id)->where('id', $id)->first();
+                $task->status = 'completed';
+                $task->save();
                 $user->balance += $given_commission;
                 $user->save();
 
