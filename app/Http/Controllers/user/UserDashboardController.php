@@ -275,6 +275,10 @@ class UserDashboardController extends Controller
             }
         }
 
+        // deduct balance from user account
+        $user = User::find(auth()->user()->id);
+        $user->balance -= $request->amount;
+        $user->save();
 
         // save data to database
         $withdraw = new Withdraw();

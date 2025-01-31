@@ -49,11 +49,11 @@
                         @csrf
                         <div class="form-group">
                             <label for="amount" class="form-label text-dark">Withdraw Amount</label>
-                            <input type="number" class="form-control" name="amount" id="amount">
+                            <input type="number" class="form-control" name="amount" id="amount" required>
                         </div>
                         <div class="form-group">
                             <label for="pin" class="form-label text-dark">Security Pin</label>
-                            <input type="text" class="form-control" name="pin" id="pin">
+                            <input type="text" class="form-control" name="pin" id="pin" required>
                         </div>
                 </div>
             </div>
