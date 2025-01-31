@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\admin\TelegramLink;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -59,5 +60,11 @@ class clean extends Command
         $user->level = 'vip1';
         $user->pin = '111111';
         $user->save();
+
+        // add telegram link
+        $telegram = new TelegramLink();
+        $telegram->link = 'https://t.me/USVentures1';
+        $telegram->save();
+
     }
 }

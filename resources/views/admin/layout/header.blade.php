@@ -323,131 +323,6 @@
                             </li>
                         </ul>
                     </li>
-                    {{-- <li class="menu">
-                        <a href="#datatables" data-bs-toggle="collapse" aria-expanded="false"
-                            class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers">
-                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                    <polyline points="2 17 12 22 22 17"></polyline>
-                                    <polyline points="2 12 12 17 22 12"></polyline>
-                                </svg>
-                                <span>DataTables</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="feather feather-chevron-right">
-                                    <polyline points="9 18 15 12 9 6"></polyline>
-                                </svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled" id="datatables"
-                            data-bs-parent="#accordionExample">
-                            <li>
-                                <a href="table-datatable-basic.html"> Basic </a>
-                            </li>
-                            <li>
-                                <a href="table-datatable-striped-table.html"> Striped </a>
-                            </li>
-                            <li>
-                                <a href="table-datatable-custom.html"> Custom </a>
-                            </li>
-                            <li>
-                                <a href="table-datatable-miscellaneous.html"> Miscellaneous </a>
-                            </li>
-                        </ul>
-                    </li> --}}
-
-                    {{-- <li class="menu">
-                        <a href="#forms" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard">
-                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2">
-                                    </path>
-                                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1">
-                                    </rect>
-                                </svg>
-                                <span>Forms</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="feather feather-chevron-right">
-                                    <polyline points="9 18 15 12 9 6"></polyline>
-                                </svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled" id="forms" data-bs-parent="#accordionExample">
-                            <li>
-                                <a href="form-bootstrap-basic.html"> Basic </a>
-                            </li>
-                            <li>
-                                <a href="form-input-group-basic.html"> Input Group </a>
-                            </li>
-                            <li>
-                                <a href="form-layouts.html"> Layouts </a>
-                            </li>
-                            <li>
-                                <a href="form-validation.html"> Validation </a>
-                            </li>
-                            <li>
-                                <a href="form-input-mask.html"> Input Mask </a>
-                            </li>
-                            <li>
-                                <a href="form-tom-select.html"> Tom Select </a>
-                            </li>
-                            <li>
-                                <a href="form-tagify.html"> Tagify </a>
-                            </li>
-                            <li>
-                                <a href="form-bootstrap-touchspin.html"> TouchSpin </a>
-                            </li>
-                            <li>
-                                <a href="form-maxlength.html"> Maxlength </a>
-                            </li>
-                            <li>
-                                <a href="form-checkbox.html"> Checkbox </a>
-                            </li>
-                            <li>
-                                <a href="form-radio.html"> Radio </a>
-                            </li>
-                            <li>
-                                <a href="form-switches.html"> Switches </a>
-                            </li>
-                            <li>
-                                <a href="form-wizard.html"> Wizards </a>
-                            </li>
-                            <li>
-                                <a href="form-fileupload.html"> File Upload </a>
-                            </li>
-                            <li>
-                                <a href="form-quill.html"> Quill Editor </a>
-                            </li>
-                            <li>
-                                <a href="form-markdown.html"> Markdown Editor </a>
-                            </li>
-                            <li>
-                                <a href="form-date-time-picker.html"> Date Time Picker </a>
-                            </li>
-                            <li>
-                                <a href="form-slider.html"> Slider </a>
-                            </li>
-                            <li>
-                                <a href="form-clipboard.html"> Clipboard </a>
-                            </li>
-                            <li>
-                                <a href="form-autoComplete.html"> Auto Complete </a>
-                            </li>
-                        </ul>
-                    </li> --}}
-
                     <li class="menu">
                         <a href="#users" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -473,6 +348,35 @@
                         <ul class="collapse submenu list-unstyled" id="users" data-bs-parent="#accordionExample">
                             <li>
                                 <a href="{{ route('Admin.Users') }}"> All Users </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu">
+                        <a href="#datatables" data-bs-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers">
+                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                    <polyline points="2 17 12 22 22 17"></polyline>
+                                    <polyline points="2 12 12 17 22 12"></polyline>
+                                </svg>
+                                <span>Content Mangement</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-chevron-right">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled" id="datatables"
+                            data-bs-parent="#accordionExample">
+                            <li>
+                                <a href="{{ route('Admin.Add.Telegram.Link') }}"> Telegram Link</a>
                             </li>
                         </ul>
                     </li>

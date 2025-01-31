@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\ContentManagement;
 use App\Http\Controllers\admin\DepositController;
 use App\Http\Controllers\admin\UserManagement;
 use Illuminate\Support\Facades\Route;
@@ -48,4 +49,7 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     Route::post('Edit/Task/Profit/{id}', [UserManagement::class, 'editTaskProfit'])->name('Edit.Task.Profit');
     // Activate all tasks
     Route::get('Activate/All/Task/{id}', [UserManagement::class, 'activateAll'])->name('Activate.All.Plans');
+    // content management
+    Route::get('Add/Telegram/Link', [ContentManagement::class, 'addTelegramLink'])->name('Add.Telegram.Link');
+    Route::Post('Store/Telegram/Link', [ContentManagement::class, 'storeTelegramLink'])->name('Store.Telegram.Link');
 });
