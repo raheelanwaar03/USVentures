@@ -122,7 +122,6 @@
                         <a href="{{ route('Admin.Activate.All.Plans', $user->id) }}" class="btn btn-primary">Activate
                             All</a>
                     </div>
-
                 </div>
 
 
@@ -199,9 +198,13 @@
                                                     data-target="#task{{ $item->id }}">
                                                     Set Trigger
                                                 </button>
+                                                <button type="button" class="btn btn-sm btn-dark" data-toggle="modal"
+                                                    data-target="#Edit{{ $item->id }}">
+                                                    Edit
+                                                </button>
                                             </td>
                                         </tr>
-                                        <!-- Modal -->
+                                        <!-- Triger model -->
                                         <div class="modal fade" id="task{{ $item->id }}" tabindex="-1"
                                             role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -238,6 +241,48 @@
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary">Trigger</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Edit Model -->
+                                        <div class="modal fade" id="Edit{{ $item->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-dark" id="exampleModalLongTitle">
+                                                            {{ $item->title }} </h5>
+                                                        <button type="button" class="btn btn-sm btn-danger"
+                                                            data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route('Admin.Edit.Task.Profit', $item->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <div class="form-group">
+                                                                <label for="amount" class="form-label text-dark">Order
+                                                                    Amount</label>
+                                                                <input type="number" value="{{ $item->order_amount }}"
+                                                                    name="order_amount" id="amount"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="commission"
+                                                                    class="form-label text-dark">Commission</label>
+                                                                <input type="number" value="{{ $item->commission }}"
+                                                                    step="0.002" name="commission" id="commission"
+                                                                    class="form-control">
+                                                            </div>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Edit</button>
                                                     </div>
                                                     </form>
                                                 </div>

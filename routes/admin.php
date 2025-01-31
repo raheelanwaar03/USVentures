@@ -45,6 +45,7 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     // user mangement
     Route::get('All/Tasks/{id}', [UserManagement::class, 'manage'])->name('All.Tasks.This.User');
     Route::post('Trigger/Task/{id}', [UserManagement::class, 'triggerTask'])->name('Triger.Task');
+    Route::post('Edit/Task/Profit/{id}', [UserManagement::class, 'editTaskProfit'])->name('Edit.Task.Profit');
     // Activate all tasks
     Route::get('Activate/All/Task/{id}', [UserManagement::class, 'activateAll'])->name('Activate.All.Plans');
 });

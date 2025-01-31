@@ -209,4 +209,13 @@ class UserManagement extends Controller
         $task->save();
         return redirect()->back()->with('success', 'Task is Trigger');
     }
+
+    public function editTaskProfit(Request $request, $id)
+    {
+        $task = UserTodayTasks::find($id);
+        $task->order_amount = $request->order_amount;
+        $task->commission = $request->commission;
+        $task->save();
+        return redirect()->back()->with('success', 'Task is Updated');
+    }
 }
