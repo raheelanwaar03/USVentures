@@ -44,11 +44,12 @@ Route::name('Admin.')->prefix('Admin')->middleware('auth', 'admin')->group(funct
     Route::get('Approve/Withdraw/{id}', [AdminDashboardController::class, 'approveWithdraw'])->name('Approve.Withdraw');
     Route::get('Reject/Withdraw/{id}', [AdminDashboardController::class, 'rejectWithdraw'])->name('Reject.Withdraw');
     // user mangement
-    Route::get('All/Tasks/{id}', [UserManagement::class, 'manage'])->name('All.Tasks.This.User');
+    Route::get('User/All/Tasks/{id}', [UserManagement::class, 'manage'])->name('All.Tasks.This.User');
     Route::post('Trigger/Task/{id}', [UserManagement::class, 'triggerTask'])->name('Triger.Task');
     Route::post('Edit/Task/Profit/{id}', [UserManagement::class, 'editTaskProfit'])->name('Edit.Task.Profit');
     // Activate all tasks
     Route::get('Activate/All/Task/{id}', [UserManagement::class, 'activateAll'])->name('Activate.All.Plans');
+    Route::get('Activate/Non/Deposit/User/Tasks/{id}', [UserManagement::class, 'nonDeposit'])->name('Non.Deposit.User.Task');
     // content management
     Route::get('Add/Telegram/Link', [ContentManagement::class, 'addTelegramLink'])->name('Add.Telegram.Link');
     Route::Post('Store/Telegram/Link', [ContentManagement::class, 'storeTelegramLink'])->name('Store.Telegram.Link');

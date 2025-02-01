@@ -74,7 +74,7 @@ class UserDashboardController extends Controller
 
     public function addTaskAmount()
     {
-        $check_tasks = UserTodayTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->get();
+        $check_tasks = UserTodayTasks::where('user_id', auth()->user()->id)->where('status','active')->whereDate('created_at', Carbon::today())->get();
 
         // if check_tasks is empty then return back
         if ($check_tasks->isEmpty()) {

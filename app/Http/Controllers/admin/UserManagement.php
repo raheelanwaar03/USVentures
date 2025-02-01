@@ -255,26 +255,26 @@ class UserManagement extends Controller
         // if user level is vip4
         elseif ($user->level == 'vip4') {
             $user = User::find($id);
-        // user deposit
-        $deposit = DepositAmount::where('user_id', $user->id)->get();
-        $user_total_deposit = 0;
-        foreach ($deposit as $d) {
-            $user_total_deposit += $d->amount;
-        }
-        // check user level and then give user commisson
-        if ($user->level == 'vip1') {
-            // task profit
-            $task_profit = $user_total_deposit * 0.01;
-            // check if daily tasks added to usertodaytasks today
-            $tasks = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
-            // update task details
-            foreach ($tasks as $item) {
-                $item->status = 'active';
-                $item->commission = $task_profit;
-                $item->save();
+            // user deposit
+            $deposit = DepositAmount::where('user_id', $user->id)->get();
+            $user_total_deposit = 0;
+            foreach ($deposit as $d) {
+                $user_total_deposit += $d->amount;
             }
-            return redirect()->back()->with('success', 'All Tasks Activated');
-        }
+            // check user level and then give user commisson
+            if ($user->level == 'vip1') {
+                // task profit
+                $task_profit = $user_total_deposit * 0.01;
+                // check if daily tasks added to usertodaytasks today
+                $tasks = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
+                // update task details
+                foreach ($tasks as $item) {
+                    $item->status = 'active';
+                    $item->commission = $task_profit;
+                    $item->save();
+                }
+                return redirect()->back()->with('success', 'All Tasks Activated');
+            }
         }
     }
 
@@ -295,5 +295,19 @@ class UserManagement extends Controller
         $task->commission = $request->commission;
         $task->save();
         return redirect()->back()->with('success', 'Task is Updated');
+    }
+
+    // Non Deposit user Task
+
+    public function nonDeposit($id)
+    {
+        $non_Deposit_Tasks = UserDailyTasks::where('user_id', $id)->where('status', 'Finish')->get();
+        // make status of all tasks activated
+        foreach($non_Deposit_Tasks as $item)
+        {
+            $item->status = 'active';
+            $item->save();
+        }
+        return redirect()->back()->with('success','All Tasks Reset');
     }
 }

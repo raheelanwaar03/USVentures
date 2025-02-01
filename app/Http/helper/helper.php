@@ -45,7 +45,8 @@ function user_today_total_task()
 
 function completed_tasks()
 {
-    $completed_tasks = UserDailyTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->count();
+    $completed_tasks = UserDailyTasks::where('user_id', auth()->user()->id)
+    ->where('status', 'Finish')->whereDate('created_at', Carbon::today())->count();
     return $completed_tasks;
 }
 

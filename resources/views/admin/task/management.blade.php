@@ -120,7 +120,9 @@
 
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
                         <a href="{{ route('Admin.Activate.All.Plans', $user->id) }}" class="btn btn-primary">Activate
-                            All</a>
+                            DUT's</a>
+                        <a href="{{ route('Admin.Non.Deposit.User.Task', $user->id) }}" class="btn btn-danger">Activate
+                            NDUT's</a>
                     </div>
                 </div>
 
@@ -159,8 +161,6 @@
                         </header>
                     </div>
                 </div>
-                <!--  END BREADCRUMBS  -->
-
                 <div class="row layout-top-spacing">
                     <div class="row layout-top-spacing">
                         <div class="table-container">
@@ -189,8 +189,8 @@
                                             <td>{{ $item->commission }}%</td>
                                             <td>{{ $item->status }}</td>
                                             <td>
-                                                <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}"
-                                                    style="width: 80px; height: 80px;">
+                                                <img src="{{ asset('images/' . $item->image) }}"
+                                                    alt="{{ $item->name }}" style="width: 80px; height: 80px;">
                                             </td>
                                             <td>{{ $item->created_at }}</td>
                                             <td>
