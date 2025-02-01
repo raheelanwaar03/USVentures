@@ -237,6 +237,11 @@ class UserDashboardController extends Controller
 
     public function storeWithdraw(Request $request)
     {
+        // check if user status is disable then return it back
+        if (auth()->user()->status == 'disable') {
+            return back()->with('error', 'Your account is disable, Contact CS');
+            }
+
         $wallet = AddWallet::where('user_id', auth()->user()->id)->first();
         if (!$wallet) {
             return back()->with('error', 'Add your wallet address');
