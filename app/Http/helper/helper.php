@@ -39,14 +39,13 @@ function user_task_id()
 
 function user_today_total_task()
 {
-    $test = UserTodayTasks::where('user_id', auth()->user()->id)->whereDate('created_at', Carbon::today())->count();
+    $test = UserTodayTasks::where('user_id', auth()->user()->id)->count();
     return $test;
 }
 
 function completed_tasks()
 {
-    $completed_tasks = UserDailyTasks::where('user_id', auth()->user()->id)
-    ->where('status', 'Finish')->whereDate('created_at', Carbon::today())->count();
+    $completed_tasks = UserDailyTasks::where('user_id', auth()->user()->id)->where('status', 'Finish')->count();
     return $completed_tasks;
 }
 

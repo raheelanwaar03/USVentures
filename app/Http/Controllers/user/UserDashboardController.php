@@ -74,8 +74,7 @@ class UserDashboardController extends Controller
 
     public function addTaskAmount()
     {
-        $check_tasks = UserTodayTasks::where('user_id', auth()->user()->id)->where('status','active')->whereDate('created_at', Carbon::today())->get();
-
+        $check_tasks = UserTodayTasks::where('user_id', auth()->user()->id)->where('status','active')->get();
         // if check_tasks is empty then return back
         if ($check_tasks->isEmpty()) {
             $id = completed_tasks() + 1;
@@ -156,11 +155,11 @@ class UserDashboardController extends Controller
                 if ($user->balance <= 0) {
                     return back()->with('error', 'Recharge your account');
                 }
+                $user->balance += $given_commission;
+                $user->save();
                 $task = UserTodayTasks::where('user_id', auth()->user()->id)->where('id', $id)->first();
                 $task->status = 'completed';
                 $task->save();
-                $user->balance += $given_commission;
-                $user->save();
 
                 $userDailyTask = new UserDailyTasks();
                 $userDailyTask->user_id = auth()->user()->id;
@@ -198,7 +197,7 @@ class UserDashboardController extends Controller
                 $transcation = new Transcations();
                 $transcation->user_id = auth()->user()->id;
                 $transcation->amount = $task->order_amount;
-                $transcation->type = 'Order frozen amount';
+                $transcation->type = 'Order consumed amount';
                 $transcation->status = 'debit';
                 $transcation->save();
 

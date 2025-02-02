@@ -196,85 +196,127 @@ class UserManagement extends Controller
             $task_profit = $user_total_deposit * 0.004;
             // check if daily tasks added to usertodaytasks today
             $tasks = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
+            // delete all and add again with new commission
+            foreach ($tasks as $task) {
+                $task->delete();
+            }
+            // add new by checking user level in daily tasks
+            $user_tasks = DailyTask::where('level', $user->level)->get();
             // update task details
-            foreach ($tasks as $item) {
-                $item->status = 'active';
-                $item->commission = $task_profit;
-                $item->save();
+            foreach ($user_tasks as $item) {
+                // add new task in usertodayTask
+                $today_task = new UserTodayTasks();
+                $today_task->user_id = $user->id;
+                $today_task->title = $item->title;
+                $today_task->order_amount = $item->order_amount;
+                $today_task->commission = $task_profit;
+                $today_task->level = $item->level;
+                $today_task->image = $item->image;
+                $today_task->status = 'active';
+                $today_task->save();
+            }
+            // and delete user all tasks in userDailyTask
+            $daily_tasks = UserDailyTasks::where('user_id', $user->id)->get();
+            foreach ($daily_tasks as $task) {
+                $task->delete(); // delete task
             }
             return redirect()->back()->with('success', 'All Tasks Activated');
         }
         // if user level is vip2
         elseif ($user->level == 'vip2') {
-            $user = User::find($id);
-            // user deposit
-            $deposit = DepositAmount::where('user_id', $user->id)->get();
-            $user_total_deposit = 0;
-            foreach ($deposit as $d) {
-                $user_total_deposit += $d->amount;
+            // task profit
+            $task_profit = $user_total_deposit * 0.006;
+            // check if daily tasks added to usertodaytasks today
+            $tasks = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
+            // delete all and add again with new commission
+            foreach ($tasks as $task) {
+                $task->delete();
             }
-            // check user level and then give user commisson
-            if ($user->level == 'vip1') {
-                // task profit
-                $task_profit = $user_total_deposit * 0.006;
-                // check if daily tasks added to usertodaytasks today
-                $tasks = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
-                // update task details
-                foreach ($tasks as $item) {
-                    $item->status = 'active';
-                    $item->commission = $task_profit;
-                    $item->save();
-                }
-                return redirect()->back()->with('success', 'All Tasks Activated');
+            // add new by checking user level in daily tasks
+            $user_tasks = DailyTask::where('level', $user->level)->get();
+            // update task details
+            foreach ($user_tasks as $item) {
+                // add new task in usertodayTask
+                $today_task = new UserTodayTasks();
+                $today_task->user_id = $user->id;
+                $today_task->title = $item->title;
+                $today_task->order_amount = $item->order_amount;
+                $today_task->commission = $task_profit;
+                $today_task->level = $item->level;
+                $today_task->image = $item->image;
+                $today_task->status = 'active';
+                $today_task->save();
             }
+            // and delete user all tasks in userDailyTask
+            $daily_tasks = UserDailyTasks::where('user_id', $user->id)->get();
+            foreach ($daily_tasks as $task) {
+                $task->delete(); // delete task
+            }
+            return redirect()->back()->with('success', 'All Tasks Activated');
         }
         // if user level is vip3
         elseif ($user->level == 'vip3') {
-            $user = User::find($id);
-            // user deposit
-            $deposit = DepositAmount::where('user_id', $user->id)->get();
-            $user_total_deposit = 0;
-            foreach ($deposit as $d) {
-                $user_total_deposit += $d->amount;
+            // task profit
+            $task_profit = $user_total_deposit * 0.004;
+            // check if daily tasks added to usertodaytasks today
+            $tasks = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
+            // delete all and add again with new commission
+            foreach ($tasks as $task) {
+                $task->delete();
             }
-            // check user level and then give user commisson
-            if ($user->level == 'vip1') {
-                // task profit
-                $task_profit = $user_total_deposit * 0.008;
-                // check if daily tasks added to usertodaytasks today
-                $tasks = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
-                // update task details
-                foreach ($tasks as $item) {
-                    $item->status = 'active';
-                    $item->commission = $task_profit;
-                    $item->save();
-                }
-                return redirect()->back()->with('success', 'All Tasks Activated');
+            // add new by checking user level in daily tasks
+            $user_tasks = DailyTask::where('level', $user->level)->get();
+            // update task details
+            foreach ($user_tasks as $item) {
+                // add new task in usertodayTask
+                $today_task = new UserTodayTasks();
+                $today_task->user_id = $user->id;
+                $today_task->title = $item->title;
+                $today_task->order_amount = $item->order_amount;
+                $today_task->commission = $task_profit;
+                $today_task->level = $item->level;
+                $today_task->image = $item->image;
+                $today_task->status = 'active';
+                $today_task->save();
             }
+            // and delete user all tasks in userDailyTask
+            $daily_tasks = UserDailyTasks::where('user_id', $user->id)->get();
+            foreach ($daily_tasks as $task) {
+                $task->delete(); // delete task
+            }
+            return redirect()->back()->with('success', 'All Tasks Activated');
         }
         // if user level is vip4
         elseif ($user->level == 'vip4') {
-            $user = User::find($id);
-            // user deposit
-            $deposit = DepositAmount::where('user_id', $user->id)->get();
-            $user_total_deposit = 0;
-            foreach ($deposit as $d) {
-                $user_total_deposit += $d->amount;
+            // task profit
+            $task_profit = $user_total_deposit * 0.004;
+            // check if daily tasks added to usertodaytasks today
+            $tasks = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
+            // delete all and add again with new commission
+            foreach ($tasks as $task) {
+                $task->delete();
             }
-            // check user level and then give user commisson
-            if ($user->level == 'vip1') {
-                // task profit
-                $task_profit = $user_total_deposit * 0.01;
-                // check if daily tasks added to usertodaytasks today
-                $tasks = UserTodayTasks::where('user_id', $user->id)->where('level', $user->level)->get();
-                // update task details
-                foreach ($tasks as $item) {
-                    $item->status = 'active';
-                    $item->commission = $task_profit;
-                    $item->save();
-                }
-                return redirect()->back()->with('success', 'All Tasks Activated');
+            // add new by checking user level in daily tasks
+            $user_tasks = DailyTask::where('level', $user->level)->get();
+            // update task details
+            foreach ($user_tasks as $item) {
+                // add new task in usertodayTask
+                $today_task = new UserTodayTasks();
+                $today_task->user_id = $user->id;
+                $today_task->title = $item->title;
+                $today_task->order_amount = $item->order_amount;
+                $today_task->commission = $task_profit;
+                $today_task->level = $item->level;
+                $today_task->image = $item->image;
+                $today_task->status = 'active';
+                $today_task->save();
             }
+            // and delete user all tasks in userDailyTask
+            $daily_tasks = UserDailyTasks::where('user_id', $user->id)->get();
+            foreach ($daily_tasks as $task) {
+                $task->delete(); // delete task
+            }
+            return redirect()->back()->with('success', 'All Tasks Activated');
         }
     }
 
@@ -303,11 +345,10 @@ class UserManagement extends Controller
     {
         $non_Deposit_Tasks = UserDailyTasks::where('user_id', $id)->where('status', 'Finish')->get();
         // make status of all tasks activated
-        foreach($non_Deposit_Tasks as $item)
-        {
+        foreach ($non_Deposit_Tasks as $item) {
             $item->status = 'active';
             $item->save();
         }
-        return redirect()->back()->with('success','All Tasks Reset');
+        return redirect()->back()->with('success', 'All Tasks Reset');
     }
 }
