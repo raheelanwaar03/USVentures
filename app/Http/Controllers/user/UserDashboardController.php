@@ -126,16 +126,21 @@ class UserDashboardController extends Controller
                 // give user upliner reward
                 $user = User::find(auth()->user()->id);
                 $upliner = User::where('referral_id', $user->referral)->first();
-                if ($upliner) {
-                    $upliner->balance += $upliner_commission;
-                    $upliner->save();
-                    $transcation = new Transcations();
-                    $transcation->user_id = $upliner->id;
-                    $transcation->amount = $upliner_commission;
-                    $transcation->type = 'Referral commission';
-                    $transcation->status = 'credit';
-                    $transcation->save();
+                // check if user got today commision then return back
+                $check_today_upliner_commission = Transcations::where('user_id', $upliner->id)
+                    ->whereDate('created_at', Carbon::today())->first();
+                if ($check_today_upliner_commission) {
+                    return back()->with('error', 'All Tasks are finished, Contact Customer Service');
                 }
+                // add upliner commission to user account
+                $upliner->balance += $upliner_commission;
+                $upliner->save();
+                $transcation = new Transcations();
+                $transcation->user_id = $upliner->id;
+                $transcation->amount = $upliner_commission;
+                $transcation->type = 'Referral commission';
+                $transcation->status = 'credit';
+                $transcation->save();
                 return back()->with('error', 'All tasks are finished, Contact Customer Service');
             }
             $test = UserTodayTasks::where('user_id', auth()->user()->id)->where('level', auth()->user()->level)->get();

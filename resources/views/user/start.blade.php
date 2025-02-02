@@ -118,7 +118,7 @@
                 <div class="col-12">
                     <div class="text-dark d-flex justify-content-between align-items-center">
                         <p style="font-size: 20px;"><b>Rating</b></p>
-                        <p style="font-size: 20px;"><b>Name</b></p>
+                        <p style="font-size: 20px;"><b>{{auth()->user()->name}}</b></p>
                     </div>
                 </div>
                 <a href="{{ route('User.Add.Amount') }}" style="text-decoration: none;color: white;">
