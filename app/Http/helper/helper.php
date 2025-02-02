@@ -90,3 +90,6 @@ function all_users()
     $users = User::count();
     return $users;
 }
+
+
+

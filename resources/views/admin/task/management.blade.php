@@ -110,7 +110,7 @@
 
                                         <div class="balance-info">
                                             <h6>Tasks</h6>
-                                            <p>{{ $active_tasks }} / {{ $completed_tasks }}</p>
+                                            <p>{{ $completed_tasks }} / {{ $total_tasks }}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -74,7 +74,7 @@ class UserDashboardController extends Controller
 
     public function addTaskAmount()
     {
-        $check_tasks = UserTodayTasks::where('user_id', auth()->user()->id)->where('status','active')->get();
+        $check_tasks = UserTodayTasks::where('user_id', auth()->user()->id)->where('status', 'active')->get();
         // if check_tasks is empty then return back
         if ($check_tasks->isEmpty()) {
             $id = completed_tasks() + 1;
@@ -239,7 +239,7 @@ class UserDashboardController extends Controller
         // check if user status is disable then return it back
         if (auth()->user()->status == 'disable') {
             return back()->with('error', 'Your account is disable, Contact CS');
-            }
+        }
 
         $wallet = AddWallet::where('user_id', auth()->user()->id)->first();
         if (!$wallet) {

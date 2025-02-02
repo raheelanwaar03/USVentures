@@ -43,7 +43,7 @@ class clean extends Command
         $user->password = Hash::make('asdfasdf');
         $user->status = 'active';
         $user->role = 'admin';
-        $user->referral_id = 'US123456';
+        $user->referral_id = 'US123457';
         $user->level = 'vip1';
         $user->pin = '123457';
         $user->save();

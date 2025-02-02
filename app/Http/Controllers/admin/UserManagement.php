@@ -49,17 +49,17 @@ class UserManagement extends Controller
                 }
 
                 $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
-                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
-                if ($active_tasks == 0) {
-                    $active_tasks = 0;
+                $total_tasks = UserTodayTasks::where('user_id', $user->id)->count();
+                if ($total_tasks == 0) {
+                    $total_tasks = 0;
                 }
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'total_tasks', 'completed_tasks'));
             } else {
                 $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
-                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
+                $total_tasks = UserTodayTasks::where('user_id', $user->id)->count();
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'total_tasks', 'completed_tasks'));
             }
         }
         // if user level is vip2
@@ -88,17 +88,17 @@ class UserManagement extends Controller
                 }
 
                 $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
-                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
-                if ($active_tasks == 0) {
-                    $active_tasks = 0;
+                $total_tasks = UserTodayTasks::where('user_id', $user->id)->count();
+                if ($total_tasks == 0) {
+                    $total_tasks = 0;
                 }
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'total_tasks', 'completed_tasks'));
             } else {
                 $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
-                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
+                $total_tasks = UserTodayTasks::where('user_id', $user->id)->count();
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'total_tasks', 'completed_tasks'));
             }
         }
         // if user level is vip3
@@ -127,17 +127,17 @@ class UserManagement extends Controller
                 }
 
                 $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
-                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
-                if ($active_tasks == 0) {
-                    $active_tasks = 0;
+                $total_tasks = UserTodayTasks::where('user_id', $user->id)->count();
+                if ($total_tasks == 0) {
+                    $total_tasks = 0;
                 }
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'total_tasks', 'completed_tasks'));
             } else {
                 $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
-                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
+                $total_tasks = UserTodayTasks::where('user_id', $user->id)->count();
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'total_tasks', 'completed_tasks'));
             }
         }
         // if user level is vip4
@@ -166,17 +166,17 @@ class UserManagement extends Controller
                 }
 
                 $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
-                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
-                if ($active_tasks == 0) {
-                    $active_tasks = 0;
+                $total_tasks = UserTodayTasks::where('user_id', $user->id)->count();
+                if ($total_tasks == 0) {
+                    $total_tasks = 0;
                 }
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'total_tasks', 'completed_tasks'));
             } else {
                 $completed_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'completed')->count();
-                $active_tasks = UserTodayTasks::where('user_id', $user->id)->where('status', 'active')->count();
+                $total_tasks = UserTodayTasks::where('user_id', $user->id)->count();
                 $today_tasks = UserTodayTasks::where('user_id', $user->id)->get();
-                return view('admin.task.management', compact('user', 'today_tasks', 'active_tasks', 'completed_tasks'));
+                return view('admin.task.management', compact('user', 'today_tasks', 'total_tasks', 'completed_tasks'));
             }
         }
     }
