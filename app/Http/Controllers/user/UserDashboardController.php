@@ -74,7 +74,7 @@ class UserDashboardController extends Controller
 
     public function addTaskAmount()
     {
-        $check_tasks = UserTodayTasks::where('user_id', auth()->user()->id)->where('status', 'active')->get();
+        $check_tasks = UserTodayTasks::where('user_id', auth()->user()->id)->get();
         // if check_tasks is empty then return back
         if ($check_tasks->isEmpty()) {
             $id = completed_tasks() + 1;
