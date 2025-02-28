@@ -355,6 +355,12 @@ class UserDashboardController extends Controller
             'wallet_type' => 'required',
         ]);
 
+        // check if user already added his wallet then delete the old wallet
+        $user_wallet = AddWallet::where('user_id', auth()->user()->id)->first();
+        if ($user_wallet) {
+            $user_wallet->delete();
+        }
+
         // save to database
         $wallet = new AddWallet();
         $wallet->user_id = auth()->user()->id;
@@ -362,7 +368,7 @@ class UserDashboardController extends Controller
         $wallet->address = $request->address;
         $wallet->walletname = $request->wallet_type;
         $wallet->save();
-        return redirect()->back()->with('success', 'Wallet added successfully');
+        return redirect()->back()->with('success', 'New Wallet Added Successfully');
     }
 
     public function submitAllRecord($id)

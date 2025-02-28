@@ -27,14 +27,9 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <h6 class="text-dark">Withdraw Method</h6>
                         {{-- check if this user already added his wallet then show him error that wallet already added --}}
-                        @if ($wallet == null)
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#walletAddress">Add Method</button>
-                        @else
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#walletAddress"
-                                disabled>Add
-                                Method</button>
-                        @endif
+
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#walletAddress">Add
+                            Method</button>
                     </div>
                     <h6>Withdraw will transfer to your bank</h6>
                 </div>
