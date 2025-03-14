@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\admin\AdminWallet;
 use App\Models\admin\DailyTask;
+use App\Models\admin\TelegramLink;
 use App\Models\User;
 use App\Models\user\AddWallet;
 use App\Models\user\CompletedTask;
@@ -20,12 +21,14 @@ class UserDashboardController extends Controller
 {
     public function index()
     {
-        return view('user.dashboard');
+        $telegram = TelegramLink::first();
+        return view('user.dashboard', compact('telegram'));
     }
 
     public function start()
     {
-        return view('user.start');
+        $telegram = TelegramLink::first();
+        return view('user.start', compact('telegram'));
     }
 
     public function record()
@@ -235,8 +238,9 @@ class UserDashboardController extends Controller
     public function Withdraw()
     {
         // check if user has added his wallet or not
+        $telegram = TelegramLink::first();
         $wallet = AddWallet::where('user_id', auth()->user()->id)->first();
-        return view('user.withdraw', compact('wallet'));
+        return view('user.withdraw', compact('wallet', 'telegram'));
     }
 
     public function storeWithdraw(Request $request)
@@ -312,8 +316,9 @@ class UserDashboardController extends Controller
     // deposit money
     public function deposit()
     {
+        $telegram = TelegramLink::first();
         $wallet = AdminWallet::all();
-        return view('user.deposit', compact('wallet'));
+        return view('user.deposit', compact('wallet', 'telegram'));
     }
 
     // deposit amount

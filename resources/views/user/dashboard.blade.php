@@ -25,7 +25,7 @@
                     </a>
                 </div>
                 <div class="col-3">
-                    <a href="https://t.me/USVentures1" class="text-white text-decoration-none">
+                    <a href="{{ $telegram->link }}" target="_blank" class="text-white text-decoration-none">
                         <div class="pointer"><i class="bi bi-chat-text icon-style"></i> <br>
                             <p class="mt-3 font-2">CS</p>
                         </div>

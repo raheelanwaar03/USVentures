@@ -297,8 +297,8 @@
     <section>
         <h3>Platform Detail</h3>
         <ul>
-            <li><a href="https://t.me/USVentures1"><i class="fa-solid fa-headset"></i> Customer Service</a><i
-                    class="fa-solid fa-chevron-right"></i></li>
+            <li><a href="{{ $telegram->link }}" target="_blank"><i class="fa-solid fa-headset"></i> Customer
+                    Service</a><i class="fa-solid fa-chevron-right"></i></li>
         </ul>
     </section>
     <div class="logout">
