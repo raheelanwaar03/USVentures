@@ -16,7 +16,7 @@
                 <div class="col-12 bg-white text-dark p-3" style="border-radius: 10px;">
                     <h5>Total Balance</h5>
                     <h3>USDT:{{ auth()->user()->balance }}</h3>
-                    <small>You will recive your withdrawal within an hour</small>
+                    <small>Withdraw will transfer to your account in 12h</small>
                 </div>
             </div>
         </div>
@@ -31,7 +31,11 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#walletAddress">Add
                             Method</button>
                     </div>
-                    <h6>Withdraw will transfer to your bank</h6>
+                    <h6>
+                        Minimum Withdraw limit is 50 usdt.
+                        <br>
+                        08% is the withdraw fee.
+                    </h6>
                 </div>
             </div>
         </div>

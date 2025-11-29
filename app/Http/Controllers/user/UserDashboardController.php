@@ -267,6 +267,11 @@ class UserDashboardController extends Controller
             return back()->with('error', 'Insufficient balance');
         }
 
+        if($request->amount < 50)
+        {
+            return back()->with('error', 'Minimum withdraw limit is 50 usdt');
+        }
+
         // check user level and his withdraw limit accourdingly
         if ($user->level == 'vip1') {
             // user limit should be between 100 to 800
@@ -317,7 +322,7 @@ class UserDashboardController extends Controller
     public function deposit()
     {
         $telegram = TelegramLink::first();
-        $wallet = AdminWallet::all();
+        $wallet = AdminWallet::first();
         return view('user.deposit', compact('wallet', 'telegram'));
     }
 
@@ -325,16 +330,27 @@ class UserDashboardController extends Controller
     public function depositAmount(Request $request)
     {
         $request->validate([
-            'amount' => 'required',
+            'amount' => 'numeric',
+            'trx_id' => 'numeric',
+            'screen_shot' => 'required|image|mimes:jpg,jpeg,png,webp,gif|max:5120',
         ]);
 
+        if ($request->amount < 100) {
+            return redirect()->back()->with('error', 'Minimum deposit is 100 usdt.');
+        }
+
+        $imageName = time() . '.' . $request->screen_shot->extension();
+        $request->screen_shot->move(public_path('images'), $imageName);
+
         // save to database
-        $deposit = DepositAmount::create([
-            'user_id' => auth()->user()->id,
-            'name' => auth()->user()->name,
-            'phone' => auth()->user()->phone,
-            'amount' => $request->amount,
-        ]);
+        $deposit = new DepositAmount();
+        $deposit->user_id = auth()->user()->id;
+        $deposit->name = auth()->user()->name;
+        $deposit->trx_id = $request->trx_id;
+        $deposit->amount = $request->amount;
+        $deposit->screen_shot = $request->screen_shot;
+        $deposit->save();
+
 
         $transcation = new Transcations();
         $transcation->user_id = auth()->user()->id;

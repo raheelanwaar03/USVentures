@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\admin\AdminWallet;
 use App\Models\admin\TelegramLink;
 use App\Models\User;
 use Illuminate\Console\Command;
@@ -66,5 +67,11 @@ class clean extends Command
         $telegram->link = 'https://t.me/USVentures1';
         $telegram->save();
 
+        $adminWallet = new AdminWallet();
+        $adminWallet->name = 'Binance';
+        $adminWallet->type = 'Trc20 & Bep20';
+        $adminWallet->address = 'adfadfadfadfadfasdf';
+        $adminWallet->status = 'active';
+        $adminWallet->save();
     }
 }

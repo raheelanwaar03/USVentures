@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('admin_wallets', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('username');
-            $table->string('address');
-            $table->string('logo');
+            $table->string('name')->default('Binance');
+            $table->string('type')->default('Trc20 & Bep20');
+            $table->string('address')->default('adfadfadfadfasdfadfs');
             $table->string('status')->default('active');
             $table->timestamps();
         });

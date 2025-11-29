@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('user_id');
             $table->string('name');
-            $table->string('phone');
+            $table->string('trx_id');
             $table->string('amount');
+            $table->string('screen_shot');
             $table->string('status')->default('pending');
 
             $table->timestamps();
