@@ -267,8 +267,7 @@ class UserDashboardController extends Controller
             return back()->with('error', 'Insufficient balance');
         }
 
-        if($request->amount < 50)
-        {
+        if ($request->amount < 50) {
             return back()->with('error', 'Minimum withdraw limit is 50 usdt');
         }
 

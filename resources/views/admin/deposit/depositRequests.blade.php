@@ -63,7 +63,7 @@
                                         <td>
                                             @if ($item->status == 'approved')
                                                 <span class="badge badge-success">{{ $item->status }}</span>
-                                            @else
+                                             @else
                                                 <span class="badge badge-primary">{{ $item->status }}</span>
                                             @endif
                                         </td>

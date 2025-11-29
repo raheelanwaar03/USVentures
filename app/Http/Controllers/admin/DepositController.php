@@ -35,6 +35,25 @@ class DepositController extends Controller
         $deposit->status = 'approved';
         $deposit->save();
 
+        $amount = $deposit->amount;
+        if ($amount >= 500) {
+            $commission = 50;
+        } elseif ($amount >= 300) {
+            $commission = 20;
+        } elseif ($amount >= 200) {
+            $commission = 10;
+        } elseif ($amount >= 100) {
+            $commission = 5;
+        }
+
+        $user = User::find($deposit->user_id);
+        // give commission to referral
+        $referral = User::where('referral_id', $user->referral)->first();
+        if ($referral) {
+            $referral->balance += $commission;
+            $referral->save();
+        }
+
         $tasks = UserDailyTasks::where('user_id', $deposit->user_id)->where('status', 'proccessing')->get();
         if (!$tasks->isEmpty()) {
             foreach ($tasks as $task) {
