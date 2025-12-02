@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('balance', 15, 2)->default(25);
             $table->string('role')->default('user');
             $table->string('status')->default('active');
-            $table->string('referral')->default('default');
+            $table->string('referral')->nullable();
             $table->string('referral_id');
             $table->string('level')->default('vip1');
             $table->string('pin');

@@ -20,14 +20,14 @@
                 <div class="col-3">
                     <a href="{{ route('User.Start') }}" class="text-decoration-none">
                         <div class="pointer"><i class="bi bi-controller icon-style"></i> <br>
-                            <p class="mt-3 font-2 text-white">Start</p>
+                            <p class="mt-3 font-2 text-white">Task</p>
                         </div>
                     </a>
                 </div>
                 <div class="col-3">
                     <a href="{{ $telegram->link }}" target="_blank" class="text-white text-decoration-none">
                         <div class="pointer"><i class="bi bi-chat-text icon-style"></i> <br>
-                            <p class="mt-3 font-2">CS</p>
+                            <p class="mt-3 font-2">Level</p>
                         </div>
                     </a>
                 </div>
@@ -50,23 +50,25 @@
             <div class="row text-center mt-3">
                 <div class="col-3" data-toggle="modal" data-target="#t&C">
                     <div class="pointer"><i class="bi bi-file-earmark-text icon-style"></i> <br>
-                        <p class="mt-3 font-2">T&C</p>
+                        <p class="mt-3 font-2">Earn</p>
                     </div>
                 </div>
                 <div class="col-3" data-toggle="modal" data-target="#event">
                     <div class="pointer"><i class="bi bi-calendar2-event icon-style"></i> <br>
-                        <p class="mt-3 font-2">Event</p>
+                        <p class="mt-3 font-2">Reward</p>
                     </div>
                 </div>
                 <div class="col-3" data-toggle="modal" data-target="#faq">
-                    <div class="pointer"><i class="bi bi-patch-question icon-style"></i> <br>
-                        <p class="mt-3 font-2">FAQ's</p>
+                    <div class="pointer"><i class="bi bi-cash-coin icon-style"></i> <br>
+                        <p class="mt-3 font-2">Wallet</p>
                     </div>
                 </div>
-                <div class="col-3" data-toggle="modal" data-target="#about">
-                    <div class="pointer"><i class="bi bi-file-earmark-person icon-style"></i><br>
-                        <p class="mt-3 font-2">About</p>
-                    </div>
+                <div class="col-3">
+                    <a href="{{ route('User.Team') }}" style="text-decoration: none;color:white;">
+                        <div class="pointer"><i class="bi bi-file-earmark-person icon-style"></i><br>
+                            <p class="mt-3 font-2">Team</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

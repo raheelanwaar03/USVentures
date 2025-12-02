@@ -31,7 +31,6 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'unique:' . User::class],
-            'referral' => ['required', 'string', 'max:255'],
             'pin' => ['required', 'string', 'min:6', 'max:6'],
             'phone' => ['required', 'string', 'max:255'],
             'terms' => ['required'],
@@ -39,10 +38,10 @@ class RegisteredUserController extends Controller
         ]);
 
         // check if any user have this referral code or not
-        $refer_check = User::where('referral_id', $request->referral)->first();
-        if ($refer_check == null) {
-            return redirect()->back()->with('error', 'Use original refer code');
-        }
+        // $refer_check = User::where('referral_id', $request->referral)->first();
+        // if ($refer_check == null) {
+        //     return redirect()->back()->with('error', 'Use original refer code');
+        // }
 
         // generate referral code
 

@@ -219,7 +219,7 @@
                                 <div class="form-group">
                                     <label for="referral" class="form-label">Invite Code</label>
                                     <input type="text" name="referral" id="referral" class="form-control"
-                                        placeholder="Enter your referral code">
+                                        placeholder="Enter your referral code if have.">
                                 </div>
                                 {{-- add terms and conditions's check box which will be checked while registering --}}
                                 <div class="form-group mt-2">

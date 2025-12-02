@@ -25,4 +25,5 @@ Route::name('User.')->prefix('User')->middleware('auth', 'user')->group(function
     Route::get('/Transactions', [UserDashboardController::class, 'transactions'])->name('Transactions');
     // add user wallet
     Route::post('/Add/Wallet', [UserDashboardController::class, 'addWallet'])->name('Add.Wallet');
+    Route::get('/Team', [UserDashboardController::class, 'team'])->name('Team');
 });

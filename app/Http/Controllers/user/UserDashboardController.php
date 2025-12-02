@@ -406,4 +406,10 @@ class UserDashboardController extends Controller
         }
         return redirect()->back()->with('success', 'All tasks submitted successfully');
     }
+
+    public function team()
+    {
+        $referrals = User::where('referral', auth()->user()->referral_id)->get();
+        return view('user.team', compact('referrals'));
+    }
 }
